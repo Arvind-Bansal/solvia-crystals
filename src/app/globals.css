@@ -1,0 +1,63 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-black: #0a0a0a;
+  --color-brand-dark: #121212;
+  --color-brand-purple: #2d1b4e;
+  --color-brand-purple-light: #4b2c82;
+  --color-brand-gold: #c5a059;
+  --color-brand-silver: #e0e0e0;
+
+  --font-serif: var(--font-outfit);
+  --font-sans: var(--font-inter);
+}
+
+:root {
+  --background: #0a0a0a;
+  --foreground: #e0e0e0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom selection */
+::selection {
+  background-color: var(--color-brand-purple);
+  color: #ffffff;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-brand-purple);
+}
+
+/* Gradients */
+.bg-gradient-luxury {
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #2d1b4e 100%);
+}
+
+.text-gradient {
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-image: linear-gradient(90deg, #c5a059, #e0e0e0);
+}
