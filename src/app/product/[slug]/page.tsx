@@ -8,10 +8,25 @@ import { mockProducts, getProductBySlug } from "@/data/mockProducts";
 import { ProductActions } from "@/components/product/ProductActions";
 import { Star, ShieldCheck, Sparkles, RefreshCcw, Truck } from "lucide-react";
 
+import { constructMetadata, generateStructuredProductData } from "@/lib/seo";
+
 export function generateStaticParams() {
   return mockProducts.map((product) => ({
     slug: product.slug,
   }));
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const product = getProductBySlug(slug);
+  if (!product) return {};
+
+  return constructMetadata({
+    title: product.name,
+    description: product.description,
+    image: product.images.primary,
+    canonicalUrl: `https://solviacrystals.com/product/${slug}`,
+  });
 }
 
 export default async function ProductPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -22,6 +37,8 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
     notFound();
   }
 
+  const jsonLd = generateStructuredProductData(product, `https://solviacrystals.com/product/${slug}`);
+
   const relatedProducts = product.relatedProductIds
     .map(id => mockProducts.find(p => p.id === id))
     .filter((p): p is NonNullable<typeof p> => p !== undefined);
@@ -30,6 +47,10 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
     <>
       <Navbar />
       <main className="pt-32 pb-24 bg-[#0a0a0a] min-h-screen">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         <div className="container mx-auto px-6">
           
           {/* Breadcrumbs */}

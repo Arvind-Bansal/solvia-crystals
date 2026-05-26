@@ -50,10 +50,11 @@ export interface BlogPost {
   slug: string;
   excerpt: string;
   content: string; // Markdown or HTML
-  publishedAt: string;
+  date: string;
+  readTime: string;
   author: string;
   category: string;
-  coverImage: string;
+  image: string;
 }
 
 export interface SEOProps {
