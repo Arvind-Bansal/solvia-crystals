@@ -50,7 +50,7 @@ export function ProductActions({ product }: { product: Product }) {
       
       <p className="text-xs text-center text-brand-silver/60">
         <ShieldCheck className="w-4 h-4 inline mr-1 text-brand-gold" /> 
-        100% Authentic Grade AAA Crystals. Ethically sourced.
+        Authenticity guaranteed. 14k solid gold. Ethically sourced stones.
       </p>
     </div>
   );

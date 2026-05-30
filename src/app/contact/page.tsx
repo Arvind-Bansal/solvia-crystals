@@ -63,7 +63,7 @@ export default function ContactPage() {
                   <label className="text-sm text-brand-silver">Subject</label>
                   <select className="w-full bg-transparent border border-white/20 rounded-sm px-4 py-3 text-white focus:outline-none focus:border-brand-gold transition-colors appearance-none">
                     <option className="bg-[#121212]">Order Inquiry</option>
-                    <option className="bg-[#121212]">Crystal Guidance</option>
+                    <option className="bg-[#121212]">Styling Guidance</option>
                     <option className="bg-[#121212]">Press / Partnerships</option>
                     <option className="bg-[#121212]">Other</option>
                   </select>
@@ -112,7 +112,7 @@ export default function ContactPage() {
                     <MapPin className="w-6 h-6 text-brand-gold mt-1" />
                     <div>
                       <p className="text-white font-medium mb-1">Studio</p>
-                      <p className="text-brand-silver text-sm">111 Mystic Avenue, Suite 777</p>
+                      <p className="text-brand-silver text-sm">42 Crosby Street, Suite 4B</p>
                       <p className="text-brand-silver text-sm">New York, NY 10012</p>
                       <p className="text-brand-silver/60 text-xs mt-1">By appointment only.</p>
                     </div>
@@ -121,8 +121,8 @@ export default function ContactPage() {
               </div>
 
               <div className="p-6 bg-gradient-luxury rounded-sm border border-white/10">
-                <h4 className="text-white font-medium mb-2">Need immediate guidance?</h4>
-                <p className="text-sm text-brand-silver mb-4">Read our comprehensive crystal guide to find the perfect stone for your current life phase.</p>
+                <h4 className="text-white font-medium mb-2">Need help choosing?</h4>
+                <p className="text-sm text-brand-silver mb-4">Read our guide to choosing your first crystal — covering intentions, styles, and what to expect.</p>
                 <Button variant="outline" className="w-full bg-black/30 border-white/20">Read the Guide</Button>
               </div>
             </motion.div>

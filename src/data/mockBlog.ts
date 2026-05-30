@@ -3,77 +3,88 @@ import { BlogPost } from "@/types";
 export const mockPosts: BlogPost[] = [
   {
     id: "post_1",
-    title: "The Ultimate Guide to Cleansing Your Crystals",
-    slug: "ultimate-guide-cleansing-crystals",
-    excerpt: "Learn how to energetically cleanse and recharge your crystal bracelets using moonlight, sage, and selenite to keep their vibrations high.",
+    title: "How to Care for Your Crystal Jewellery",
+    slug: "caring-for-crystal-jewellery",
+    excerpt: "A practical guide to cleaning, storing, and preserving the natural beauty of your crystal bracelets — so they age as gracefully as the stones themselves.",
     content: `
-      <h2>Why Cleanse Your Crystals?</h2>
-      <p>Crystals are natural energy absorbers. Over time, they can become bogged down with stagnant or negative energy, especially if you wear them daily. Cleansing them restores their natural vibration and effectiveness.</p>
+      <h2>Why Proper Care Matters</h2>
+      <p>Natural crystals are remarkably durable, but they're also unique geological formations with specific sensitivities. Understanding how to care for your pieces ensures they maintain their lustre, colour depth, and structural integrity for years.</p>
       
-      <h2>Methods of Cleansing</h2>
+      <h2>Cleaning Your Bracelets</h2>
       <ul>
-        <li><strong>Moonlight:</strong> The most gentle and universally safe method. Leave your crystals under the full moon overnight.</li>
-        <li><strong>Sage Smoke:</strong> Smudging your crystals with sage clears away heavy energies instantly.</li>
-        <li><strong>Selenite:</strong> Placing your bracelets on a selenite charging plate for a few hours will naturally draw out impurities.</li>
+        <li><strong>Daily wear:</strong> Wipe gently with a soft, dry cloth after each wear to remove oils and residue.</li>
+        <li><strong>Deeper cleaning:</strong> Use lukewarm water with a drop of mild soap. Avoid submerging elastic-strung pieces — instead, dampen a cloth and gently clean each bead.</li>
+        <li><strong>What to avoid:</strong> Ultrasonic cleaners, harsh chemicals, and prolonged water exposure. Some stones — particularly Selenite, Pyrite, and Malachite — are water-sensitive.</li>
       </ul>
       
-      <p>Remember, not all crystals are water-safe. Selenite, Malachite, and Lapis Lazuli should never be soaked in water.</p>
+      <h2>Storage</h2>
+      <p>Store each piece in its provided linen pouch or velvet box. Keep bracelets separated to prevent harder stones from scratching softer ones. Avoid direct sunlight for extended periods — stones like Amethyst, Rose Quartz, and Citrine can fade with prolonged UV exposure.</p>
+      
+      <h2>When to Restring</h2>
+      <p>If you wear your bracelet daily, we recommend professional restringing every 12–18 months. Elastic naturally stretches over time, and a fresh cord ensures your piece sits properly on the wrist.</p>
     `,
     image: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?q=80&w=800&auto=format&fit=crop",
-    author: "Elena Vance",
+    author: "Solvia Editorial",
     date: "2026-05-10",
     readTime: "4 min read",
-    category: "Crystal Care"
+    category: "Care Guide"
   },
   {
     id: "post_2",
-    title: "Crystals for Attracting Wealth and Abundance",
-    slug: "crystals-attracting-wealth-abundance",
-    excerpt: "Discover the best crystals to align your energy with prosperity, including Citrine, Pyrite, and Green Aventurine.",
+    title: "The Art of Layering: Styling Crystal Bracelets",
+    slug: "art-of-layering-crystal-bracelets",
+    excerpt: "From minimal single-stone pieces to curated stacks — a guide to wearing crystal jewellery with the same intentionality you'd bring to the rest of your wardrobe.",
     content: `
-      <h2>The Energy of Abundance</h2>
-      <p>Wealth isn't just about money; it's a state of mind and an energetic frequency. Crystals can help tune your personal frequency to align with abundance.</p>
+      <h2>Start with a Foundation Piece</h2>
+      <p>Every good stack begins with one anchor bracelet. Choose your most worn or most meaningful piece — something like Obsidian Eclipse or Rose Veil — and build outward from there.</p>
       
-      <h2>Top Wealth Crystals</h2>
+      <h2>Mixing Tones and Textures</h2>
       <ul>
-        <li><strong>Citrine:</strong> The Merchant's Stone. Known for attracting success and joy.</li>
-        <li><strong>Pyrite:</strong> Often called Fool's Gold, Pyrite is a powerful manifestation stone that encourages taking action.</li>
-        <li><strong>Green Aventurine:</strong> The Stone of Opportunity. Excellent for manifesting wealth and increasing luck.</li>
+        <li><strong>Contrast matte with polished:</strong> A matte Obsidian next to a polished Citrine creates visual depth without clutter.</li>
+        <li><strong>Vary bead sizes:</strong> Layer 6mm beads alongside 8mm or 10mm for a natural, organic rhythm.</li>
+        <li><strong>Gold as a connector:</strong> The 14k gold accents across our collection are designed to unify different stones when worn together.</li>
       </ul>
       
-      <p>Wear these stones on your left wrist (your receiving side) to draw wealth into your life.</p>
+      <h2>The Rule of Three</h2>
+      <p>For most wrists, three bracelets is the sweet spot — enough to create a statement without feeling heavy. One Minimal, one Signature, and one Statement piece creates the most balanced visual composition.</p>
+      
+      <h2>Dressing Up vs. Down</h2>
+      <p>For everyday wear, lean into Minimal pieces in neutral tones. For evenings or occasions, swap in a Statement piece — something like Pyrite Monarch or Obsidian Eclipse — and let it anchor the look.</p>
     `,
     image: "https://images.unsplash.com/photo-1559825481-12a05cc00344?q=80&w=800&auto=format&fit=crop",
     author: "Solvia Editorial",
     date: "2026-05-18",
     readTime: "5 min read",
-    category: "Manifestation"
+    category: "Style"
   },
   {
     id: "post_3",
-    title: "Understanding the 7 Chakras and Crystal Healing",
-    slug: "understanding-chakras-crystal-healing",
-    excerpt: "A beginner's guide to the body's energy centers and how to use specific crystals to balance and align them.",
+    title: "A Guide to Choosing Your First Crystal",
+    slug: "choosing-your-first-crystal",
+    excerpt: "Not sure where to start? We break down the most popular stones by intention, lifestyle, and personal style — so you can find a piece that genuinely resonates.",
     content: `
-      <h2>What are Chakras?</h2>
-      <p>Chakras are spinning wheels of energy throughout your body. When they are open and aligned, energy flows freely. When blocked, it can manifest as physical or emotional distress.</p>
+      <h2>Forget the Rules</h2>
+      <p>There is no wrong first crystal. The best approach is simple: choose the stone you're most drawn to. Your instinct is usually more reliable than any guide — but if you'd like a framework, here's how we think about it.</p>
       
-      <h2>The 7 Main Chakras</h2>
+      <h2>By Intention</h2>
       <ul>
-        <li><strong>Root Chakra (Red/Black):</strong> Foundation and grounding. Use Obsidian or Red Jasper.</li>
-        <li><strong>Sacral Chakra (Orange):</strong> Creativity and passion. Use Carnelian.</li>
-        <li><strong>Solar Plexus (Yellow):</strong> Confidence and power. Use Citrine or Tiger's Eye.</li>
-        <li><strong>Heart Chakra (Green/Pink):</strong> Love and compassion. Use Rose Quartz or Malachite.</li>
-        <li><strong>Throat Chakra (Blue):</strong> Communication. Use Lapis Lazuli.</li>
-        <li><strong>Third Eye (Indigo):</strong> Intuition. Use Amethyst.</li>
-        <li><strong>Crown Chakra (Clear/White):</strong> Spiritual connection. Use Clear Quartz.</li>
+        <li><strong>Seeking clarity or focus?</strong> Start with Clear Quartz (Lunar Clarity) or Amethyst (Violet Hour). Both are versatile, timeless, and pair with everything.</li>
+        <li><strong>Want grounding or boundaries?</strong> Black Tourmaline (Midnight Shield) or Obsidian (Obsidian Eclipse) are our most popular protective stones.</li>
+        <li><strong>Drawn to warmth and confidence?</strong> Tiger's Eye (Terra Nova) or Sunstone (Solstice) bring a natural, earthy warmth to daily wear.</li>
+        <li><strong>Looking for emotional balance?</strong> Rose Quartz (Rose Veil) or Aquamarine (Stillwater) are our most calming, emotionally resonant stones.</li>
       </ul>
+      
+      <h2>By Style</h2>
+      <p>If you prefer jewellery that blends into your wardrobe quietly, explore our Minimal tier — smaller beads, understated hardware. If you want something that makes a statement, our Statement pieces use larger stones and bolder compositions.</p>
+      
+      <h2>Start Simple</h2>
+      <p>One piece, worn consistently, will teach you more about what you're drawn to than buying five at once. Let it become part of your routine before expanding your collection.</p>
     `,
     image: "https://images.unsplash.com/photo-1611591437281-460bfbe1220a?q=80&w=800&auto=format&fit=crop",
-    author: "Elena Vance",
+    author: "Solvia Editorial",
     date: "2026-05-22",
-    readTime: "7 min read",
-    category: "Education"
+    readTime: "6 min read",
+    category: "Guide"
   }
 ];
 

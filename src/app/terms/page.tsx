@@ -17,14 +17,14 @@ export default function TermsPage() {
           <div className="prose prose-invert prose-brand max-w-none text-brand-silver/80">
             <p className="mb-6">Last updated: May 2026</p>
             
-            <h2 className="text-2xl font-serif text-white mt-8 mb-4">1. Energetic Disclaimer</h2>
-            <p className="mb-4">The metaphysical properties discussed on Solvia Crystals are for educational and spiritual purposes only. Crystals are not a substitute for professional medical or psychological treatment. If you are experiencing physical or mental health issues, please consult a qualified healthcare provider.</p>
+            <h2 className="text-2xl font-serif text-white mt-8 mb-4">1. Product Disclaimer</h2>
+            <p className="mb-4">The symbolic and traditional properties discussed on Solvia Crystals are for cultural and educational purposes only. Crystal jewellery is not a substitute for professional medical or psychological treatment. If you are experiencing health issues, please consult a qualified healthcare provider.</p>
             
             <h2 className="text-2xl font-serif text-white mt-8 mb-4">2. Product Variations</h2>
-            <p className="mb-4">Because crystals are natural formations, each piece is entirely unique. The products you receive may vary slightly in color, size, and pattern from the images shown on our website.</p>
+            <p className="mb-4">Because crystals are natural formations, each piece is entirely unique. The products you receive may vary slightly in colour, size, and pattern from the images shown on our website.</p>
             
             <h2 className="text-2xl font-serif text-white mt-8 mb-4">3. Returns & Refunds</h2>
-            <p className="mb-4">We offer a 30-day return policy for items in their original, unworn condition. Due to the energetic nature of our products, all returned items undergo a strict cleansing protocol before being restocked.</p>
+            <p className="mb-4">We offer a 30-day return policy for items in their original, unworn condition with all packaging intact. Returned items are inspected and cleaned before being restocked.</p>
             
             <h2 className="text-2xl font-serif text-white mt-8 mb-4">4. Intellectual Property</h2>
             <p className="mb-4">All content, designs, images, and text on this website are the intellectual property of Solvia Crystals and may not be reproduced without explicit written consent.</p>

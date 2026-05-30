@@ -22,7 +22,7 @@ export default function AboutPage() {
             >
               <h1 className="text-4xl md:text-6xl font-serif text-white mb-6">Our Story</h1>
               <p className="text-xl text-brand-silver/90 leading-relaxed font-light">
-                Founded on the belief that luxury and spirituality can coexist. Solvia Crystals brings ancient energy into the modern world through exquisite craftsmanship.
+                Solvia Crystals was founded on a simple conviction: that jewellery should carry meaning beyond aesthetics. Every piece we make reflects that belief.
               </p>
             </motion.div>
           </div>
@@ -41,8 +41,8 @@ export default function AboutPage() {
               >
                 <div className="relative aspect-[3/4] w-full max-w-md mx-auto rounded-sm overflow-hidden">
                   <Image
-                    src="https://images.unsplash.com/photo-1599643478524-fb66f4fa0a14?q=80&w=800&auto=format&fit=crop"
-                    alt="Founder"
+                    src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?q=80&w=800&auto=format&fit=crop"
+                    alt="Solvia Crystals studio"
                     fill
                     className="object-cover"
                   />
@@ -58,10 +58,10 @@ export default function AboutPage() {
               >
                 <h2 className="text-3xl md:text-4xl font-serif text-white mb-6">A Note from the Founder</h2>
                 <p className="text-brand-silver mb-6 leading-relaxed">
-                  "I started Solvia Crystals because I couldn't find crystal jewelry that felt truly elevated. The market was filled with mass-produced pieces that lacked the reverence these ancient stones deserve."
+                  &ldquo;I started Solvia because I couldn&apos;t find crystal jewellery that felt genuinely elevated. The market was full of mass-produced pieces that treated these extraordinary stones as afterthoughts.&rdquo;
                 </p>
                 <p className="text-brand-silver mb-8 leading-relaxed">
-                  "Every Solvia bracelet is a testament to my commitment to quality, ethical sourcing, and the authentic energetic properties of the crystals. We don't just make jewelry; we create tools for transformation."
+                  &ldquo;Every Solvia bracelet reflects my commitment to materials, craft, and the quiet power these stones have carried for centuries. We don&apos;t just make jewellery — we create pieces designed to be worn with intention, every day.&rdquo;
                 </p>
                 <div className="font-serif text-2xl text-brand-gold italic">
                   — Elara Vance
@@ -81,17 +81,17 @@ export default function AboutPage() {
                 { 
                   icon: <Leaf className="w-8 h-8 text-brand-gold mb-4" />, 
                   title: "Ethically Sourced", 
-                  desc: "We trace every stone back to its origin, ensuring fair labor practices and minimal environmental impact."
+                  desc: "We trace every stone to its origin, working directly with small-scale miners who share our commitment to fair labour and environmental responsibility."
                 },
                 { 
                   icon: <Moon className="w-8 h-8 text-brand-gold mb-4" />, 
-                  title: "Energetically Cleansed", 
-                  desc: "Each piece is cleansed with white sage and charged under the full moon before it reaches your hands."
+                  title: "Ritual Preparation", 
+                  desc: "Each piece is carefully inspected, cleaned, and prepared before shipping. We treat every bracelet as if it were our own — because quality is a ritual, not a shortcut."
                 },
                 { 
                   icon: <Sparkles className="w-8 h-8 text-brand-gold mb-4" />, 
                   title: "Premium Craftsmanship", 
-                  desc: "Using only AAA grade crystals and 18k gold vermeil hardware, our pieces are built to last a lifetime."
+                  desc: "AAA-grade crystals and 14k solid gold hardware — not plated, not vermeil. Our pieces are designed to be worn daily and to last a lifetime."
                 }
               ].map((value, idx) => (
                 <motion.div 

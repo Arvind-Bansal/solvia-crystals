@@ -7,8 +7,8 @@ import { constructMetadata } from "@/lib/seo";
 import { ArrowRight } from "lucide-react";
 
 export const metadata = constructMetadata({
-  title: "The Coven Blog | Solvia Crystals",
-  description: "Educational articles on crystal healing, manifestation, and maintaining a high-vibrational lifestyle.",
+  title: "The Journal | Solvia Crystals",
+  description: "Styling guides, care tips, and stories behind the stones. Practical content for crystal jewellery enthusiasts.",
   canonicalUrl: "https://solviacrystals.com/blog",
 });
 
@@ -19,9 +19,9 @@ export default function BlogPage() {
       <main className="pt-32 pb-24 bg-[#0a0a0a] min-h-screen">
         <div className="container mx-auto px-6">
           <div className="max-w-3xl mb-16">
-            <h1 className="text-4xl md:text-5xl font-serif text-white mb-4">The Coven Journal</h1>
+            <h1 className="text-4xl md:text-5xl font-serif text-white mb-4">The Journal</h1>
             <p className="text-brand-silver/80 text-lg">
-              Explore the metaphysical properties of crystals, learn how to cleanse your aura, and discover practices for the modern mystic.
+              Styling guides, care tips, and the stories behind the stones we source.
             </p>
           </div>
 
@@ -33,7 +33,7 @@ export default function BlogPage() {
                     src={post.image} 
                     alt={post.title} 
                     fill 
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
                   />
                   <div className="absolute top-4 left-4 bg-black/60 backdrop-blur-md px-3 py-1 rounded-sm border border-white/10">
                     <span className="text-[10px] text-brand-gold uppercase tracking-wider font-bold">{post.category}</span>

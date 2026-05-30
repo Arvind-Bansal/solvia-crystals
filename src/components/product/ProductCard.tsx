@@ -42,7 +42,7 @@ export function ProductCard({ product }: ProductCardProps) {
 
   return (
     <motion.div
-      className="group flex flex-col bg-[#121212] rounded-sm overflow-hidden border border-white/5 hover:border-brand-purple/50 transition-colors duration-500 h-full"
+      className="group flex flex-col bg-[#121212] rounded-sm overflow-hidden border border-white/5 hover:border-white/15 transition-colors duration-500 h-full"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -54,7 +54,7 @@ export function ProductCard({ product }: ProductCardProps) {
           alt={product.name}
           fill
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          className="object-cover transition-transform duration-700 group-hover:scale-105"
+          className="object-cover transition-transform duration-700 group-hover:scale-[1.02]"
           onError={() => {
             setImgSrc("https://images.unsplash.com/photo-1599643477877-530eb83abc8e?q=80&w=800&auto=format&fit=crop");
           }}
@@ -84,9 +84,9 @@ export function ProductCard({ product }: ProductCardProps) {
         </button>
 
         {/* Quick Add Overlay */}
-        <div className="absolute bottom-0 left-0 w-full p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out z-20">
+        <div className="absolute bottom-0 left-0 w-full p-4 translate-y-0 md:translate-y-full md:group-hover:translate-y-0 transition-transform duration-300 ease-out z-20 bg-gradient-to-t from-black/80 to-transparent">
           <Button 
-            className="w-full" 
+            className="w-full h-10 text-xs shadow-lg" 
             size="sm" 
             onClick={handleAddToCart}
             disabled={!product.inStock}
@@ -103,12 +103,12 @@ export function ProductCard({ product }: ProductCardProps) {
       </Link>
 
       {/* Content */}
-      <div className="p-5 flex flex-col flex-1">
+      <div className="p-4 flex flex-col flex-1">
         <div className="flex justify-between items-start mb-2">
           <div>
-            <p className="text-xs text-brand-gold uppercase tracking-wider mb-1 font-medium">{product.intention}</p>
+            <p className="text-[10px] text-brand-gold uppercase tracking-wider mb-1 font-medium">{product.intention}</p>
             <Link href={`/product/${product.slug}`}>
-              <h3 className="text-lg font-serif text-white group-hover:text-brand-purple-light transition-colors line-clamp-1">
+              <h3 className="text-base font-serif text-white group-hover:text-brand-gold transition-colors line-clamp-1">
                 {product.name}
               </h3>
             </Link>

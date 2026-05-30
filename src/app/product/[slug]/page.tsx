@@ -118,7 +118,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
               <div className="space-y-6">
                 <div className="pb-6 border-b border-white/10">
                   <h3 className="text-lg font-serif text-white flex items-center mb-3">
-                    <Sparkles className="w-5 h-5 mr-3 text-brand-gold" /> Crystal Meaning & Lore
+                    <Sparkles className="w-5 h-5 mr-3 text-brand-gold" /> Stone & Symbolism
                   </h3>
                   <p className="text-sm text-brand-silver/70 leading-relaxed pl-8">
                     {product.meaning}
@@ -148,10 +148,10 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
                     <Truck className="w-5 h-5 mr-3 text-brand-gold" /> Shipping & Returns
                   </h3>
                   <p className="text-sm text-brand-silver/70 leading-relaxed pl-8 mb-2">
-                    Free worldwide shipping on orders over $150. All pieces are cleansed with sage before dispatch.
+                    Complimentary worldwide shipping on orders over $150. Each piece is inspected and carefully packaged before dispatch.
                   </p>
                   <p className="text-sm text-brand-silver/70 leading-relaxed pl-8 flex items-center">
-                    <RefreshCcw className="w-4 h-4 mr-2" /> 30-day money-back energetic guarantee.
+                    <RefreshCcw className="w-4 h-4 mr-2" /> 30-day hassle-free returns in original condition.
                   </p>
                 </div>
               </div>
@@ -161,7 +161,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
           {/* Related Products */}
           {relatedProducts.length > 0 && (
             <div className="pt-16 border-t border-white/10">
-              <h2 className="text-3xl font-serif text-white mb-8 text-center">Complete Your Ritual</h2>
+              <h2 className="text-3xl font-serif text-white mb-8 text-center">You May Also Like</h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                 {relatedProducts.map(related => (
                   <ProductCard key={related.id} product={related} />

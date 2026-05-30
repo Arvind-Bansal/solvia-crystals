@@ -8,6 +8,8 @@ export interface Product {
   description: string;
   meaning: string;
   intention: string;
+  style: "Minimal" | "Signature" | "Statement";
+  collection: "Everyday Rituals" | "Premium Collection" | "Zodiac Series";
   chakra: string;
   zodiac: string[];
   materials: string[];

@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import { FaInstagram, FaFacebook, FaYoutube } from "react-icons/fa";
 import { Button } from "@/components/ui/Button";
@@ -13,16 +15,16 @@ export function Footer() {
               SOLVIA <span className="text-brand-gold font-light">CRYSTALS</span>
             </span>
             <p className="text-sm text-brand-silver/80 mb-6 leading-relaxed">
-              Premium crystal bracelets designed with intention, elegance, and high vibrations for the modern mystic.
+              Handcrafted crystal bracelets designed with intention and elegance. Ethically sourced stones, 14k gold detailing.
             </p>
             <div className="flex space-x-4">
-              <Link href="#" className="text-brand-silver hover:text-brand-gold transition-colors">
+              <Link href="#" className="text-brand-silver hover:text-brand-gold transition-colors" aria-label="Instagram">
                 <FaInstagram className="w-5 h-5" />
               </Link>
-              <Link href="#" className="text-brand-silver hover:text-brand-gold transition-colors">
+              <Link href="#" className="text-brand-silver hover:text-brand-gold transition-colors" aria-label="Facebook">
                 <FaFacebook className="w-5 h-5" />
               </Link>
-              <Link href="#" className="text-brand-silver hover:text-brand-gold transition-colors">
+              <Link href="#" className="text-brand-silver hover:text-brand-gold transition-colors" aria-label="YouTube">
                 <FaYoutube className="w-5 h-5" />
               </Link>
             </div>
@@ -32,10 +34,15 @@ export function Footer() {
           <div>
             <h4 className="text-white font-medium mb-4 uppercase tracking-wider text-sm">Shop</h4>
             <ul className="space-y-3">
-              {["All Bracelets", "Bestsellers", "New Arrivals", "Shop by Intention", "Gift Cards"].map((item) => (
-                <li key={item}>
-                  <Link href="/shop" className="text-brand-silver/80 hover:text-white text-sm transition-colors">
-                    {item}
+              {[
+                { label: "All Pieces", href: "/shop" },
+                { label: "Bestsellers", href: "/shop" },
+                { label: "New Arrivals", href: "/shop" },
+                { label: "Shop by Intention", href: "/shop" },
+              ].map((item) => (
+                <li key={item.label}>
+                  <Link href={item.href} className="text-brand-silver/80 hover:text-white text-sm transition-colors">
+                    {item.label}
                   </Link>
                 </li>
               ))}
@@ -46,10 +53,16 @@ export function Footer() {
           <div>
             <h4 className="text-white font-medium mb-4 uppercase tracking-wider text-sm">Support</h4>
             <ul className="space-y-3">
-              {["FAQ", "Shipping & Returns", "Contact Us", "Jewelry Care", "Ring Sizer"].map((item) => (
-                <li key={item}>
-                  <Link href="/contact" className="text-brand-silver/80 hover:text-white text-sm transition-colors">
-                    {item}
+              {[
+                { label: "Contact Us", href: "/contact" },
+                { label: "Shipping & Returns", href: "/contact" },
+                { label: "Jewellery Care", href: "/blog/caring-for-crystal-jewellery" },
+                { label: "Privacy Policy", href: "/privacy" },
+                { label: "Terms of Service", href: "/terms" },
+              ].map((item) => (
+                <li key={item.label}>
+                  <Link href={item.href} className="text-brand-silver/80 hover:text-white text-sm transition-colors">
+                    {item.label}
                   </Link>
                 </li>
               ))}
@@ -58,11 +71,11 @@ export function Footer() {
 
           {/* Newsletter */}
           <div>
-            <h4 className="text-white font-medium mb-4 uppercase tracking-wider text-sm">Join the Coven</h4>
+            <h4 className="text-white font-medium mb-4 uppercase tracking-wider text-sm">Stay Connected</h4>
             <p className="text-sm text-brand-silver/80 mb-4">
-              Subscribe to get special offers, free giveaways, and once-in-a-lifetime deals.
+              New releases, styling guides, and early access. No spam.
             </p>
-            <form className="space-y-2">
+            <form className="space-y-2" onSubmit={(e) => e.preventDefault()}>
               <input
                 type="email"
                 placeholder="Your email address"
@@ -81,8 +94,8 @@ export function Footer() {
             &copy; 2026 Solvia Crystals. All rights reserved.
           </p>
           <div className="flex space-x-6 text-xs text-brand-silver/60">
-            <Link href="#" className="hover:text-white transition-colors">Privacy Policy</Link>
-            <Link href="#" className="hover:text-white transition-colors">Terms of Service</Link>
+            <Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
+            <Link href="/terms" className="hover:text-white transition-colors">Terms of Service</Link>
           </div>
         </div>
       </div>

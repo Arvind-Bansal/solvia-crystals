@@ -9,21 +9,24 @@ import { mockProducts } from "@/data/mockProducts";
 import { Search, SlidersHorizontal, ChevronDown, X } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 
-const INTENTIONS = ["All", "Love", "Protection", "Wealth", "Healing", "Confidence"];
+const INTENTIONS = ["All", "Protection", "Clarity", "Confidence", "Love", "Balance", "Wealth"];
+const STYLES = ["All", "Minimal", "Signature", "Statement"];
 const CHAKRAS = ["All", "Root", "Sacral", "Solar Plexus", "Heart", "Throat", "Third Eye", "Crown"];
 
 export default function ShopPage() {
   const [activeIntention, setActiveIntention] = useState("All");
+  const [activeStyle, setActiveStyle] = useState("All");
   const [activeChakra, setActiveChakra] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
   const [isFilterOpen, setIsFilterOpen] = useState(false);
 
   const filteredProducts = mockProducts.filter((product) => {
     const matchesIntention = activeIntention === "All" || product.intention === activeIntention;
+    const matchesStyle = activeStyle === "All" || product.style === activeStyle;
     const matchesChakra = activeChakra === "All" || product.chakra === activeChakra;
     const matchesSearch = product.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
                           product.meaning.toLowerCase().includes(searchQuery.toLowerCase());
-    return matchesIntention && matchesChakra && matchesSearch;
+    return matchesIntention && matchesStyle && matchesChakra && matchesSearch;
   });
 
   return (
@@ -36,9 +39,9 @@ export default function ShopPage() {
             animate={{ opacity: 1, y: 0 }}
             className="mb-12"
           >
-            <h1 className="text-4xl md:text-5xl font-serif text-white mb-4">The Crystal Vault</h1>
+            <h1 className="text-4xl md:text-5xl font-serif text-white mb-4">The Collection</h1>
             <p className="text-brand-silver/80 max-w-2xl">
-              Explore our curated collection of high-vibrational crystal bracelets. Each piece is hand-selected and energetically cleansed to support your highest good.
+              Every piece is hand-assembled with ethically sourced stones and 14k solid gold hardware. Browse by intention, style, or simply follow your instinct.
             </p>
           </motion.div>
 
@@ -62,14 +65,14 @@ export default function ShopPage() {
 
             <div className="flex items-center gap-2 w-full md:w-auto">
               {/* Search */}
-              <div className="relative flex-1 md:w-64">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-brand-silver/50" />
+              <div className="relative flex-1 md:w-72">
+                <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-brand-silver/40" />
                 <input 
                   type="text" 
-                  placeholder="Search crystals..."
+                  placeholder="Search pieces..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full bg-transparent border border-white/10 rounded-sm pl-10 pr-4 py-2 text-sm text-white focus:outline-none focus:border-brand-gold transition-colors"
+                  className="w-full bg-white/5 border border-white/5 rounded-full pl-12 pr-6 py-2.5 text-sm text-white placeholder:text-brand-silver/40 focus:outline-none focus:border-brand-gold/50 focus:bg-white/10 transition-all duration-300"
                 />
               </div>
               
@@ -87,6 +90,24 @@ export default function ShopPage() {
 
           {/* Advanced Filters (Desktop) */}
           <div className="hidden md:flex items-center gap-6 mb-12 py-4 border-t border-white/5">
+            <div className="flex items-center gap-2">
+              <span className="text-sm text-brand-silver/60">Style:</span>
+              <div className="flex items-center space-x-2">
+                {STYLES.map((style) => (
+                  <button
+                    key={style}
+                    onClick={() => setActiveStyle(style)}
+                    className={`whitespace-nowrap px-3 py-1.5 rounded-sm text-xs font-medium transition-all ${
+                      activeStyle === style
+                        ? "bg-white/10 text-white border border-white/20"
+                        : "text-brand-silver/60 hover:text-white"
+                    }`}
+                  >
+                    {style}
+                  </button>
+                ))}
+              </div>
+            </div>
             <div className="flex items-center gap-2">
               <span className="text-sm text-brand-silver/60">Chakra:</span>
               <div className="relative">
@@ -126,6 +147,21 @@ export default function ShopPage() {
                         className={`px-3 py-1 text-xs rounded-sm transition-colors ${activeIntention === intention ? 'bg-brand-gold text-black' : 'bg-white/5 text-white'}`}
                       >
                         {intention}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="mb-4">
+                  <label className="text-xs text-brand-silver/60 uppercase tracking-wider mb-2 block">Style</label>
+                  <div className="flex flex-wrap gap-2">
+                    {STYLES.map(style => (
+                      <button
+                        key={style}
+                        onClick={() => setActiveStyle(style)}
+                        className={`px-3 py-1 text-xs rounded-sm transition-colors ${activeStyle === style ? 'bg-brand-gold text-black' : 'bg-white/5 text-white'}`}
+                      >
+                        {style}
                       </button>
                     ))}
                   </div>
@@ -173,15 +209,16 @@ export default function ShopPage() {
           ) : (
             <div className="flex flex-col items-center justify-center py-24 text-center border border-white/5 rounded-sm bg-[#121212]">
               <Search className="w-12 h-12 text-brand-silver/20 mb-4" />
-              <h3 className="text-xl font-serif text-white mb-2">No crystals found</h3>
+              <h3 className="text-xl font-serif text-white mb-2">No pieces found</h3>
               <p className="text-brand-silver/60 max-w-md">
-                We couldn't find any pieces matching your current filters. Try adjusting your search or clearing your filters.
+                We couldn&apos;t find any pieces matching your current filters. Try adjusting your search or clearing your filters.
               </p>
               <Button 
                 variant="outline" 
                 className="mt-6"
                 onClick={() => {
                   setActiveIntention("All");
+                  setActiveStyle("All");
                   setActiveChakra("All");
                   setSearchQuery("");
                 }}

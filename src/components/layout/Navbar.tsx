@@ -27,8 +27,9 @@ export function Navbar() {
   const navLinks = [
     { name: "Home", href: "/" },
     { name: "Shop", href: "/shop" },
+    { name: "Collections", href: "/shop" },
     { name: "About", href: "/about" },
-    { name: "Blog", href: "/blog" },
+    { name: "Journal", href: "/blog" },
     { name: "Contact", href: "/contact" },
   ];
 
@@ -53,10 +54,22 @@ export function Navbar() {
           </button>
 
           {/* Logo */}
-          <Link href="/" className="flex-1 md:flex-none text-center md:text-left">
-            <span className="font-serif text-2xl font-bold tracking-wider text-white">
-              SOLVIA <span className="text-brand-gold font-light">CRYSTALS</span>
-            </span>
+          <Link href="/" className="flex-1 md:flex-none flex items-center justify-center md:justify-start group">
+            <div className="relative flex items-center justify-center w-8 h-8 mr-3">
+              <svg viewBox="0 0 100 100" className="w-full h-full text-brand-gold group-hover:rotate-180 transition-transform duration-1000 ease-in-out" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M50 0 L100 50 L50 100 L0 50 Z" />
+                <path d="M50 20 L80 50 L50 80 L20 50 Z" strokeWidth="1" opacity="0.5" />
+                <circle cx="50" cy="50" r="5" fill="currentColor" />
+              </svg>
+            </div>
+            <div className="flex flex-col items-start justify-center leading-none">
+              <span className="font-serif text-xl md:text-2xl font-medium tracking-[0.2em] text-white">
+                SOLVIA
+              </span>
+              <span className="text-[9px] md:text-[10px] uppercase tracking-[0.3em] text-brand-gold mt-1">
+                Crystals
+              </span>
+            </div>
           </Link>
 
           {/* Desktop Nav */}
