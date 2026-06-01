@@ -8,7 +8,7 @@ import { Footer } from "@/components/layout/Footer";
 import { Button } from "@/components/ui/Button";
 import { ProductCard } from "@/components/product/ProductCard";
 import { mockProducts } from "@/data/mockProducts";
-import { Star, ShieldCheck, Truck, Gem } from "lucide-react";
+import { Star, ShieldCheck, Truck, Gem, Quote } from "lucide-react";
 
 const CATEGORIES = [
   { name: "Protection", slug: "protection", image: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?q=80&w=800&auto=format&fit=crop" },
@@ -55,7 +55,7 @@ export default function Home() {
                 <span className="text-brand-gold italic font-light tracking-normal">Wearing.</span>
               </h1>
               <p className="text-lg md:text-xl text-brand-silver/80 max-w-2xl mx-auto mb-14 font-light leading-relaxed tracking-wide">
-                Ethically sourced crystals, 14k gold detailing, and designs built to last. Jewellery for people who value intention over impulse.
+                Ethically sourced crystals and considered design. Bracelets for people who value meaning over trend.
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
                 <Link href="/shop">
@@ -91,7 +91,7 @@ export default function Home() {
               </Link>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
               {bestsellers.map((product) => (
                 <ProductCard key={product.id} product={product} />
               ))}
@@ -102,6 +102,25 @@ export default function Home() {
                 <Button variant="outline" className="w-full">View All Pieces</Button>
               </Link>
             </div>
+          </div>
+        </section>
+
+        {/* Craftsmanship Interlude */}
+        <section className="py-32 border-t border-white/5">
+          <div className="container mx-auto px-6">
+            <motion.div
+              className="max-w-3xl mx-auto text-center"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
+              <Quote className="w-8 h-8 text-brand-gold/40 mx-auto mb-8" />
+              <p className="text-2xl md:text-3xl font-serif text-white leading-relaxed mb-6">
+                We don&apos;t rush the process. Every bracelet is assembled by hand, inspected bead by bead, and packaged with the same care you&apos;d expect from a piece you&apos;ll wear every day.
+              </p>
+              <span className="text-sm text-brand-silver/60 uppercase tracking-widest">Made with Intention</span>
+            </motion.div>
           </div>
         </section>
 
@@ -126,12 +145,13 @@ export default function Home() {
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
                     transition={{ delay: i * 0.08 }}
-                    className="w-full h-full"
+                    className="w-full h-full relative"
                   >
                     <Image 
                       src={cat.image} 
                       alt={cat.name} 
                       fill 
+                      sizes="(max-width: 768px) 50vw, 33vw"
                       className="object-cover opacity-80 group-hover:opacity-100 group-hover:scale-[1.03] transition-all duration-700"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
@@ -159,6 +179,7 @@ export default function Home() {
                   src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?q=80&w=800&auto=format&fit=crop"
                   alt="Solvia Crystals craftsmanship"
                   fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
                   className="object-cover"
                 />
               </motion.div>
@@ -176,11 +197,50 @@ export default function Home() {
                   Every Solvia piece begins with the stone. We source directly from small-scale mines, selecting only AAA-grade crystals that meet our standards for colour, clarity, and character.
                 </p>
                 <p className="text-brand-silver/80 leading-relaxed mb-8">
-                  Each bracelet is hand-assembled with 14k solid gold hardware — not plated, not vermeil. The result is jewellery that feels substantial on the wrist, ages beautifully, and carries meaning beyond the aesthetic.
+                  Each bracelet is assembled by hand with ethically sourced stones and durable hardware. The result is a piece that sits well on the wrist, wears in naturally, and carries something beyond the aesthetic.
                 </p>
                 <Link href="/about">
                   <Button variant="outline">Learn More</Button>
                 </Link>
+              </motion.div>
+            </div>
+          </div>
+        </section>
+
+        {/* Packaging Section */}
+        <section className="py-28 border-t border-white/5">
+          <div className="container mx-auto px-6">
+            <div className="flex flex-col md:flex-row gap-16 items-center max-w-5xl mx-auto">
+              <motion.div
+                className="w-full md:w-1/2"
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+              >
+                <span className="text-xs text-brand-gold uppercase tracking-widest font-medium mb-4 block">The Unboxing</span>
+                <h2 className="text-3xl md:text-4xl font-serif text-white mb-6 leading-tight">
+                  Considered,<br />Down to the Packaging
+                </h2>
+                <p className="text-brand-silver/80 leading-relaxed mb-4">
+                  Every Solvia piece arrives in a linen-lined box with a soft pouch for storage. No plastic, no excess — just the piece, a care card, and a certificate of authenticity.
+                </p>
+                <p className="text-brand-silver/80 leading-relaxed">
+                  It&apos;s the kind of unboxing that feels like receiving a gift — even when it&apos;s from yourself.
+                </p>
+              </motion.div>
+              <motion.div
+                className="w-full md:w-1/2 relative aspect-square rounded-sm overflow-hidden"
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+              >
+                <Image
+                  src="https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?q=80&w=800&auto=format&fit=crop"
+                  alt="Solvia Crystals packaging"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  className="object-cover"
+                />
               </motion.div>
             </div>
           </div>
@@ -212,8 +272,8 @@ export default function Home() {
                 <div className="flex justify-center mb-3">
                   <ShieldCheck className="w-6 h-6 text-brand-gold" />
                 </div>
-                <p className="text-white font-medium text-lg">14k Solid Gold</p>
-                <p className="text-brand-silver/60 text-sm mt-1">Not Plated</p>
+                <p className="text-white font-medium text-lg">Wears Daily</p>
+                <p className="text-brand-silver/60 text-sm mt-1">Built to Last</p>
               </div>
               <div>
                 <div className="flex justify-center mb-3">

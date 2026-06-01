@@ -6,7 +6,10 @@ import { Footer } from "@/components/layout/Footer";
 import { ProductCard } from "@/components/product/ProductCard";
 import { mockProducts, getProductBySlug } from "@/data/mockProducts";
 import { ProductActions } from "@/components/product/ProductActions";
-import { Star, ShieldCheck, Sparkles, RefreshCcw, Truck } from "lucide-react";
+import { TrackRecentView } from "@/components/product/TrackRecentView";
+import { RecentlyViewed } from "@/components/product/RecentlyViewed";
+import { StickyMobileCTA } from "@/components/product/StickyMobileCTA";
+import { Star, ShieldCheck, Sparkles, RefreshCcw, Truck, Layers } from "lucide-react";
 
 import { constructMetadata, generateStructuredProductData } from "@/lib/seo";
 
@@ -46,11 +49,12 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
   return (
     <>
       <Navbar />
-      <main className="pt-32 pb-24 bg-[#0a0a0a] min-h-screen">
+      <main className="pt-32 pb-32 md:pb-24 bg-[#0a0a0a] min-h-screen">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
+        <TrackRecentView product={product} />
         <div className="container mx-auto px-6">
           
           {/* Breadcrumbs */}
@@ -76,10 +80,10 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
                 />
               </div>
               {product.images.gallery.length > 1 && (
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                <div className="flex md:grid md:grid-cols-4 gap-3 md:gap-4 overflow-x-auto md:overflow-visible pb-2 md:pb-0 scrollbar-hide -mx-6 px-6 md:mx-0 md:px-0">
                   {product.images.gallery.map((img, idx) => (
-                    <div key={idx} className="relative aspect-square bg-[#121212] rounded-sm overflow-hidden border border-white/5 cursor-pointer hover:border-brand-gold transition-colors">
-                      <Image src={img} alt={`${product.name} ${idx + 1}`} fill className="object-cover" />
+                    <div key={idx} className="relative flex-shrink-0 w-20 h-20 md:w-auto md:h-auto md:aspect-square bg-[#121212] rounded-sm overflow-hidden border border-white/5 cursor-pointer hover:border-brand-gold transition-colors">
+                      <Image src={img} alt={`${product.name} ${idx + 1}`} fill sizes="(max-width: 640px) 80px, 12.5vw" className="object-cover" />
                     </div>
                   ))}
                 </div>
@@ -155,6 +159,18 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
                   </p>
                 </div>
               </div>
+
+              {/* Styling Notes */}
+              {product.stylingNote && (
+                <div className="mt-8 p-6 bg-[#0d0d0d] border border-white/5 rounded-sm">
+                  <h3 className="text-lg font-serif text-white flex items-center mb-3">
+                    <Layers className="w-5 h-5 mr-3 text-brand-gold" /> How to Wear
+                  </h3>
+                  <p className="text-sm text-brand-silver/70 leading-relaxed pl-8">
+                    {product.stylingNote}
+                  </p>
+                </div>
+              )}
             </div>
           </div>
 
@@ -162,16 +178,20 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
           {relatedProducts.length > 0 && (
             <div className="pt-16 border-t border-white/10">
               <h2 className="text-3xl font-serif text-white mb-8 text-center">You May Also Like</h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
                 {relatedProducts.map(related => (
                   <ProductCard key={related.id} product={related} />
                 ))}
               </div>
             </div>
           )}
+
+          {/* Recently Viewed */}
+          <RecentlyViewed excludeId={product.id} />
         </div>
       </main>
       <Footer />
+      <StickyMobileCTA product={product} />
     </>
   );
 }

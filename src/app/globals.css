@@ -31,8 +31,8 @@ body {
 
 /* Custom selection */
 ::selection {
-  background-color: var(--color-brand-purple);
-  color: #ffffff;
+  background-color: var(--color-brand-gold);
+  color: #0a0a0a;
 }
 
 /* Custom scrollbar */
@@ -47,7 +47,7 @@ body {
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-brand-purple);
+  background: var(--color-brand-gold);
 }
 
 /* Gradients */
@@ -60,4 +60,18 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-image: linear-gradient(90deg, #c5a059, #e0e0e0);
+}
+
+/* Horizontal scroll without visible scrollbar */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Safe area padding for sticky elements on notched devices */
+.safe-area-pb {
+  padding-bottom: max(1rem, env(safe-area-inset-bottom));
 }

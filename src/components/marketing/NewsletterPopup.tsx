@@ -64,6 +64,7 @@ export function NewsletterPopup() {
             src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?q=80&w=800&auto=format&fit=crop"
             alt="Crystal Collection"
             fill
+            sizes="(max-width: 768px) 0vw, 384px"
             className="object-cover"
           />
         </div>

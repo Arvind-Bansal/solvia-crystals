@@ -8,14 +8,14 @@ export const mockProducts: Product[] = [
     price: 185.00,
     rating: 4.9,
     reviewsCount: 124,
-    description: "A study in restraint and depth. Grade AAA Amethyst beads are set alongside polished 14k gold accents, creating a piece that feels as considered as it is beautiful. Worn alone or layered, Violet Hour brings a quiet sense of clarity to everything it touches.",
+    description: "A study in restraint and depth. Grade AAA Amethyst beads sit alongside brushed metal accents, creating a piece that feels as considered as it is beautiful. Worn alone or layered, Violet Hour brings a quiet sense of clarity to everything it touches.",
     meaning: "Amethyst has been prized since antiquity as a stone of composure and clear thinking. Its deep violet hue has long been associated with intuition, inner stillness, and thoughtful decision-making.",
     intention: "Clarity",
     style: "Signature",
     collection: "Premium Collection",
     chakra: "Third Eye",
     zodiac: ["Aquarius", "Pisces"],
-    materials: ["14k solid gold accents", "Grade AAA Amethyst 8mm beads", "Japanese elastic cord"],
+    materials: ["Grade AAA Amethyst 8mm beads", "Brushed metal accents", "Japanese elastic cord"],
     careInstructions: "Avoid prolonged direct sunlight to preserve the natural color depth. Wipe gently with a soft cloth after wear.",
     images: {
       primary: "https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?q=80&w=1200&auto=format&fit=crop",
@@ -29,7 +29,8 @@ export const mockProducts: Product[] = [
     },
     isBestseller: true,
     inStock: true,
-    relatedProductIds: ["prod_002", "prod_007"]
+    relatedProductIds: ["prod_002", "prod_007"],
+    stylingNote: "Violet Hour pairs beautifully with neutral tones — think charcoal, ivory, and soft grey. Layer with Lunar Clarity for a tonal stack, or wear solo as a quiet statement."
   },
   {
     id: "prod_002",
@@ -38,14 +39,14 @@ export const mockProducts: Product[] = [
     price: 175.00,
     rating: 4.8,
     reviewsCount: 98,
-    description: "Soft, deliberate, and unmistakably elegant. Rose Veil pairs hand-selected Rose Quartz with warm gold hardware to create a piece that feels personal from the moment you put it on. Designed for those who wear their heart with intention.",
+    description: "Soft, deliberate, and unmistakably elegant. Hand-selected Rose Quartz gives this piece its gentle warmth — a bracelet that feels personal from the moment you put it on. Designed for those who wear their heart with care.",
     meaning: "Rose Quartz is the stone of emotional openness. Throughout history, it has symbolised tenderness, self-compassion, and the quiet strength that comes from vulnerability.",
     intention: "Love",
     style: "Signature",
     collection: "Everyday Rituals",
     chakra: "Heart",
     zodiac: ["Taurus", "Libra"],
-    materials: ["14k solid gold accents", "Grade AAA Rose Quartz 8mm beads"],
+    materials: ["Grade AAA Rose Quartz 8mm beads", "Metal accent hardware"],
     careInstructions: "Avoid contact with perfume and harsh chemicals. Store in the provided linen pouch when not worn.",
     images: {
       primary: "https://images.unsplash.com/photo-1603561591411-07134e71a2a9?q=80&w=1200&auto=format&fit=crop",
@@ -59,7 +60,8 @@ export const mockProducts: Product[] = [
     },
     isBestseller: true,
     inStock: true,
-    relatedProductIds: ["prod_001", "prod_005"]
+    relatedProductIds: ["prod_001", "prod_005"],
+    stylingNote: "Rose Veil is one of our most versatile layering pieces. Pair with warmer stones like Citrine or Sunstone for a sun-drenched stack, or wear alone against bare skin."
   },
   {
     id: "prod_003",
@@ -68,14 +70,14 @@ export const mockProducts: Product[] = [
     price: 195.00,
     rating: 5.0,
     reviewsCount: 210,
-    description: "Bold, grounding, and undeniably striking. Matte Black Obsidian beads catch the light just enough to remind you they're volcanic glass — born from fire, shaped with precision. The 14k gold charm adds a point of warmth to an otherwise monochromatic palette.",
+    description: "Bold and undeniably striking. Matte Black Obsidian beads catch the light just enough to remind you they're volcanic glass — born from fire, shaped with precision. A single metal charm anchors an otherwise monochromatic palette.",
     meaning: "Obsidian has been used as a protective talisman for centuries. It is a stone of boundaries — helping the wearer feel grounded, present, and firmly in their own power.",
     intention: "Protection",
     style: "Statement",
     collection: "Premium Collection",
     chakra: "Root",
     zodiac: ["Scorpio", "Sagittarius"],
-    materials: ["Matte Black Obsidian 10mm beads", "14k solid gold charm"],
+    materials: ["Matte Black Obsidian 10mm beads", "Metal alloy charm"],
     careInstructions: "Wipe with a soft damp cloth. Obsidian is durable but can chip on hard surfaces — handle with care.",
     images: {
       primary: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?q=80&w=1200&auto=format&fit=crop",
@@ -89,7 +91,8 @@ export const mockProducts: Product[] = [
     },
     isBestseller: true,
     inStock: true,
-    relatedProductIds: ["prod_005", "prod_008"]
+    relatedProductIds: ["prod_005", "prod_008"],
+    stylingNote: "Obsidian Eclipse is a natural anchor piece. Its bold 10mm beads ground any stack — pair with Midnight Shield or Smoke & Stone for a monochromatic edge."
   },
   {
     id: "prod_004",
@@ -98,14 +101,14 @@ export const mockProducts: Product[] = [
     price: 210.00,
     rating: 4.7,
     reviewsCount: 86,
-    description: "Warm, luminous, and effortlessly luxurious. Natural untreated Citrine catches every shift of light, creating a piece that feels alive on the wrist. Golden Aura is designed for those drawn to warmth — in colour, in energy, and in ambition.",
+    description: "Warm, luminous, and effortlessly wearable. Natural untreated Citrine catches every shift of light, creating a piece that feels alive on the wrist. Golden Aura is for those drawn to warmth — in colour, in energy, and in ambition.",
     meaning: "Known historically as the Merchant's Stone, Citrine has been carried by traders and entrepreneurs for centuries as a symbol of prosperity, optimism, and creative drive.",
     intention: "Wealth",
     style: "Signature",
     collection: "Premium Collection",
     chakra: "Solar Plexus",
     zodiac: ["Aries", "Leo", "Libra"],
-    materials: ["14k solid gold accents", "Natural untreated Citrine 6mm beads"],
+    materials: ["Natural untreated Citrine 6mm beads", "Metal accent hardware"],
     careInstructions: "Citrine is light-sensitive — store away from direct sunlight to maintain its natural golden warmth.",
     images: {
       primary: "https://images.unsplash.com/photo-1589674781759-c21c37956a44?q=80&w=1200&auto=format&fit=crop",
@@ -119,7 +122,8 @@ export const mockProducts: Product[] = [
     },
     isBestseller: true,
     inStock: true,
-    relatedProductIds: ["prod_012"]
+    relatedProductIds: ["prod_012"],
+    stylingNote: "Golden Aura's warm tones work best against deep colours — navy, forest green, black. Layer with Terra Nova for a rich, amber-toned composition."
   },
   {
     id: "prod_005",
@@ -128,14 +132,14 @@ export const mockProducts: Product[] = [
     price: 165.00,
     rating: 4.8,
     reviewsCount: 72,
-    description: "Understated protection, refined to its essence. Black Tourmaline beads sit flush against brushed gold spacers, creating a bracelet that looks as good layered as it does alone. A daily essential for those who value boundaries — in life and in style.",
+    description: "Understated protection, refined to its essence. Black Tourmaline beads sit flush against brushed spacers, creating a bracelet that looks as good layered as it does alone. A daily essential for those who value their boundaries.",
     meaning: "Black Tourmaline is one of the most trusted protective stones in traditional practice. It is associated with grounding, mental clarity, and a sense of personal sovereignty.",
     intention: "Protection",
     style: "Minimal",
     collection: "Everyday Rituals",
     chakra: "Root",
     zodiac: ["Capricorn", "Scorpio"],
-    materials: ["Black Tourmaline 6mm beads", "Brushed 14k gold spacers"],
+    materials: ["Black Tourmaline 6mm beads", "Brushed metal spacers"],
     careInstructions: "Tourmaline is naturally durable. Wipe with a dry cloth to maintain its matte finish.",
     images: {
       primary: "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?q=80&w=1200&auto=format&fit=crop",
@@ -149,7 +153,8 @@ export const mockProducts: Product[] = [
     },
     isBestseller: false,
     inStock: true,
-    relatedProductIds: ["prod_003", "prod_007"]
+    relatedProductIds: ["prod_003", "prod_007"],
+    stylingNote: "A perfect everyday piece. Midnight Shield's minimal 6mm beads sit close to the wrist and layer effortlessly with almost any other bracelet in the collection."
   },
   {
     id: "prod_006",
@@ -158,14 +163,14 @@ export const mockProducts: Product[] = [
     price: 155.00,
     rating: 4.9,
     reviewsCount: 64,
-    description: "Pure, minimal, and quietly magnetic. Clear Quartz — sometimes called the 'master stone' — is paired here with a single 14k gold bead that grounds the entire composition. Lunar Clarity is the piece you reach for when you need to think clearly.",
+    description: "Pure, minimal, and quietly magnetic. Clear Quartz — sometimes called the 'master stone' — is paired here with a single accent bead that anchors the entire composition. The piece you reach for when you need to think clearly.",
     meaning: "Clear Quartz has been valued across cultures as a stone of amplification and focus. It is believed to sharpen intention and bring mental clarity to the wearer.",
     intention: "Clarity",
     style: "Minimal",
     collection: "Everyday Rituals",
     chakra: "Crown",
     zodiac: ["Aries", "Leo"],
-    materials: ["Clear Quartz 6mm beads", "14k solid gold accent bead"],
+    materials: ["Clear Quartz 6mm beads", "Metal accent bead"],
     careInstructions: "Clear Quartz is one of the hardest natural stones. Clean with warm water and a soft cloth.",
     images: {
       primary: "https://images.unsplash.com/photo-1611591437281-460bfbe1220a?q=80&w=1200&auto=format&fit=crop",
@@ -179,7 +184,8 @@ export const mockProducts: Product[] = [
     },
     isBestseller: false,
     inStock: true,
-    relatedProductIds: ["prod_001", "prod_011"]
+    relatedProductIds: ["prod_001", "prod_011"],
+    stylingNote: "Lunar Clarity is the ultimate base layer. Its transparent beads let other stones take centre stage while adding quiet structure to a multi-piece stack."
   },
   {
     id: "prod_007",
@@ -188,14 +194,14 @@ export const mockProducts: Product[] = [
     price: 160.00,
     rating: 4.6,
     reviewsCount: 53,
-    description: "Earthy, grounded, and effortlessly wearable. Smoky Quartz ranges from translucent grey to deep brown, and each bead carries its own subtle character. Paired with a blackened gold clasp, this piece bridges the gap between jewellery and ritual object.",
+    description: "Earthy and effortlessly wearable. Smoky Quartz ranges from translucent grey to deep brown, and each bead carries its own subtle character. Paired with a matte black clasp, this piece bridges the gap between jewellery and daily companion.",
     meaning: "Smoky Quartz is traditionally associated with letting go — releasing what no longer serves you and finding steadiness in uncertain moments.",
     intention: "Clarity",
     style: "Minimal",
     collection: "Everyday Rituals",
     chakra: "Root",
     zodiac: ["Scorpio", "Capricorn"],
-    materials: ["Natural Smoky Quartz 8mm beads", "Blackened 14k gold clasp"],
+    materials: ["Natural Smoky Quartz 8mm beads", "Matte black clasp"],
     careInstructions: "Avoid extended exposure to heat. Store flat in the included linen pouch.",
     images: {
       primary: "https://images.unsplash.com/photo-1599643477877-530eb83abc8e?q=80&w=1200&auto=format&fit=crop",
@@ -209,7 +215,8 @@ export const mockProducts: Product[] = [
     },
     isBestseller: false,
     inStock: true,
-    relatedProductIds: ["prod_001", "prod_006"]
+    relatedProductIds: ["prod_001", "prod_006"],
+    stylingNote: "Smoke & Stone is a transitional piece — equally at home with earthy Jade Meridian or deep Violet Hour. Its grey-to-brown gradient bridges warm and cool palettes."
   },
   {
     id: "prod_008",
@@ -218,14 +225,14 @@ export const mockProducts: Product[] = [
     price: 190.00,
     rating: 4.8,
     reviewsCount: 91,
-    description: "Confident, warm, and impossible to ignore. Tiger's Eye shifts between amber, bronze, and deep gold as it catches the light — a natural phenomenon called chatoyancy. Paired with heavyweight gold accents, Terra Nova is designed for those who lead, not follow.",
+    description: "Confident, warm, and impossible to ignore. Tiger's Eye shifts between amber, bronze, and deep gold as it catches the light — a natural phenomenon called chatoyancy. Terra Nova is designed for those who lead, not follow.",
     meaning: "Tiger's Eye has been worn as a stone of courage and self-assurance since the Roman era. Its shifting bands of colour symbolise adaptability, focus, and quiet personal power.",
     intention: "Confidence",
     style: "Signature",
     collection: "Premium Collection",
     chakra: "Solar Plexus",
     zodiac: ["Leo", "Capricorn"],
-    materials: ["Grade AAA Tiger's Eye 8mm beads", "14k solid gold accents"],
+    materials: ["Grade AAA Tiger's Eye 8mm beads", "Metal accent hardware"],
     careInstructions: "Tiger's Eye is naturally resilient. Clean with a damp cloth. Avoid ultrasonic cleaners.",
     images: {
       primary: "https://images.unsplash.com/photo-1596944924616-7b38e7cfac36?q=80&w=1200&auto=format&fit=crop",
@@ -239,7 +246,8 @@ export const mockProducts: Product[] = [
     },
     isBestseller: false,
     inStock: true,
-    relatedProductIds: ["prod_003", "prod_009"]
+    relatedProductIds: ["prod_003", "prod_009"],
+    stylingNote: "Terra Nova makes a statement on its own but truly shines layered with earthy companions. Try pairing with Smoke & Stone or Jade Meridian for a grounded, confident stack."
   },
   {
     id: "prod_009",
@@ -255,7 +263,7 @@ export const mockProducts: Product[] = [
     collection: "Everyday Rituals",
     chakra: "Sacral",
     zodiac: ["Leo", "Libra"],
-    materials: ["Natural Sunstone 6mm beads", "14k gold-fill clasp"],
+    materials: ["Natural Sunstone 6mm beads", "Gold-tone clasp"],
     careInstructions: "Sunstone is moderately delicate. Remove before swimming or bathing. Store separately to avoid scratching.",
     images: {
       primary: "https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?q=80&w=1200&auto=format&fit=crop",
@@ -269,7 +277,8 @@ export const mockProducts: Product[] = [
     },
     isBestseller: false,
     inStock: true,
-    relatedProductIds: ["prod_008", "prod_004"]
+    relatedProductIds: ["prod_008", "prod_004"],
+    stylingNote: "Solstice is a warm-weather favourite. Its subtle shimmer catches sunlight beautifully. Layer with Rose Veil for a soft, luminous pairing."
   },
   {
     id: "prod_010",
@@ -278,14 +287,14 @@ export const mockProducts: Product[] = [
     price: 205.00,
     rating: 4.9,
     reviewsCount: 77,
-    description: "Cool, composed, and deeply calming. Aquamarine's pale blue transparency evokes open water and clear skies. Set with polished gold details, Stillwater is a piece that feels both precious and deeply personal — the kind of bracelet that becomes part of your daily ritual.",
+    description: "Cool, composed, and deeply calming. Aquamarine's pale blue transparency evokes open water and clear skies. Stillwater is a piece that feels both personal and deeply wearable — the kind of bracelet that becomes part of your day.",
     meaning: "Aquamarine has been treasured by sailors and travellers as a stone of safe passage and inner peace. Its name — from the Latin for 'sea water' — reflects its long association with calm, balance, and emotional clarity.",
     intention: "Balance",
     style: "Signature",
     collection: "Premium Collection",
     chakra: "Throat",
     zodiac: ["Pisces", "Gemini"],
-    materials: ["Grade AAA Aquamarine 6mm beads", "14k solid gold spacers"],
+    materials: ["Grade AAA Aquamarine 6mm beads", "Polished metal spacers"],
     careInstructions: "Aquamarine is relatively hard but can be sensitive to heat. Clean gently with warm water and mild soap.",
     images: {
       primary: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?q=80&w=1200&auto=format&fit=crop",
@@ -299,7 +308,8 @@ export const mockProducts: Product[] = [
     },
     isBestseller: false,
     inStock: true,
-    relatedProductIds: ["prod_011", "prod_002"]
+    relatedProductIds: ["prod_011", "prod_002"],
+    stylingNote: "Stillwater's cool blue tones pair beautifully with silver and white textiles. Try layering with Lunar Clarity for a pale, oceanic composition."
   },
   {
     id: "prod_011",
@@ -308,14 +318,14 @@ export const mockProducts: Product[] = [
     price: 170.00,
     rating: 4.7,
     reviewsCount: 61,
-    description: "Timeless, grounding, and quietly luxurious. Nephrite Jade has been revered for millennia — not for flash, but for substance. Jade Meridian pairs deep green stones with minimal gold hardware, creating a piece that feels rooted in something older and more enduring than trends.",
+    description: "Timeless and quietly assured. Nephrite Jade has been revered for millennia — not for flash, but for substance. Deep green stones with minimal hardware, creating a piece that feels rooted in something older and more enduring than trends.",
     meaning: "Jade has been a symbol of harmony, prosperity, and inner balance across cultures for over 7,000 years. It represents steadiness, longevity, and the kind of wealth that can't be measured.",
     intention: "Balance",
     style: "Minimal",
     collection: "Everyday Rituals",
     chakra: "Heart",
     zodiac: ["Taurus", "Libra"],
-    materials: ["Grade A Nephrite Jade 8mm beads", "14k gold accent bead"],
+    materials: ["Grade A Nephrite Jade 8mm beads", "Gold-tone accent bead"],
     careInstructions: "Jade is extremely durable. Clean with warm soapy water. Its lustre improves with wear over time.",
     images: {
       primary: "https://images.unsplash.com/photo-1606760227091-3dd870d97f1d?q=80&w=1200&auto=format&fit=crop",
@@ -329,7 +339,8 @@ export const mockProducts: Product[] = [
     },
     isBestseller: false,
     inStock: true,
-    relatedProductIds: ["prod_010", "prod_002"]
+    relatedProductIds: ["prod_010", "prod_002"],
+    stylingNote: "Jade Meridian is a timeless layering piece. Its deep green works with almost any colour palette — pair with Smoke & Stone for an earthy stack or Stillwater for a cool contrast."
   },
   {
     id: "prod_012",
@@ -338,14 +349,14 @@ export const mockProducts: Product[] = [
     price: 225.00,
     rating: 4.8,
     reviewsCount: 45,
-    description: "Unapologetically bold. Pyrite's metallic lustre and angular crystalline structure make it one of the most visually striking stones in any collection. Monarch pairs large-format Pyrite beads with 14k gold detailing for a bracelet that commands attention without saying a word.",
+    description: "Unapologetically bold. Pyrite's metallic lustre and angular crystalline structure make it one of the most visually striking stones in any collection. Large-format beads with tonal metallic detailing — a bracelet that commands attention without saying a word.",
     meaning: "Often called 'Fool's Gold', Pyrite is anything but. It has been carried by merchants and leaders as a symbol of ambition, action, and the willingness to pursue what you want.",
     intention: "Wealth",
     style: "Statement",
     collection: "Premium Collection",
     chakra: "Solar Plexus",
     zodiac: ["Aries", "Leo"],
-    materials: ["Natural Pyrite 10mm beads", "14k solid gold charm and spacers"],
+    materials: ["Natural Pyrite 10mm beads", "Metal charm and spacers"],
     careInstructions: "Pyrite can oxidise over time if exposed to moisture. Store in the included velvet box and avoid contact with water.",
     images: {
       primary: "https://images.unsplash.com/photo-1589674781759-c21c37956a44?q=80&w=1200&auto=format&fit=crop",
@@ -359,7 +370,8 @@ export const mockProducts: Product[] = [
     },
     isBestseller: false,
     inStock: false,
-    relatedProductIds: ["prod_004", "prod_008"]
+    relatedProductIds: ["prod_004", "prod_008"],
+    stylingNote: "Pyrite Monarch is a statement piece — let it breathe. Wear alone or with one minimal companion like Midnight Shield. Its metallic lustre provides its own layering depth."
   }
 ];
 

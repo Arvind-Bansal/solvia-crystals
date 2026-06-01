@@ -15,7 +15,7 @@ export function Footer() {
               SOLVIA <span className="text-brand-gold font-light">CRYSTALS</span>
             </span>
             <p className="text-sm text-brand-silver/80 mb-6 leading-relaxed">
-              Handcrafted crystal bracelets designed with intention and elegance. Ethically sourced stones, 14k gold detailing.
+              Ethically sourced crystals. Considered design.
             </p>
             <div className="flex space-x-4">
               <Link href="#" className="text-brand-silver hover:text-brand-gold transition-colors" aria-label="Instagram">

@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 
 const siteName = "Solvia Crystals";
-const defaultDescription = "Handcrafted crystal bracelets designed with intention and elegance. Ethically sourced stones, 14k gold detailing, and timeless design.";
+const defaultDescription = "Handcrafted crystal bracelets designed with care and consideration. Ethically sourced stones, considered design, and everyday wearability.";
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 
 export function constructMetadata({

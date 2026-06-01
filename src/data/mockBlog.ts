@@ -42,7 +42,7 @@ export const mockPosts: BlogPost[] = [
       <ul>
         <li><strong>Contrast matte with polished:</strong> A matte Obsidian next to a polished Citrine creates visual depth without clutter.</li>
         <li><strong>Vary bead sizes:</strong> Layer 6mm beads alongside 8mm or 10mm for a natural, organic rhythm.</li>
-        <li><strong>Gold as a connector:</strong> The 14k gold accents across our collection are designed to unify different stones when worn together.</li>
+        <li><strong>Hardware as a connector:</strong> The tonal hardware across our collection is designed to create visual continuity when layering different stones.</li>
       </ul>
       
       <h2>The Rule of Three</h2>

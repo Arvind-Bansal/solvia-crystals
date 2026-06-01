@@ -41,7 +41,7 @@ export default function ShopPage() {
           >
             <h1 className="text-4xl md:text-5xl font-serif text-white mb-4">The Collection</h1>
             <p className="text-brand-silver/80 max-w-2xl">
-              Every piece is hand-assembled with ethically sourced stones and 14k solid gold hardware. Browse by intention, style, or simply follow your instinct.
+              Every piece is assembled by hand with ethically sourced stones and durable hardware. Browse by intention, style, or simply follow your instinct.
             </p>
           </motion.div>
 
@@ -189,7 +189,7 @@ export default function ShopPage() {
           {filteredProducts.length > 0 ? (
             <motion.div 
               layout
-              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"
+              className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-8"
             >
               <AnimatePresence>
                 {filteredProducts.map((product) => (

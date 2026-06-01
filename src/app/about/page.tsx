@@ -44,6 +44,7 @@ export default function AboutPage() {
                     src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?q=80&w=800&auto=format&fit=crop"
                     alt="Solvia Crystals studio"
                     fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
                     className="object-cover"
                   />
                 </div>
@@ -91,7 +92,7 @@ export default function AboutPage() {
                 { 
                   icon: <Sparkles className="w-8 h-8 text-brand-gold mb-4" />, 
                   title: "Premium Craftsmanship", 
-                  desc: "AAA-grade crystals and 14k solid gold hardware — not plated, not vermeil. Our pieces are designed to be worn daily and to last a lifetime."
+                  desc: "Quality crystals paired with durable hardware. Every piece is designed to be worn daily and built to last."
                 }
               ].map((value, idx) => (
                 <motion.div 

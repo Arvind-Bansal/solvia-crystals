@@ -50,7 +50,7 @@ export function ProductActions({ product }: { product: Product }) {
       
       <p className="text-xs text-center text-brand-silver/60">
         <ShieldCheck className="w-4 h-4 inline mr-1 text-brand-gold" /> 
-        Authenticity guaranteed. 14k solid gold. Ethically sourced stones.
+        Ethically sourced stones. Designed for everyday wear.
       </p>
     </div>
   );

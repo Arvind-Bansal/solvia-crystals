@@ -22,6 +22,7 @@ export interface Product {
   isBestseller: boolean;
   inStock: boolean;
   relatedProductIds: string[];
+  stylingNote?: string;
 }
 
 export interface Review {
