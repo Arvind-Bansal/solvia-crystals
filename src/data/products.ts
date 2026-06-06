@@ -1,6 +1,6 @@
 import { Product } from '@/types';
 
-export const mockProducts: Product[] = [
+export const products: Product[] = [
   {
     id: "prod_001",
     name: "Violet Hour",
@@ -12,7 +12,8 @@ export const mockProducts: Product[] = [
     meaning: "Amethyst has been prized since antiquity as a stone of composure and clear thinking. Its deep violet hue has long been associated with intuition, inner stillness, and thoughtful decision-making.",
     intention: "Clarity",
     style: "Signature",
-    collection: "Premium Collection",
+    collection: "Signature Stones",
+    collectionSlug: "signature-stones",
     chakra: "Third Eye",
     zodiac: ["Aquarius", "Pisces"],
     materials: ["Grade AAA Amethyst 8mm beads", "Brushed metal accents", "Japanese elastic cord"],
@@ -44,6 +45,7 @@ export const mockProducts: Product[] = [
     intention: "Love",
     style: "Signature",
     collection: "Everyday Rituals",
+    collectionSlug: "everyday-rituals",
     chakra: "Heart",
     zodiac: ["Taurus", "Libra"],
     materials: ["Grade AAA Rose Quartz 8mm beads", "Metal accent hardware"],
@@ -74,7 +76,8 @@ export const mockProducts: Product[] = [
     meaning: "Obsidian has been used as a protective talisman for centuries. It is a stone of boundaries — helping the wearer feel grounded, present, and firmly in their own power.",
     intention: "Protection",
     style: "Statement",
-    collection: "Premium Collection",
+    collection: "Grounding Series",
+    collectionSlug: "grounding-series",
     chakra: "Root",
     zodiac: ["Scorpio", "Sagittarius"],
     materials: ["Matte Black Obsidian 10mm beads", "Metal alloy charm"],
@@ -105,7 +108,8 @@ export const mockProducts: Product[] = [
     meaning: "Known historically as the Merchant's Stone, Citrine has been carried by traders and entrepreneurs for centuries as a symbol of prosperity, optimism, and creative drive.",
     intention: "Wealth",
     style: "Signature",
-    collection: "Premium Collection",
+    collection: "Signature Stones",
+    collectionSlug: "signature-stones",
     chakra: "Solar Plexus",
     zodiac: ["Aries", "Leo", "Libra"],
     materials: ["Natural untreated Citrine 6mm beads", "Metal accent hardware"],
@@ -137,6 +141,7 @@ export const mockProducts: Product[] = [
     intention: "Protection",
     style: "Minimal",
     collection: "Everyday Rituals",
+    collectionSlug: "everyday-rituals",
     chakra: "Root",
     zodiac: ["Capricorn", "Scorpio"],
     materials: ["Black Tourmaline 6mm beads", "Brushed metal spacers"],
@@ -167,7 +172,8 @@ export const mockProducts: Product[] = [
     meaning: "Clear Quartz has been valued across cultures as a stone of amplification and focus. It is believed to sharpen intention and bring mental clarity to the wearer.",
     intention: "Clarity",
     style: "Minimal",
-    collection: "Everyday Rituals",
+    collection: "Minimal Forms",
+    collectionSlug: "minimal-forms",
     chakra: "Crown",
     zodiac: ["Aries", "Leo"],
     materials: ["Clear Quartz 6mm beads", "Metal accent bead"],
@@ -198,7 +204,8 @@ export const mockProducts: Product[] = [
     meaning: "Smoky Quartz is traditionally associated with letting go — releasing what no longer serves you and finding steadiness in uncertain moments.",
     intention: "Clarity",
     style: "Minimal",
-    collection: "Everyday Rituals",
+    collection: "Quiet Energy",
+    collectionSlug: "quiet-energy",
     chakra: "Root",
     zodiac: ["Scorpio", "Capricorn"],
     materials: ["Natural Smoky Quartz 8mm beads", "Matte black clasp"],
@@ -229,7 +236,8 @@ export const mockProducts: Product[] = [
     meaning: "Tiger's Eye has been worn as a stone of courage and self-assurance since the Roman era. Its shifting bands of colour symbolise adaptability, focus, and quiet personal power.",
     intention: "Confidence",
     style: "Signature",
-    collection: "Premium Collection",
+    collection: "Signature Stones",
+    collectionSlug: "signature-stones",
     chakra: "Solar Plexus",
     zodiac: ["Leo", "Capricorn"],
     materials: ["Grade AAA Tiger's Eye 8mm beads", "Metal accent hardware"],
@@ -260,7 +268,8 @@ export const mockProducts: Product[] = [
     meaning: "Sunstone has been linked to joy and vitality since Viking seafarers used it to navigate by overcast skies. It symbolises warmth, independence, and a generous spirit.",
     intention: "Confidence",
     style: "Minimal",
-    collection: "Everyday Rituals",
+    collection: "Quiet Energy",
+    collectionSlug: "quiet-energy",
     chakra: "Sacral",
     zodiac: ["Leo", "Libra"],
     materials: ["Natural Sunstone 6mm beads", "Gold-tone clasp"],
@@ -291,7 +300,8 @@ export const mockProducts: Product[] = [
     meaning: "Aquamarine has been treasured by sailors and travellers as a stone of safe passage and inner peace. Its name — from the Latin for 'sea water' — reflects its long association with calm, balance, and emotional clarity.",
     intention: "Balance",
     style: "Signature",
-    collection: "Premium Collection",
+    collection: "Quiet Energy",
+    collectionSlug: "quiet-energy",
     chakra: "Throat",
     zodiac: ["Pisces", "Gemini"],
     materials: ["Grade AAA Aquamarine 6mm beads", "Polished metal spacers"],
@@ -323,6 +333,7 @@ export const mockProducts: Product[] = [
     intention: "Balance",
     style: "Minimal",
     collection: "Everyday Rituals",
+    collectionSlug: "everyday-rituals",
     chakra: "Heart",
     zodiac: ["Taurus", "Libra"],
     materials: ["Grade A Nephrite Jade 8mm beads", "Gold-tone accent bead"],
@@ -353,7 +364,8 @@ export const mockProducts: Product[] = [
     meaning: "Often called 'Fool's Gold', Pyrite is anything but. It has been carried by merchants and leaders as a symbol of ambition, action, and the willingness to pursue what you want.",
     intention: "Wealth",
     style: "Statement",
-    collection: "Premium Collection",
+    collection: "Grounding Series",
+    collectionSlug: "grounding-series",
     chakra: "Solar Plexus",
     zodiac: ["Aries", "Leo"],
     materials: ["Natural Pyrite 10mm beads", "Metal charm and spacers"],
@@ -375,6 +387,31 @@ export const mockProducts: Product[] = [
   }
 ];
 
+// ─── Query Helpers ───────────────────────────
+// These become the CMS fetch layer. Swap internals when migrating to Sanity/Contentful.
+
+export function getAllProducts(): Product[] {
+  return products;
+}
+
 export function getProductBySlug(slug: string): Product | undefined {
-  return mockProducts.find(p => p.slug === slug);
+  return products.find(p => p.slug === slug);
+}
+
+export function getProductById(id: string): Product | undefined {
+  return products.find(p => p.id === id);
+}
+
+export function getProductsByIds(ids: string[]): Product[] {
+  return ids
+    .map(id => products.find(p => p.id === id))
+    .filter((p): p is Product => p !== undefined);
+}
+
+export function getProductsByIntention(intention: string): Product[] {
+  return products.filter(p => p.intention === intention);
+}
+
+export function getProductsByCollection(collectionSlug: string): Product[] {
+  return products.filter(p => p.collectionSlug === collectionSlug);
 }

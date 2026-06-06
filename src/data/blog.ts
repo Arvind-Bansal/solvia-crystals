@@ -1,6 +1,6 @@
 import { BlogPost } from "@/types";
 
-export const mockPosts: BlogPost[] = [
+export const blogPosts: BlogPost[] = [
   {
     id: "post_1",
     title: "How to Care for Your Crystal Jewellery",
@@ -88,6 +88,12 @@ export const mockPosts: BlogPost[] = [
   }
 ];
 
+// ─── Query Helpers ───────────────────────────
+
+export function getAllPosts(): BlogPost[] {
+  return blogPosts;
+}
+
 export function getPostBySlug(slug: string): BlogPost | undefined {
-  return mockPosts.find(p => p.slug === slug);
+  return blogPosts.find(p => p.slug === slug);
 }

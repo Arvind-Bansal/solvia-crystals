@@ -1,10 +1,10 @@
 import { notFound } from "next/navigation";
-import Image from "next/image";
+import { ProductImage } from "@/components/ui/ProductImage";
 import Link from "next/link";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { ProductCard } from "@/components/product/ProductCard";
-import { mockProducts, getProductBySlug } from "@/data/mockProducts";
+import { getAllProducts, getProductBySlug, getRelatedProducts } from "@/data";
 import { ProductActions } from "@/components/product/ProductActions";
 import { TrackRecentView } from "@/components/product/TrackRecentView";
 import { RecentlyViewed } from "@/components/product/RecentlyViewed";
@@ -14,7 +14,7 @@ import { Star, ShieldCheck, Sparkles, RefreshCcw, Truck, Layers } from "lucide-r
 import { constructMetadata, generateStructuredProductData } from "@/lib/seo";
 
 export function generateStaticParams() {
-  return mockProducts.map((product) => ({
+  return getAllProducts().map((product) => ({
     slug: product.slug,
   }));
 }
@@ -42,9 +42,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
 
   const jsonLd = generateStructuredProductData(product, `https://solviacrystals.com/product/${slug}`);
 
-  const relatedProducts = product.relatedProductIds
-    .map(id => mockProducts.find(p => p.id === id))
-    .filter((p): p is NonNullable<typeof p> => p !== undefined);
+  const relatedProducts = getRelatedProducts(product.id);
 
   return (
     <>
@@ -70,7 +68,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
             {/* Gallery */}
             <div className="space-y-4">
               <div className="relative aspect-[4/5] bg-[#121212] rounded-sm overflow-hidden border border-white/5">
-                <Image 
+              <ProductImage 
                   src={product.images.primary} 
                   alt={product.name} 
                   fill 
@@ -83,7 +81,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
                 <div className="flex md:grid md:grid-cols-4 gap-3 md:gap-4 overflow-x-auto md:overflow-visible pb-2 md:pb-0 scrollbar-hide -mx-6 px-6 md:mx-0 md:px-0">
                   {product.images.gallery.map((img, idx) => (
                     <div key={idx} className="relative flex-shrink-0 w-20 h-20 md:w-auto md:h-auto md:aspect-square bg-[#121212] rounded-sm overflow-hidden border border-white/5 cursor-pointer hover:border-brand-gold transition-colors">
-                      <Image src={img} alt={`${product.name} ${idx + 1}`} fill sizes="(max-width: 640px) 80px, 12.5vw" className="object-cover" />
+                      <ProductImage src={img} alt={`${product.name} ${idx + 1}`} fill sizes="(max-width: 640px) 80px, 12.5vw" className="object-cover" />
                     </div>
                   ))}
                 </div>

@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
-import { mockPosts } from "@/data/mockBlog";
+import { getAllPosts } from "@/data";
 import { constructMetadata } from "@/lib/seo";
 import { ArrowRight } from "lucide-react";
 
@@ -26,7 +26,7 @@ export default function BlogPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {mockPosts.map((post) => (
+            {getAllPosts().map((post) => (
               <article key={post.id} className="group bg-[#121212] border border-white/5 rounded-sm overflow-hidden flex flex-col">
                 <Link href={`/blog/${post.slug}`} className="relative aspect-[16/10] overflow-hidden">
                   <Image 

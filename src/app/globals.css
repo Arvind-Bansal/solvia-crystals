@@ -1,6 +1,7 @@
 @import "tailwindcss";
 
 @theme {
+  /* Colors — Brand */
   --color-brand-black: #0a0a0a;
   --color-brand-dark: #121212;
   --color-brand-purple: #2d1b4e;
@@ -8,8 +9,17 @@
   --color-brand-gold: #c5a059;
   --color-brand-silver: #e0e0e0;
 
+  /* Surfaces */
+  --color-surface-primary: #0a0a0a;
+  --color-surface-elevated: #121212;
+  --color-surface-subtle: #050505;
+
+  /* Typography */
   --font-serif: var(--font-outfit);
   --font-sans: var(--font-inter);
+
+  /* Animation */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 :root {

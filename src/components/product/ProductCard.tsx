@@ -1,8 +1,7 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { ProductImage } from "@/components/ui/ProductImage";
 import { Heart, ShoppingBag, Star } from "lucide-react";
 import { motion } from "framer-motion";
 import { Product } from "@/types";
@@ -16,7 +15,7 @@ interface ProductCardProps {
 }
 
 export function ProductCard({ product }: ProductCardProps) {
-  const [imgSrc, setImgSrc] = useState(product.images.primary);
+
   const { addItem: addToCart } = useCartStore();
   const { addItem: addToWishlist, removeItem: removeFromWishlist, hasItem } = useWishlistStore();
   
@@ -49,15 +48,12 @@ export function ProductCard({ product }: ProductCardProps) {
       transition={{ duration: 0.5 }}
     >
       <Link href={`/product/${product.slug}`} className="relative block aspect-[4/5] overflow-hidden bg-[#1a1a1a]">
-        <Image
-          src={imgSrc}
+        <ProductImage
+          src={product.images.primary}
           alt={product.name}
           fill
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
           className="object-cover transition-transform duration-700 group-hover:scale-[1.02]"
-          onError={() => {
-            setImgSrc("https://images.unsplash.com/photo-1599643477877-530eb83abc8e?q=80&w=800&auto=format&fit=crop");
-          }}
         />
         
         {/* Badges */}

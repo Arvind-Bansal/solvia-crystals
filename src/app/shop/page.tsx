@@ -5,13 +5,13 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { ProductCard } from "@/components/product/ProductCard";
-import { mockProducts } from "@/data/mockProducts";
+import { getAllProducts } from "@/data";
+import { FILTER_INTENTIONS, FILTER_STYLES, FILTER_CHAKRAS } from "@/data/filters";
 import { Search, SlidersHorizontal, ChevronDown, X } from "lucide-react";
 import { Button } from "@/components/ui/Button";
+import { EmptyState } from "@/components/ui/EmptyState";
 
-const INTENTIONS = ["All", "Protection", "Clarity", "Confidence", "Love", "Balance", "Wealth"];
-const STYLES = ["All", "Minimal", "Signature", "Statement"];
-const CHAKRAS = ["All", "Root", "Sacral", "Solar Plexus", "Heart", "Throat", "Third Eye", "Crown"];
+const allProducts = getAllProducts();
 
 export default function ShopPage() {
   const [activeIntention, setActiveIntention] = useState("All");
@@ -20,7 +20,7 @@ export default function ShopPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [isFilterOpen, setIsFilterOpen] = useState(false);
 
-  const filteredProducts = mockProducts.filter((product) => {
+  const filteredProducts = allProducts.filter((product) => {
     const matchesIntention = activeIntention === "All" || product.intention === activeIntention;
     const matchesStyle = activeStyle === "All" || product.style === activeStyle;
     const matchesChakra = activeChakra === "All" || product.chakra === activeChakra;
@@ -46,9 +46,9 @@ export default function ShopPage() {
           </motion.div>
 
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
-            {/* Desktop Intentions */}
+            {/* Desktop FILTER_INTENTIONS.options */}
             <div className="hidden md:flex items-center space-x-2 overflow-x-auto pb-2 scrollbar-hide w-full md:w-auto">
-              {INTENTIONS.map((intention) => (
+              {FILTER_INTENTIONS.options.map((intention) => (
                 <button
                   key={intention}
                   onClick={() => setActiveIntention(intention)}
@@ -93,7 +93,7 @@ export default function ShopPage() {
             <div className="flex items-center gap-2">
               <span className="text-sm text-brand-silver/60">Style:</span>
               <div className="flex items-center space-x-2">
-                {STYLES.map((style) => (
+                {FILTER_STYLES.options.map((style) => (
                   <button
                     key={style}
                     onClick={() => setActiveStyle(style)}
@@ -116,72 +116,94 @@ export default function ShopPage() {
                   onChange={(e) => setActiveChakra(e.target.value)}
                   className="appearance-none bg-transparent border border-white/10 rounded-sm pl-4 pr-10 py-1.5 text-sm text-white focus:outline-none focus:border-brand-gold cursor-pointer"
                 >
-                  {CHAKRAS.map(c => <option key={c} value={c} className="bg-brand-black">{c}</option>)}
+                  {FILTER_CHAKRAS.options.map(c => <option key={c} value={c} className="bg-brand-black">{c}</option>)}
                 </select>
                 <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-brand-silver/50 pointer-events-none" />
               </div>
             </div>
           </div>
 
-          {/* Mobile Filter Drawer */}
+          {/* Mobile Filter Drawer — Slide-up sheet with backdrop */}
           <AnimatePresence>
             {isFilterOpen && (
-              <motion.div 
-                initial={{ height: 0, opacity: 0 }}
-                animate={{ height: "auto", opacity: 1 }}
-                exit={{ height: 0, opacity: 0 }}
-                className="md:hidden overflow-hidden mb-8 border border-white/10 rounded-sm p-4 bg-[#121212]"
-              >
-                <div className="flex justify-between items-center mb-4">
-                  <h3 className="font-serif text-white">Filters</h3>
-                  <button onClick={() => setIsFilterOpen(false)}><X className="w-4 h-4 text-brand-silver" /></button>
-                </div>
-                
-                <div className="mb-4">
-                  <label className="text-xs text-brand-silver/60 uppercase tracking-wider mb-2 block">Intention</label>
-                  <div className="flex flex-wrap gap-2">
-                    {INTENTIONS.map(intention => (
-                      <button
-                        key={intention}
-                        onClick={() => setActiveIntention(intention)}
-                        className={`px-3 py-1 text-xs rounded-sm transition-colors ${activeIntention === intention ? 'bg-brand-gold text-black' : 'bg-white/5 text-white'}`}
-                      >
-                        {intention}
-                      </button>
-                    ))}
+              <>
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  onClick={() => setIsFilterOpen(false)}
+                  className="md:hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-40"
+                />
+                <motion.div 
+                  initial={{ y: "100%" }}
+                  animate={{ y: 0 }}
+                  exit={{ y: "100%" }}
+                  transition={{ type: "spring", damping: 28, stiffness: 260 }}
+                  className="md:hidden fixed bottom-0 left-0 right-0 z-50 rounded-t-2xl border-t border-white/10 bg-[#121212] p-6 pb-[env(safe-area-inset-bottom,24px)] max-h-[70vh] overflow-y-auto"
+                >
+                  <div className="flex justify-between items-center mb-6">
+                    <h3 className="font-serif text-white text-lg">Filters</h3>
+                    <button 
+                      onClick={() => setIsFilterOpen(false)}
+                      className="w-11 h-11 flex items-center justify-center rounded-full bg-white/5 hover:bg-white/10 transition-colors"
+                    >
+                      <X className="w-5 h-5 text-brand-silver" />
+                    </button>
                   </div>
-                </div>
+                  
+                  <div className="mb-6">
+                    <label className="text-xs text-brand-silver/60 uppercase tracking-wider mb-3 block">Intention</label>
+                    <div className="flex flex-wrap gap-2">
+                      {FILTER_INTENTIONS.options.map(intention => (
+                        <button
+                          key={intention}
+                          onClick={() => setActiveIntention(intention)}
+                          className={`min-h-[44px] px-4 py-2.5 text-sm rounded-sm transition-colors ${activeIntention === intention ? 'bg-brand-gold text-black font-medium' : 'bg-white/5 text-white'}`}
+                        >
+                          {intention}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
 
-                <div className="mb-4">
-                  <label className="text-xs text-brand-silver/60 uppercase tracking-wider mb-2 block">Style</label>
-                  <div className="flex flex-wrap gap-2">
-                    {STYLES.map(style => (
-                      <button
-                        key={style}
-                        onClick={() => setActiveStyle(style)}
-                        className={`px-3 py-1 text-xs rounded-sm transition-colors ${activeStyle === style ? 'bg-brand-gold text-black' : 'bg-white/5 text-white'}`}
-                      >
-                        {style}
-                      </button>
-                    ))}
+                  <div className="mb-6">
+                    <label className="text-xs text-brand-silver/60 uppercase tracking-wider mb-3 block">Style</label>
+                    <div className="flex flex-wrap gap-2">
+                      {FILTER_STYLES.options.map(style => (
+                        <button
+                          key={style}
+                          onClick={() => setActiveStyle(style)}
+                          className={`min-h-[44px] px-4 py-2.5 text-sm rounded-sm transition-colors ${activeStyle === style ? 'bg-brand-gold text-black font-medium' : 'bg-white/5 text-white'}`}
+                        >
+                          {style}
+                        </button>
+                      ))}
+                    </div>
                   </div>
-                </div>
 
-                <div>
-                  <label className="text-xs text-brand-silver/60 uppercase tracking-wider mb-2 block">Chakra</label>
-                  <div className="flex flex-wrap gap-2">
-                    {CHAKRAS.map(chakra => (
-                      <button
-                        key={chakra}
-                        onClick={() => setActiveChakra(chakra)}
-                        className={`px-3 py-1 text-xs rounded-sm transition-colors ${activeChakra === chakra ? 'bg-brand-gold text-black' : 'bg-white/5 text-white'}`}
-                      >
-                        {chakra}
-                      </button>
-                    ))}
+                  <div className="mb-6">
+                    <label className="text-xs text-brand-silver/60 uppercase tracking-wider mb-3 block">Chakra</label>
+                    <div className="flex flex-wrap gap-2">
+                      {FILTER_CHAKRAS.options.map(chakra => (
+                        <button
+                          key={chakra}
+                          onClick={() => setActiveChakra(chakra)}
+                          className={`min-h-[44px] px-4 py-2.5 text-sm rounded-sm transition-colors ${activeChakra === chakra ? 'bg-brand-gold text-black font-medium' : 'bg-white/5 text-white'}`}
+                        >
+                          {chakra}
+                        </button>
+                      ))}
+                    </div>
                   </div>
-                </div>
-              </motion.div>
+
+                  <Button 
+                    className="w-full min-h-[48px]"
+                    onClick={() => setIsFilterOpen(false)}
+                  >
+                    Show {filteredProducts.length} {filteredProducts.length === 1 ? 'Piece' : 'Pieces'}
+                  </Button>
+                </motion.div>
+              </>
             )}
           </AnimatePresence>
 
@@ -207,25 +229,21 @@ export default function ShopPage() {
               </AnimatePresence>
             </motion.div>
           ) : (
-            <div className="flex flex-col items-center justify-center py-24 text-center border border-white/5 rounded-sm bg-[#121212]">
-              <Search className="w-12 h-12 text-brand-silver/20 mb-4" />
-              <h3 className="text-xl font-serif text-white mb-2">No pieces found</h3>
-              <p className="text-brand-silver/60 max-w-md">
-                We couldn&apos;t find any pieces matching your current filters. Try adjusting your search or clearing your filters.
-              </p>
-              <Button 
-                variant="outline" 
-                className="mt-6"
-                onClick={() => {
+            <EmptyState
+              icon={Search}
+              title="No pieces found"
+              description="We couldn't find any pieces matching your current filters. Try adjusting your search or clearing your filters."
+              cta={{
+                label: "Clear All Filters",
+                onClick: () => {
                   setActiveIntention("All");
                   setActiveStyle("All");
                   setActiveChakra("All");
                   setSearchQuery("");
-                }}
-              >
-                Clear All Filters
-              </Button>
-            </div>
+                },
+              }}
+              className="border border-white/5 rounded-sm bg-[#121212]"
+            />
           )}
         </div>
       </main>

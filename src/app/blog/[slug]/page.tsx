@@ -3,11 +3,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
-import { mockPosts, getPostBySlug } from "@/data/mockBlog";
+import { getAllPosts, getPostBySlug } from "@/data";
 import { constructMetadata, generateStructuredArticleData } from "@/lib/seo";
 
 export function generateStaticParams() {
-  return mockPosts.map((post) => ({
+  return getAllPosts().map((post) => ({
     slug: post.slug,
   }));
 }

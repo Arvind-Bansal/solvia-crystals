@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X, Minus, Plus, ShoppingBag } from "lucide-react";
 import Image from "next/image";
 import { Button } from "@/components/ui/Button";
+import { EmptyState } from "@/components/ui/EmptyState";
 import { useCartStore } from "@/store/useCartStore";
 import Link from "next/link";
 import { useState, useEffect } from "react";
@@ -62,11 +63,12 @@ export function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
             {/* Cart Items */}
             <div className="flex-1 overflow-y-auto p-6 space-y-6">
               {!mounted ? null : items.length === 0 ? (
-                <div className="flex flex-col items-center justify-center h-full text-center">
-                  <ShoppingBag className="w-12 h-12 text-brand-silver/20 mb-4" />
-                  <p className="text-brand-silver text-lg mb-6">Your cart is empty.</p>
-                  <Button onClick={onClose} variant="outline">Continue Shopping</Button>
-                </div>
+                <EmptyState
+                  icon={ShoppingBag}
+                  title="Your cart is empty"
+                  description="You haven't added any pieces yet. Find something that speaks to you."
+                  cta={{ label: "Continue Shopping", onClick: onClose }}
+                />
               ) : (
                 items.map((item) => (
                   <div key={item.product.id} className="flex gap-4">
@@ -88,19 +90,19 @@ export function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
                       </div>
                       <p className="text-brand-silver text-sm mb-auto">${item.product.price.toFixed(2)}</p>
                       
-                      <div className="flex items-center border border-white/20 rounded-sm overflow-hidden h-8 w-24 mt-2">
+                      <div className="flex items-center border border-white/20 rounded-sm overflow-hidden h-10 w-28 mt-2">
                         <button 
                           onClick={() => updateQuantity(item.product.id, Math.max(1, item.quantity - 1))}
-                          className="w-8 h-full flex items-center justify-center text-white hover:bg-white/5 transition-colors"
+                          className="w-10 h-full flex items-center justify-center text-white hover:bg-white/5 active:bg-white/10 transition-colors"
                         >
-                          <Minus className="w-3 h-3" />
+                          <Minus className="w-3.5 h-3.5" />
                         </button>
-                        <span className="flex-1 text-center text-white text-xs">{item.quantity}</span>
+                        <span className="flex-1 text-center text-white text-sm">  {item.quantity}</span>
                         <button 
                           onClick={() => updateQuantity(item.product.id, item.quantity + 1)}
-                          className="w-8 h-full flex items-center justify-center text-white hover:bg-white/5 transition-colors"
+                          className="w-10 h-full flex items-center justify-center text-white hover:bg-white/5 active:bg-white/10 transition-colors"
                         >
-                          <Plus className="w-3 h-3" />
+                          <Plus className="w-3.5 h-3.5" />
                         </button>
                       </div>
                     </div>

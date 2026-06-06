@@ -1,6 +1,5 @@
 import { MetadataRoute } from 'next'
-import { mockProducts } from '@/data/mockProducts'
-import { mockPosts } from '@/data/mockBlog'
+import { getAllProducts, getAllPosts } from '@/data'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://solviacrystals.com'
@@ -14,7 +13,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }))
 
   // Product routes
-  const productRoutes = mockProducts.map((product) => ({
+  const productRoutes = getAllProducts().map((product) => ({
     url: `${baseUrl}/product/${product.slug}`,
     lastModified: new Date().toISOString(),
     changeFrequency: 'weekly' as const,
@@ -22,7 +21,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }))
 
   // Blog routes
-  const blogRoutes = mockPosts.map((post) => ({
+  const blogRoutes = getAllPosts().map((post) => ({
     url: `${baseUrl}/blog/${post.slug}`,
     lastModified: new Date(post.date).toISOString(),
     changeFrequency: 'monthly' as const,
