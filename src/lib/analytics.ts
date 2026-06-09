@@ -5,7 +5,12 @@ type EventName =
   | 'purchase'
   | 'view_item'
   | 'add_to_wishlist'
-  | 'newsletter_signup';
+  | 'remove_from_wishlist'
+  | 'search'
+  | 'checkout_start'
+  | 'view_collection'
+  | 'newsletter_signup'
+  | 'contact_form';
 
 interface AnalyticsEvent {
   name: EventName;

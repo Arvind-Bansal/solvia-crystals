@@ -3,15 +3,17 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ShoppingBag, Menu, X, Search, User } from "lucide-react";
+import { ShoppingBag, Menu, X, Search } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { CartDrawer } from "@/components/ecommerce/CartDrawer";
+import { SearchOverlay } from "@/components/search/SearchOverlay";
 import { useCartStore } from "@/store/useCartStore";
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [cartOpen, setCartOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   
   const { items } = useCartStore();
@@ -27,7 +29,7 @@ export function Navbar() {
   const navLinks = [
     { name: "Home", href: "/" },
     { name: "Shop", href: "/shop" },
-    { name: "Collections", href: "/shop" },
+    { name: "Collections", href: "/collections" },
     { name: "About", href: "/about" },
     { name: "Journal", href: "/blog" },
     { name: "Contact", href: "/contact" },
@@ -87,11 +89,8 @@ export function Navbar() {
 
           {/* Icons */}
           <div className="flex items-center space-x-4">
-            <button aria-label="Search" className="text-brand-silver hover:text-white hidden md:block">
+            <button aria-label="Search" className="text-brand-silver hover:text-white transition-colors" onClick={() => setSearchOpen(true)}>
               <Search className="w-5 h-5" />
-            </button>
-            <button aria-label="Account" className="text-brand-silver hover:text-white hidden md:block">
-              <User className="w-5 h-5" />
             </button>
             <button 
               aria-label="Cart" 
@@ -128,6 +127,7 @@ export function Navbar() {
       </header>
 
       <CartDrawer isOpen={cartOpen} onClose={() => setCartOpen(false)} />
+      <SearchOverlay isOpen={searchOpen} onClose={() => setSearchOpen(false)} />
     </>
   );
 }
