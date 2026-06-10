@@ -5,6 +5,7 @@ import { Footer } from "@/components/layout/Footer";
 import { ProductCard } from "@/components/product/ProductCard";
 import { getAllIntentions, getIntentionBySlug, getProductsForIntention } from "@/data";
 import { constructMetadata } from "@/lib/seo";
+import { Accordion } from "@/components/ui/Accordion";
 
 export function generateStaticParams() {
   return getAllIntentions().map((intention) => ({
@@ -87,14 +88,7 @@ export default async function IntentionPage({ params }: { params: Promise<{ slug
         <section className="py-24 bg-[#050505] border-t border-white/5">
           <div className="container mx-auto px-6 max-w-3xl">
             <h2 className="text-3xl font-serif text-white mb-12 text-center">Frequently Asked Questions</h2>
-            <div className="space-y-6">
-              {data.faqs.map((faq, idx) => (
-                <div key={idx} className="p-6 bg-[#121212] border border-white/5 rounded-sm">
-                  <h3 className="text-lg font-serif text-white mb-3">{faq.question}</h3>
-                  <p className="text-brand-silver/80 text-sm leading-relaxed">{faq.answer}</p>
-                </div>
-              ))}
-            </div>
+            <Accordion items={data.faqs} structuredData />
           </div>
         </section>
 

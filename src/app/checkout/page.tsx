@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
@@ -14,7 +14,6 @@ import { ShoppingBag, ChevronRight, ShieldCheck, Truck, RefreshCcw } from "lucid
 import Image from "next/image";
 import Link from "next/link";
 import { analytics } from "@/lib/analytics";
-import { useState as useHydrated, useEffect } from "react";
 
 const checkoutSchema = z.object({
   email: z.string().email("Please enter a valid email address"),

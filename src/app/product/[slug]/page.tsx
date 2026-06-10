@@ -9,6 +9,7 @@ import { ProductActions } from "@/components/product/ProductActions";
 import { TrackRecentView } from "@/components/product/TrackRecentView";
 import { RecentlyViewed } from "@/components/product/RecentlyViewed";
 import { StickyMobileCTA } from "@/components/product/StickyMobileCTA";
+import { ReviewSection } from "@/components/product/ReviewSection";
 import { Star, ShieldCheck, Sparkles, RefreshCcw, Truck, Layers } from "lucide-react";
 
 import { constructMetadata, generateStructuredProductData } from "@/lib/seo";
@@ -163,6 +164,9 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
               </div>
             </div>
           )}
+
+          {/* Reviews */}
+          <ReviewSection productName={product.name} />
 
           {/* Recently Viewed */}
           <RecentlyViewed excludeId={product.id} />

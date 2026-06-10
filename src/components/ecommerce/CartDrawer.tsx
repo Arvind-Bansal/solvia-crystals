@@ -119,9 +119,11 @@ export function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
                   <span className="text-xl text-white font-medium">${subtotal.toFixed(2)}</span>
                 </div>
                 <p className="text-brand-silver/60 text-xs mb-6 text-center">Shipping, taxes, and discounts calculated at checkout.</p>
-                <Button size="lg" className="w-full">
-                  Proceed to Checkout
-                </Button>
+                <Link href="/checkout" onClick={onClose}>
+                  <Button size="lg" className="w-full">
+                    Proceed to Checkout
+                  </Button>
+                </Link>
               </div>
             )}
           </motion.div>

@@ -1,10 +1,41 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import { FaInstagram, FaFacebook, FaYoutube } from "react-icons/fa";
 import { Button } from "@/components/ui/Button";
+import { submitNewsletterForm } from "@/lib/form-service";
+import { analytics } from "@/lib/analytics";
+import { toast } from "sonner";
+
+const socialLinks = [
+  { label: "Instagram", href: "https://instagram.com/solviacrystals", icon: FaInstagram },
+  { label: "Facebook", href: "https://facebook.com/solviacrystals", icon: FaFacebook },
+  { label: "YouTube", href: "https://youtube.com/@solviacrystals", icon: FaYoutube },
+].filter(link => link.href && link.href !== "#");
 
 export function Footer() {
+  const [email, setEmail] = useState("");
+  const [newsletterStatus, setNewsletterStatus] = useState<"idle" | "loading" | "success">("idle");
+
+  const handleNewsletterSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email) return;
+    setNewsletterStatus("loading");
+
+    const result = await submitNewsletterForm(email);
+
+    if (result.success) {
+      setNewsletterStatus("success");
+      analytics.track({ name: "newsletter_signup", properties: { source: "footer" } });
+      setEmail("");
+      toast.success("You're in! Watch your inbox for updates.");
+    } else {
+      setNewsletterStatus("idle");
+      toast.error(result.error || "Something went wrong. Please try again.");
+    }
+  };
+
   return (
     <footer className="bg-[#050505] border-t border-white/5 pt-16 pb-8">
       <div className="container mx-auto px-6">
@@ -17,17 +48,22 @@ export function Footer() {
             <p className="text-sm text-brand-silver/80 mb-6 leading-relaxed">
               Ethically sourced crystals. Considered design.
             </p>
-            <div className="flex space-x-4">
-              <Link href="#" className="text-brand-silver hover:text-brand-gold transition-colors" aria-label="Instagram">
-                <FaInstagram className="w-5 h-5" />
-              </Link>
-              <Link href="#" className="text-brand-silver hover:text-brand-gold transition-colors" aria-label="Facebook">
-                <FaFacebook className="w-5 h-5" />
-              </Link>
-              <Link href="#" className="text-brand-silver hover:text-brand-gold transition-colors" aria-label="YouTube">
-                <FaYoutube className="w-5 h-5" />
-              </Link>
-            </div>
+            {socialLinks.length > 0 && (
+              <div className="flex space-x-4">
+                {socialLinks.map((link) => (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-brand-silver hover:text-brand-gold transition-colors"
+                    aria-label={link.label}
+                  >
+                    <link.icon className="w-5 h-5" />
+                  </a>
+                ))}
+              </div>
+            )}
           </div>
 
           {/* Quick Links */}
@@ -36,9 +72,8 @@ export function Footer() {
             <ul className="space-y-3">
               {[
                 { label: "All Pieces", href: "/shop" },
-                { label: "Bestsellers", href: "/shop" },
-                { label: "New Arrivals", href: "/shop" },
-                { label: "Shop by Intention", href: "/shop" },
+                { label: "Collections", href: "/collections" },
+                { label: "Wishlist", href: "/wishlist" },
               ].map((item) => (
                 <li key={item.label}>
                   <Link href={item.href} className="text-brand-silver/80 hover:text-white text-sm transition-colors">
@@ -55,8 +90,9 @@ export function Footer() {
             <ul className="space-y-3">
               {[
                 { label: "Contact Us", href: "/contact" },
-                { label: "Shipping & Returns", href: "/contact" },
-                { label: "Jewellery Care", href: "/blog/caring-for-crystal-jewellery" },
+                { label: "Shipping", href: "/shipping" },
+                { label: "Returns", href: "/returns" },
+                { label: "Care Guide", href: "/care-guide" },
                 { label: "Privacy Policy", href: "/privacy" },
                 { label: "Terms of Service", href: "/terms" },
               ].map((item) => (
@@ -75,17 +111,23 @@ export function Footer() {
             <p className="text-sm text-brand-silver/80 mb-4">
               New releases, styling guides, and early access. No spam.
             </p>
-            <form className="space-y-2" onSubmit={(e) => e.preventDefault()}>
-              <input
-                type="email"
-                placeholder="Your email address"
-                className="w-full bg-transparent border border-white/20 rounded-sm px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-gold transition-colors"
-                required
-              />
-              <Button className="w-full" variant="outline">
-                Subscribe
-              </Button>
-            </form>
+            {newsletterStatus === "success" ? (
+              <p className="text-sm text-brand-gold">Thanks for subscribing! ✨</p>
+            ) : (
+              <form className="space-y-2" onSubmit={handleNewsletterSubmit}>
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Your email address"
+                  className="w-full bg-transparent border border-white/20 rounded-sm px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-gold transition-colors"
+                  required
+                />
+                <Button className="w-full" variant="outline" disabled={newsletterStatus === "loading"}>
+                  {newsletterStatus === "loading" ? "Subscribing..." : "Subscribe"}
+                </Button>
+              </form>
+            )}
           </div>
         </div>
 

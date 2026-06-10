@@ -9,6 +9,7 @@ import { useCartStore } from "@/store/useCartStore";
 import { useWishlistStore } from "@/store/useWishlistStore";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/Button";
+import { analytics } from "@/lib/analytics";
 
 interface ProductCardProps {
   product: Product;
@@ -25,9 +26,11 @@ export function ProductCard({ product }: ProductCardProps) {
     e.preventDefault();
     if (isWishlisted) {
       removeFromWishlist(product.id);
+      analytics.track({ name: "remove_from_wishlist", properties: { productId: product.id } });
       toast("Removed from wishlist");
     } else {
       addToWishlist(product);
+      analytics.track({ name: "add_to_wishlist", properties: { productId: product.id, name: product.name } });
       toast.success("Added to wishlist");
     }
   };
@@ -36,6 +39,7 @@ export function ProductCard({ product }: ProductCardProps) {
     e.preventDefault();
     if (!product.inStock) return;
     addToCart(product);
+    analytics.track({ name: "add_to_cart", properties: { productId: product.id, name: product.name, price: product.price, source: "card" } });
     toast.success(`${product.name} added to cart`);
   };
 

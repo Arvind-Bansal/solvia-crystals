@@ -7,6 +7,7 @@ import { Product } from "@/types";
 import { useCartStore } from "@/store/useCartStore";
 import { useWishlistStore } from "@/store/useWishlistStore";
 import { toast } from "sonner";
+import { analytics } from "@/lib/analytics";
 
 export function ProductActions({ product }: { product: Product }) {
   const { addItem: addToCart } = useCartStore();
@@ -16,15 +17,18 @@ export function ProductActions({ product }: { product: Product }) {
 
   const handleAddToCart = () => {
     addToCart(product);
+    analytics.track({ name: "add_to_cart", properties: { productId: product.id, name: product.name, price: product.price } });
     toast.success(`${product.name} added to cart`);
   };
 
   const handleWishlist = () => {
     if (isWishlisted) {
       removeFromWishlist(product.id);
+      analytics.track({ name: "remove_from_wishlist", properties: { productId: product.id } });
       toast("Removed from wishlist");
     } else {
       addToWishlist(product);
+      analytics.track({ name: "add_to_wishlist", properties: { productId: product.id, name: product.name } });
       toast.success("Added to wishlist");
     }
   };

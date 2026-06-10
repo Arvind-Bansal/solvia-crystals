@@ -7,6 +7,8 @@ import { Input } from "@/components/ui/Input";
 import { Sparkles } from "lucide-react";
 import { toast } from "sonner";
 import Image from "next/image";
+import { submitNewsletterForm } from "@/lib/form-service";
+import { analytics } from "@/lib/analytics";
 
 export function NewsletterPopup() {
   const [isOpen, setIsOpen] = useState(false);
@@ -44,16 +46,20 @@ export function NewsletterPopup() {
     localStorage.setItem("solvia_newsletter_seen", "true");
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate API call
-    setTimeout(() => {
-      setIsSubmitting(false);
+    const result = await submitNewsletterForm(email);
+
+    setIsSubmitting(false);
+    if (result.success) {
+      analytics.track({ name: "newsletter_signup", properties: { source: "popup" } });
       handleClose();
       toast.success("Welcome! Check your inbox for your 15% off code.");
-    }, 1000);
+    } else {
+      toast.error(result.error || "Something went wrong. Please try again.");
+    }
   };
 
   return (
