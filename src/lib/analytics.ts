@@ -14,7 +14,7 @@ type EventName =
 
 interface AnalyticsEvent {
   name: EventName;
-  properties?: Record<string, any>;
+  properties?: Record<string, string | number | boolean | undefined | Record<string, string | number>[] | Record<string, string | number>>;
 }
 
 class AnalyticsProvider {

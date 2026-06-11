@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import type { Product, BlogPost } from "@/types";
 
 const siteName = "Solvia Crystals";
 const defaultDescription = "Handcrafted crystal bracelets designed with care and consideration. Ethically sourced stones, considered design, and everyday wearability.";
@@ -50,7 +51,7 @@ export function constructMetadata({
   };
 }
 
-export function generateStructuredProductData(product: any, url: string) {
+export function generateStructuredProductData(product: Product, url: string) {
   return {
     "@context": "https://schema.org",
     "@type": "Product",
@@ -82,7 +83,7 @@ export function generateStructuredProductData(product: any, url: string) {
   };
 }
 
-export function generateStructuredArticleData(article: any, url: string) {
+export function generateStructuredArticleData(article: BlogPost, url: string) {
   return {
     "@context": "https://schema.org",
     "@type": "BlogPosting",

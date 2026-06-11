@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback, Suspense } from "react";
+import { useState, useCallback, Suspense } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Navbar } from "@/components/layout/Navbar";
@@ -35,7 +35,7 @@ function sortProducts(products: Product[], sort: SortValue): Product[] {
     case "rating":
       return sorted.sort((a, b) => b.rating - a.rating);
     case "newest":
-      return sorted.sort((a, b) => (b.isNew ? 1 : 0) - (a.isNew ? 1 : 0));
+      return sorted.sort((a, b) => (b.sortOrder ?? 0) - (a.sortOrder ?? 0));
     case "featured":
     default:
       return sorted.sort((a, b) => (b.isBestseller ? 1 : 0) - (a.isBestseller ? 1 : 0));

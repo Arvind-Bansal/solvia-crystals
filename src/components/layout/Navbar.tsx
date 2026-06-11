@@ -18,13 +18,14 @@ export function Navbar() {
   
   const { items } = useCartStore();
 
+  /* eslint-disable react-hooks/set-state-in-effect */
   useEffect(() => {
-    // eslint-disable-next-line
     setMounted(true);
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+  /* eslint-enable react-hooks/set-state-in-effect */
 
   const navLinks = [
     { name: "Home", href: "/" },

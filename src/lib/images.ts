@@ -33,7 +33,7 @@ export const BLUR_PLACEHOLDER = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA
  */
 export function getProductImagePath(
   slug: string,
-  variant: "thumbnail" | "1" | "2" | "lifestyle" | "packaging" = "1",
+  _variant: "thumbnail" | "1" | "2" | "lifestyle" | "packaging" = "1",
   fallbackUrl?: string
 ): string {
   // Future: check if local file exists at /products/{slug}/{variant}.webp

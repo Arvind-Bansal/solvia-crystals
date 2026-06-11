@@ -47,11 +47,12 @@ export default function CheckoutPage() {
   const shipping = subtotal >= 150 ? 0 : 12;
   const total = subtotal + shipping;
 
+  /* eslint-disable react-hooks/set-state-in-effect, react-hooks/exhaustive-deps */
   useEffect(() => {
     setMounted(true);
     analytics.track({ name: "checkout_start", properties: { itemCount: items.length, total: subtotal } });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  /* eslint-enable react-hooks/set-state-in-effect, react-hooks/exhaustive-deps */
 
   const {
     register,

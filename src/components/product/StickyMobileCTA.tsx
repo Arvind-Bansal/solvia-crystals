@@ -6,12 +6,14 @@ import { Product } from "@/types";
 import { useCartStore } from "@/store/useCartStore";
 import { toast } from "sonner";
 import { ShoppingBag } from "lucide-react";
+import { analytics } from "@/lib/analytics";
 
 export function StickyMobileCTA({ product }: { product: Product }) {
   const { addItem: addToCart } = useCartStore();
 
   const handleAddToCart = () => {
     addToCart(product);
+    analytics.track({ name: "add_to_cart", properties: { productId: product.id, name: product.name, price: product.price, source: "mobile_cta" } });
     toast.success(`${product.name} added to cart`);
   };
 

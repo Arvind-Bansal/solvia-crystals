@@ -21,12 +21,14 @@ export function SearchOverlay({ isOpen, onClose }: SearchOverlayProps) {
   const allCollections = useMemo(() => getAllCollections(), []);
   const allPosts = useMemo(() => getAllPosts(), []);
 
+  /* eslint-disable react-hooks/set-state-in-effect */
   useEffect(() => {
     if (isOpen) {
       setQuery("");
       setTimeout(() => inputRef.current?.focus(), 100);
     }
   }, [isOpen]);
+  /* eslint-enable react-hooks/set-state-in-effect */
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {

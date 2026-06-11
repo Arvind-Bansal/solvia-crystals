@@ -8,6 +8,7 @@ import { EmptyState } from "@/components/ui/EmptyState";
 import { useCartStore } from "@/store/useCartStore";
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import { analytics } from "@/lib/analytics";
 
 interface CartDrawerProps {
   isOpen: boolean;
@@ -19,11 +20,11 @@ export function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
   const subtotal = getCartTotal();
   const [mounted, setMounted] = useState(false);
 
-  // Prevent hydration mismatch for persistent store
+  /* eslint-disable react-hooks/set-state-in-effect */
   useEffect(() => {
-    // eslint-disable-next-line
     setMounted(true);
   }, []);
+  /* eslint-enable react-hooks/set-state-in-effect */
 
   return (
     <AnimatePresence>
@@ -81,7 +82,10 @@ export function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
                           <h3 className="text-white font-medium text-sm pr-4 hover:text-brand-gold transition-colors">{item.product.name}</h3>
                         </Link>
                         <button 
-                          onClick={() => removeItem(item.product.id)}
+                          onClick={() => {
+                            analytics.track({ name: "remove_from_cart", properties: { productId: item.product.id, name: item.product.name } });
+                            removeItem(item.product.id);
+                          }}
                           className="text-brand-silver/50 hover:text-white transition-colors"
                           aria-label="Remove item"
                         >

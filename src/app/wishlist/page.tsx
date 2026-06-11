@@ -12,9 +12,11 @@ export default function WishlistPage() {
   const { items } = useWishlistStore();
   const [mounted, setMounted] = useState(false);
 
+  /* eslint-disable react-hooks/set-state-in-effect */
   useEffect(() => {
     setMounted(true);
   }, []);
+  /* eslint-enable react-hooks/set-state-in-effect */
 
   return (
     <>
