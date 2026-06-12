@@ -3,11 +3,12 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ShoppingBag, Menu, X, Search } from "lucide-react";
+import { ShoppingBag, Menu, X, Search, Heart } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { CartDrawer } from "@/components/ecommerce/CartDrawer";
 import { SearchOverlay } from "@/components/search/SearchOverlay";
 import { useCartStore } from "@/store/useCartStore";
+import { useWishlistStore } from "@/store/useWishlistStore";
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -17,6 +18,9 @@ export function Navbar() {
   const [mounted, setMounted] = useState(false);
   
   const { items } = useCartStore();
+  const { items: wishlistItems } = useWishlistStore();
+  const wishlistCount = mounted ? wishlistItems.length : 0;
+  const cartCount = mounted ? items.reduce((acc, i) => acc + i.quantity, 0) : 0;
 
   /* eslint-disable react-hooks/set-state-in-effect */
   useEffect(() => {
@@ -93,6 +97,18 @@ export function Navbar() {
             <button aria-label="Search" className="text-brand-silver hover:text-white transition-colors" onClick={() => setSearchOpen(true)}>
               <Search className="w-5 h-5" />
             </button>
+            <Link
+              href="/wishlist"
+              aria-label="Wishlist"
+              className="text-brand-silver hover:text-white relative transition-colors"
+            >
+              <Heart className={`w-5 h-5 ${wishlistCount > 0 ? "fill-brand-gold text-brand-gold" : ""}`} />
+              {wishlistCount > 0 && (
+                <span className="absolute -top-2 -right-2 bg-brand-gold text-[#0a0a0a] text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">
+                  {wishlistCount}
+                </span>
+              )}
+            </Link>
             <button 
               aria-label="Cart" 
               className="text-brand-silver hover:text-white relative"
@@ -100,7 +116,7 @@ export function Navbar() {
             >
               <ShoppingBag className="w-5 h-5" />
               <span className="absolute -top-2 -right-2 bg-brand-gold text-[#0a0a0a] text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">
-                {mounted ? items.reduce((acc, i) => acc + i.quantity, 0) : 0}
+                {cartCount}
               </span>
             </button>
           </div>
@@ -123,6 +139,18 @@ export function Navbar() {
                 {link.name}
               </Link>
             ))}
+            <Link
+              href="/wishlist"
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-lg font-medium text-brand-silver hover:text-brand-gold transition-colors flex items-center"
+            >
+              Wishlist
+              {wishlistCount > 0 && (
+                <span className="ml-2 bg-brand-gold text-[#0a0a0a] text-xs font-bold px-2 py-0.5 rounded-full">
+                  {wishlistCount}
+                </span>
+              )}
+            </Link>
           </nav>
         </motion.div>
       </header>
