@@ -5,6 +5,10 @@ const envSchema = z.object({
   NODE_ENV: z.enum(["development", "test", "production"]).default("development"),
   // Add other required env vars here
   // NEXT_PUBLIC_SENTRY_DSN: z.string().url().optional(),
+  // Payment — optional until Razorpay is integrated
+  // NEXT_PUBLIC_RAZORPAY_KEY_ID: z.string().optional(),
+  // RAZORPAY_KEY_SECRET: z.string().optional(),
+  // RAZORPAY_WEBHOOK_SECRET: z.string().optional(),
 });
 
 const _env = envSchema.safeParse({

@@ -9,6 +9,7 @@ import { useCartStore } from "@/store/useCartStore";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { analytics } from "@/lib/analytics";
+import { formatPrice } from "@/lib/currency";
 
 interface CartDrawerProps {
   isOpen: boolean;
@@ -46,6 +47,9 @@ export function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
             exit={{ x: "100%" }}
             transition={{ type: "spring", damping: 25, stiffness: 200 }}
             className="fixed top-0 right-0 h-full w-full max-w-md bg-[#0a0a0a] border-l border-white/10 z-50 flex flex-col shadow-2xl"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Shopping cart"
           >
             {/* Header */}
             <div className="flex items-center justify-between p-6 border-b border-white/10">
@@ -56,6 +60,7 @@ export function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
               <button 
                 onClick={onClose}
                 className="text-brand-silver hover:text-white transition-colors p-1"
+                aria-label="Close cart"
               >
                 <X className="w-6 h-6" />
               </button>
@@ -92,7 +97,7 @@ export function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
                           <X className="w-4 h-4" />
                         </button>
                       </div>
-                      <p className="text-brand-silver text-sm mb-auto">${item.product.price.toFixed(2)}</p>
+                      <p className="text-brand-silver text-sm mb-auto">{formatPrice(item.product.price)}</p>
                       
                       <div className="flex items-center border border-white/20 rounded-sm overflow-hidden h-10 w-28 mt-2">
                         <button 
@@ -120,7 +125,7 @@ export function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
               <div className="p-6 border-t border-white/10 bg-[#121212]">
                 <div className="flex justify-between items-center mb-2">
                   <span className="text-brand-silver">Subtotal</span>
-                  <span className="text-xl text-white font-medium">${subtotal.toFixed(2)}</span>
+                  <span className="text-xl text-white font-medium">{formatPrice(subtotal)}</span>
                 </div>
                 <p className="text-brand-silver/60 text-xs mb-6 text-center">Shipping, taxes, and discounts calculated at checkout.</p>
                 <Link href="/checkout" onClick={onClose}>

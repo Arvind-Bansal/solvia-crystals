@@ -10,6 +10,7 @@ import { useWishlistStore } from "@/store/useWishlistStore";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/Button";
 import { analytics } from "@/lib/analytics";
+import { formatPrice } from "@/lib/currency";
 
 interface ProductCardProps {
   product: Product;
@@ -113,7 +114,7 @@ export function ProductCard({ product }: ProductCardProps) {
               </h3>
             </Link>
           </div>
-          <span className="text-brand-silver font-medium">${product.price.toFixed(2)}</span>
+          <span className="text-brand-silver font-medium">{formatPrice(product.price)}</span>
         </div>
         
         <div className="flex items-center space-x-1 mt-auto pt-2">

@@ -24,6 +24,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://solviacrystals.com"),
   title: "Solvia Crystals | Handcrafted Crystal Jewellery",
   description: "Handcrafted crystal bracelets designed with care and consideration. Ethically sourced stones, considered design, and everyday wearability.",
 };

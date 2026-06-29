@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/Button";
 import { useWishlistStore } from "@/store/useWishlistStore";
 import { useCartStore } from "@/store/useCartStore";
 import { analytics } from "@/lib/analytics";
+import { formatPrice } from "@/lib/currency";
 import { Heart, ShoppingBag, Trash2, ArrowRight } from "lucide-react";
 import { toast } from "sonner";
 import Link from "next/link";
@@ -114,7 +115,7 @@ export default function WishlistPage() {
                       </div>
 
                       <p className="text-sm text-brand-silver/60 mb-1 hidden md:block">{product.intention} · {product.collection}</p>
-                      <p className="text-brand-gold font-medium mb-auto">${product.price.toFixed(2)}</p>
+                      <p className="text-brand-gold font-medium mb-auto">{formatPrice(product.price)}</p>
 
                       {/* Action Buttons */}
                       <div className="flex items-center gap-2 mt-3">

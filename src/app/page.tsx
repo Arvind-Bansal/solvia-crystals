@@ -11,6 +11,7 @@ import { getBestsellers, getAllIntentions, getEditorialBlock } from "@/data";
 import { EditorialQuote } from "@/components/editorial/EditorialQuote";
 import { EditorialSplit } from "@/components/editorial/EditorialSplit";
 import { Star, ShieldCheck, Truck, Gem } from "lucide-react";
+import { formatPrice, FREE_SHIPPING_THRESHOLD } from "@/lib/currency";
 
 const intentions = getAllIntentions();
 const craftsmanshipQuote = getEditorialBlock("craftsmanship-quote");
@@ -196,7 +197,7 @@ export default function Home() {
                   <Truck className="w-6 h-6 text-brand-gold" />
                 </div>
                 <p className="text-white font-medium text-lg">Free Shipping</p>
-                <p className="text-brand-silver/60 text-sm mt-1">Orders Over $150</p>
+                <p className="text-brand-silver/60 text-sm mt-1">Orders Over {formatPrice(FREE_SHIPPING_THRESHOLD)}</p>
               </div>
             </div>
           </div>

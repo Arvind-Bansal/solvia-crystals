@@ -1,6 +1,7 @@
 "use client";
 
 import { useRecentStore } from "@/store/useRecentStore";
+import { formatPrice } from "@/lib/currency";
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
@@ -54,7 +55,7 @@ export function RecentlyViewed({ excludeId, limit = 4 }: RecentlyViewedProps) {
             </div>
             <p className="text-xs text-brand-gold uppercase tracking-wider mb-1 font-medium">{product.intention}</p>
             <h3 className="text-sm font-serif text-white group-hover:text-brand-gold transition-colors">{product.name}</h3>
-            <span className="text-sm text-brand-silver/60">${product.price.toFixed(2)}</span>
+            <span className="text-sm text-brand-silver/60">{formatPrice(product.price)}</span>
           </Link>
         ))}
       </div>

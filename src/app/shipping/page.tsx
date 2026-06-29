@@ -2,17 +2,18 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { constructMetadata } from "@/lib/seo";
 import { Truck, Clock, Globe, ShieldCheck } from "lucide-react";
+import { formatPrice, SHIPPING_RATES, FREE_SHIPPING_THRESHOLD } from "@/lib/currency";
 
 export const metadata = constructMetadata({
-  title: "Shipping Information | Solvia Crystals",
-  description: "Free shipping on orders over $150. Learn about our shipping methods, processing times, and international delivery options.",
+  title: "Shipping Information",
+  description: `Free shipping on orders over ${FREE_SHIPPING_THRESHOLD}. Learn about our shipping methods, processing times, and delivery options across India.`,
   canonicalUrl: "https://solviacrystals.com/shipping",
 });
 
 const shippingMethods = [
-  { name: "Standard Shipping", time: "5–8 business days", cost: "$12", note: "Free on orders over $150" },
-  { name: "Express Shipping", time: "2–3 business days", cost: "$24", note: "" },
-  { name: "Overnight", time: "1 business day", cost: "$45", note: "Order by 12pm EST" },
+  { ...SHIPPING_RATES.standard, label: SHIPPING_RATES.standard.label },
+  { ...SHIPPING_RATES.express, label: SHIPPING_RATES.express.label },
+  { ...SHIPPING_RATES.overnight, label: SHIPPING_RATES.overnight.label },
 ];
 
 export default function ShippingPage() {
@@ -45,26 +46,26 @@ export default function ShippingPage() {
             </div>
             <div className="space-y-4">
               {shippingMethods.map((method) => (
-                <div key={method.name} className="flex items-center justify-between p-5 bg-[#121212] border border-white/5 rounded-sm">
+                <div key={method.label} className="flex items-center justify-between p-5 bg-[#121212] border border-white/5 rounded-sm">
                   <div>
-                    <p className="text-white font-medium">{method.name}</p>
+                    <p className="text-white font-medium">{method.label}</p>
                     <p className="text-sm text-brand-silver/60">{method.time}</p>
                     {method.note && <p className="text-xs text-brand-gold mt-1">{method.note}</p>}
                   </div>
-                  <span className="text-white font-medium">{method.cost}</span>
+                  <span className="text-white font-medium">{formatPrice(method.cost)}</span>
                 </div>
               ))}
             </div>
           </section>
 
-          {/* International */}
+          {/* Domestic */}
           <section className="mb-16">
             <div className="flex items-center mb-6">
               <Globe className="w-6 h-6 text-brand-gold mr-3" />
-              <h2 className="text-2xl font-serif text-white">International Shipping</h2>
+              <h2 className="text-2xl font-serif text-white">Delivery Across India</h2>
             </div>
             <p className="text-brand-silver/80 leading-relaxed mb-4">
-              We ship worldwide. International orders typically arrive within 7–14 business days depending on your location. Import duties and taxes are the responsibility of the buyer and are not included in the order total.
+              We deliver to all major cities and towns across India. Standard shipping typically arrives within 5–7 business days. Remote pin codes may take 1–2 additional days. All shipments are fully tracked and insured.
             </p>
           </section>
 
@@ -75,7 +76,7 @@ export default function ShippingPage() {
               <h2 className="text-2xl font-serif text-white">Packaging</h2>
             </div>
             <p className="text-brand-silver/80 leading-relaxed">
-              Each bracelet ships in our signature branded box with a soft pouch, care card, and stone guide. Gift wrapping is available at checkout for $5.
+              Each bracelet ships in our signature branded box with a soft pouch, care card, and stone guide. Gift wrapping is available at checkout for {formatPrice(99)}.
             </p>
           </section>
         </div>

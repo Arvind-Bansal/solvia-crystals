@@ -7,6 +7,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { getAllProducts, getAllCollections, getAllPosts } from "@/data";
 import { analytics } from "@/lib/analytics";
+import { formatPrice } from "@/lib/currency";
 
 interface SearchOverlayProps {
   isOpen: boolean;
@@ -95,6 +96,9 @@ export function SearchOverlay({ isOpen, onClose }: SearchOverlayProps) {
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.2 }}
             className="fixed top-0 left-0 right-0 z-50 max-h-[85vh] overflow-y-auto"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Search"
           >
             <div className="container mx-auto px-6 pt-6 pb-8">
               <div className="bg-[#121212] border border-white/10 rounded-sm shadow-2xl max-w-2xl mx-auto">
@@ -165,7 +169,7 @@ export function SearchOverlay({ isOpen, onClose }: SearchOverlayProps) {
                               <p className="text-white text-sm font-medium group-hover:text-brand-gold transition-colors truncate">
                                 {product.name}
                               </p>
-                              <p className="text-xs text-brand-silver/50">{product.intention} · ${product.price.toFixed(2)}</p>
+                              <p className="text-xs text-brand-silver/50">{product.intention} · {formatPrice(product.price)}</p>
                             </div>
                             <ArrowRight className="w-4 h-4 text-brand-silver/20 group-hover:text-brand-gold transition-colors flex-shrink-0" />
                           </Link>

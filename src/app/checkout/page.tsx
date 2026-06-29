@@ -14,6 +14,7 @@ import { ShoppingBag, ChevronRight, ShieldCheck, Truck, RefreshCcw } from "lucid
 import Image from "next/image";
 import Link from "next/link";
 import { analytics } from "@/lib/analytics";
+import { formatPrice, FREE_SHIPPING_THRESHOLD, getShippingCost, calculateTax } from "@/lib/currency";
 
 const checkoutSchema = z.object({
   email: z.string().email("Please enter a valid email address"),
@@ -44,8 +45,9 @@ export default function CheckoutPage() {
   const [couponCode, setCouponCode] = useState("");
 
   const subtotal = getCartTotal();
-  const shipping = subtotal >= 150 ? 0 : 12;
-  const total = subtotal + shipping;
+  const shipping = getShippingCost(subtotal);
+  const tax = calculateTax(subtotal);
+  const total = subtotal + shipping + tax;
 
   /* eslint-disable react-hooks/set-state-in-effect, react-hooks/exhaustive-deps */
   useEffect(() => {
@@ -66,13 +68,10 @@ export default function CheckoutPage() {
   const onSubmit = async (data: CheckoutFormData) => {
     setIsSubmitting(true);
 
-    // TODO: Replace with Razorpay integration
-    // 1. Send order data to your backend API
-    // 2. Create Razorpay order via backend
-    // 3. Open Razorpay checkout modal
-    // 4. On payment success, confirm order and redirect
+    // Payment integration point — see src/lib/payments/ for Razorpay provider.
+    // When ready: initializePayment() → open checkout modal → verifyPayment() → confirm order.
     
-    // Simulate order processing
+    // Simulate order processing (will be replaced by payment flow)
     await new Promise((resolve) => setTimeout(resolve, 1500));
 
     const orderId = generateOrderId();
@@ -223,7 +222,7 @@ export default function CheckoutPage() {
                     <ShieldCheck className="w-4 h-4 mr-2 text-brand-gold" /> Secure checkout
                   </div>
                   <div className="flex items-center text-xs text-brand-silver/60">
-                    <Truck className="w-4 h-4 mr-2 text-brand-gold" /> Free shipping over $150
+                    <Truck className="w-4 h-4 mr-2 text-brand-gold" /> Free shipping over {formatPrice(FREE_SHIPPING_THRESHOLD)}
                   </div>
                   <div className="flex items-center text-xs text-brand-silver/60">
                     <RefreshCcw className="w-4 h-4 mr-2 text-brand-gold" /> 30-day returns
@@ -256,7 +255,7 @@ export default function CheckoutPage() {
                           <p className="text-xs text-brand-silver/50">{item.product.intention}</p>
                         </div>
                         <span className="text-white text-sm flex-shrink-0">
-                          ${(item.product.price * item.quantity).toFixed(2)}
+                          {formatPrice(item.product.price * item.quantity)}
                         </span>
                       </div>
                     ))}
@@ -265,15 +264,19 @@ export default function CheckoutPage() {
                   <div className="space-y-3 pt-4 border-t border-white/10 text-sm">
                     <div className="flex justify-between text-brand-silver">
                       <span>Subtotal</span>
-                      <span>${subtotal.toFixed(2)}</span>
+                      <span>{formatPrice(subtotal)}</span>
                     </div>
                     <div className="flex justify-between text-brand-silver">
                       <span>Shipping</span>
-                      <span>{shipping === 0 ? "Free" : `$${shipping.toFixed(2)}`}</span>
+                      <span>{shipping === 0 ? "Free" : formatPrice(shipping)}</span>
+                    </div>
+                    <div className="flex justify-between text-brand-silver">
+                      <span>Tax (GST)</span>
+                      <span>{formatPrice(tax)}</span>
                     </div>
                     <div className="flex justify-between text-white font-medium text-base pt-3 border-t border-white/10">
                       <span>Total</span>
-                      <span>${total.toFixed(2)}</span>
+                      <span>{formatPrice(total)}</span>
                     </div>
                   </div>
 
@@ -283,7 +286,7 @@ export default function CheckoutPage() {
                     className="w-full mt-6"
                     disabled={isSubmitting}
                   >
-                    {isSubmitting ? "Processing..." : `Place Order · $${total.toFixed(2)}`}
+                    {isSubmitting ? "Processing..." : `Place Order · ${formatPrice(total)}`}
                   </Button>
 
                   <p className="text-[10px] text-brand-silver/40 text-center mt-4 leading-relaxed">

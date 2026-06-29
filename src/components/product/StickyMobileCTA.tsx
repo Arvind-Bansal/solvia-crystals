@@ -7,6 +7,7 @@ import { useCartStore } from "@/store/useCartStore";
 import { toast } from "sonner";
 import { ShoppingBag } from "lucide-react";
 import { analytics } from "@/lib/analytics";
+import { formatPrice } from "@/lib/currency";
 
 export function StickyMobileCTA({ product }: { product: Product }) {
   const { addItem: addToCart } = useCartStore();
@@ -27,7 +28,7 @@ export function StickyMobileCTA({ product }: { product: Product }) {
       <div className="flex items-center justify-between gap-4 px-4 py-3">
         <div className="min-w-0">
           <p className="text-white font-serif text-base truncate">{product.name}</p>
-          <p className="text-brand-silver/80 text-sm">${product.price.toFixed(2)}</p>
+          <p className="text-brand-silver/80 text-sm">{formatPrice(product.price)}</p>
         </div>
         <Button
           size="lg"

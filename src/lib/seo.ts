@@ -66,7 +66,7 @@ export function generateStructuredProductData(product: Product, url: string) {
     "offers": {
       "@type": "Offer",
       "url": url,
-      "priceCurrency": "USD",
+      "priceCurrency": "INR",
       "price": product.price,
       "itemCondition": "https://schema.org/NewCondition",
       "availability": product.inStock ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",

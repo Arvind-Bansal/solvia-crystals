@@ -13,6 +13,7 @@ import { ReviewSection } from "@/components/product/ReviewSection";
 import { Star, ShieldCheck, Sparkles, RefreshCcw, Truck, Layers } from "lucide-react";
 
 import { constructMetadata, generateStructuredProductData } from "@/lib/seo";
+import { formatPrice, FREE_SHIPPING_THRESHOLD } from "@/lib/currency";
 
 export function generateStaticParams() {
   return getAllProducts().map((product) => ({
@@ -78,7 +79,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
                 <h1 className="text-4xl lg:text-5xl font-serif text-white mb-4 leading-tight">{product.name}</h1>
                 
                 <div className="flex items-center space-x-4 mb-4">
-                  <span className="text-2xl text-brand-silver font-medium">${product.price.toFixed(2)}</span>
+                  <span className="text-2xl text-brand-silver font-medium">{formatPrice(product.price)}</span>
                   <div className="flex items-center">
                     <div className="flex text-brand-gold mr-2">
                       {[...Array(5)].map((_, i) => (
@@ -131,7 +132,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
                     <Truck className="w-5 h-5 mr-3 text-brand-gold" /> Shipping & Returns
                   </h3>
                   <p className="text-sm text-brand-silver/70 leading-relaxed pl-8 mb-2">
-                    Complimentary worldwide shipping on orders over $150. Each piece is inspected and carefully packaged before dispatch.
+                    Complimentary shipping on orders over {formatPrice(FREE_SHIPPING_THRESHOLD)}. Each piece is inspected and carefully packaged before dispatch.
                   </p>
                   <p className="text-sm text-brand-silver/70 leading-relaxed pl-8 flex items-center">
                     <RefreshCcw className="w-4 h-4 mr-2" /> 30-day hassle-free returns in original condition.
