@@ -33,6 +33,7 @@ export const BLUR_PLACEHOLDER = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA
  */
 export function getProductImagePath(
   slug: string,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   _variant: "thumbnail" | "1" | "2" | "lifestyle" | "packaging" = "1",
   fallbackUrl?: string
 ): string {
