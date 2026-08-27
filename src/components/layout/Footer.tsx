@@ -2,16 +2,19 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { FaInstagram, FaFacebook, FaYoutube } from "react-icons/fa";
+import { FaInstagram, FaFacebook } from "react-icons/fa";
 import { Button } from "@/components/ui/Button";
 import { submitNewsletterForm } from "@/lib/form-service";
 import { analytics } from "@/lib/analytics";
 import { toast } from "sonner";
 
+// ─── Social Links ─────────────────────────────
+// TODO: Replace "#" hrefs with the real Solvia Crystals account URLs.
+// Links with href="#" are filtered out and won't appear in the footer.
 const socialLinks = [
-  { label: "Instagram", href: "https://instagram.com/solviacrystals", icon: FaInstagram },
-  { label: "Facebook", href: "https://facebook.com/solviacrystals", icon: FaFacebook },
-  { label: "YouTube", href: "https://youtube.com/@solviacrystals", icon: FaYoutube },
+  { label: "Instagram", href: "#" /* TODO: replace with real Instagram URL e.g. https://instagram.com/YOUR_HANDLE */, icon: FaInstagram },
+  { label: "Facebook", href: "#" /* TODO: replace with real Facebook URL e.g. https://facebook.com/YOUR_HANDLE */, icon: FaFacebook },
+  // YouTube: account does not exist yet — add when ready
 ].filter(link => link.href && link.href !== "#");
 
 export function Footer() {

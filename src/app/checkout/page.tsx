@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import Script from "next/script";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Button } from "@/components/ui/Button";
@@ -13,8 +14,10 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { ShoppingBag, ChevronRight, ShieldCheck, Truck, RefreshCcw } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { toast } from "sonner";
 import { analytics } from "@/lib/analytics";
 import { formatPrice, FREE_SHIPPING_THRESHOLD, getShippingCost, calculateTax } from "@/lib/currency";
+import { PAYMENT_CONFIG } from "@/lib/payments/config";
 
 const checkoutSchema = z.object({
   email: z.string().email("Please enter a valid email address"),
@@ -30,31 +33,25 @@ const checkoutSchema = z.object({
 
 type CheckoutFormData = z.infer<typeof checkoutSchema>;
 
-// Generate mock order ID — will be replaced with real backend response
-function generateOrderId(): string {
-  const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-  const suffix = Array.from({ length: 6 }, () => chars[Math.floor(Math.random() * chars.length)]).join("");
-  return `SOL-${suffix}`;
-}
-
 export default function CheckoutPage() {
   const router = useRouter();
   const { items, getCartTotal, clearCart } = useCartStore();
   const [mounted, setMounted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [couponCode, setCouponCode] = useState("");
+  const [razorpayReady, setRazorpayReady] = useState(false);
 
   const subtotal = getCartTotal();
   const shipping = getShippingCost(subtotal);
   const tax = calculateTax(subtotal);
   const total = subtotal + shipping + tax;
 
-  /* eslint-disable react-hooks/set-state-in-effect, react-hooks/exhaustive-deps */
+  /* eslint-disable react-hooks/exhaustive-deps, react-hooks/set-state-in-effect */
   useEffect(() => {
     setMounted(true);
     analytics.track({ name: "checkout_start", properties: { itemCount: items.length, total: subtotal } });
   }, []);
-  /* eslint-enable react-hooks/set-state-in-effect, react-hooks/exhaustive-deps */
+  /* eslint-enable react-hooks/exhaustive-deps, react-hooks/set-state-in-effect */
 
   const {
     register,
@@ -66,33 +63,135 @@ export default function CheckoutPage() {
   });
 
   const onSubmit = async (data: CheckoutFormData) => {
+    if (!razorpayReady) {
+      toast.error("Payment gateway is still loading. Please try again in a moment.");
+      return;
+    }
+
     setIsSubmitting(true);
 
-    // Payment integration point — see src/lib/payments/ for Razorpay provider.
-    // When ready: initializePayment() → open checkout modal → verifyPayment() → confirm order.
-    
-    // Simulate order processing (will be replaced by payment flow)
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    try {
+      // ── Step 1: Create Razorpay order server-side ──
+      // The server re-validates all items and recalculates totals.
+      const createRes = await fetch("/api/payments/razorpay/create-order", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          items: items.map((i) => ({
+            productId: i.product.id,
+            quantity: i.quantity,
+          })),
+          customer: {
+            email: data.email,
+            firstName: data.firstName,
+            lastName: data.lastName,
+            phone: data.phone,
+          },
+        }),
+      });
 
-    const orderId = generateOrderId();
+      const orderData = await createRes.json();
 
-    analytics.track({
-      name: "purchase",
-      properties: {
-        orderId,
-        total,
-        itemCount: items.length,
-        items: items.map(i => ({ name: i.product.name, quantity: i.quantity, price: i.product.price })),
-        customer: { email: data.email, city: data.city, country: data.country },
-      },
-    });
+      if (!createRes.ok) {
+        toast.error(orderData.error || "Could not create order. Please try again.");
+        setIsSubmitting(false);
+        return;
+      }
 
-    clearCart();
-    setIsSubmitting(false);
-    router.push(`/checkout/success?order=${orderId}`);
+      const { razorpayOrderId, amount, currency, keyId, internalOrderId } = orderData;
+
+      // ── Step 2: Open Razorpay checkout modal ──
+      const rzp = new window.Razorpay({
+        key: keyId,
+        amount,
+        currency,
+        name: PAYMENT_CONFIG.merchantName,
+        description: PAYMENT_CONFIG.merchantDescription,
+        image: PAYMENT_CONFIG.merchantLogo,
+        order_id: razorpayOrderId,
+        prefill: {
+          name: `${data.firstName} ${data.lastName}`,
+          email: data.email,
+          contact: data.phone || "",
+        },
+        notes: {
+          address: `${data.address}, ${data.city}, ${data.state} ${data.zip}, ${data.country}`,
+          internalOrderId,
+        },
+        theme: {
+          color: PAYMENT_CONFIG.themeColor,
+        },
+        modal: {
+          ondismiss: () => {
+            toast("Payment was cancelled. Your cart has been preserved.");
+            setIsSubmitting(false);
+          },
+        },
+        handler: async (response) => {
+          // ── Step 3: Verify payment server-side ──
+          // NEVER clear cart here — only after verified.
+          try {
+            const verifyRes = await fetch("/api/payments/razorpay/verify", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                razorpay_order_id: response.razorpay_order_id,
+                razorpay_payment_id: response.razorpay_payment_id,
+                razorpay_signature: response.razorpay_signature,
+                internalOrderId,
+              }),
+            });
+
+            const verifyData = await verifyRes.json();
+
+            if (!verifyRes.ok || !verifyData.verified) {
+              toast.error(
+                verifyData.error ||
+                  "Payment could not be verified. Please contact support with your payment ID: " +
+                    response.razorpay_payment_id
+              );
+              setIsSubmitting(false);
+              return;
+            }
+
+            // ── Step 4: Payment verified — clear cart and redirect ──
+            analytics.track({
+              name: "purchase",
+              properties: {
+                orderId: internalOrderId,
+                paymentId: response.razorpay_payment_id,
+                total: total,
+                itemCount: items.length,
+                items: items.map((i) => ({
+                  name: i.product.name,
+                  quantity: i.quantity,
+                  price: i.product.price,
+                })),
+                customer: { email: data.email, city: data.city, country: data.country },
+              },
+            });
+
+            clearCart();
+            router.push(`/checkout/success?order=${internalOrderId}&payment=${response.razorpay_payment_id}`);
+          } catch {
+            toast.error(
+              "Payment verification failed due to a network error. If your payment was deducted, please contact us with your payment ID: " +
+                response.razorpay_payment_id
+            );
+            setIsSubmitting(false);
+          }
+        },
+      });
+
+      rzp.open();
+    } catch {
+      toast.error("Something went wrong. Please try again.");
+      setIsSubmitting(false);
+    }
   };
 
-  const inputClass = "w-full bg-transparent border border-white/20 rounded-sm px-4 py-3 text-white text-sm focus:outline-none focus:border-brand-gold transition-colors placeholder:text-brand-silver/30";
+  const inputClass =
+    "w-full bg-transparent border border-white/20 rounded-sm px-4 py-3 text-white text-sm focus:outline-none focus:border-brand-gold transition-colors placeholder:text-brand-silver/30";
   const errorClass = "text-red-400 text-xs mt-1";
 
   if (!mounted) return null;
@@ -118,6 +217,16 @@ export default function CheckoutPage() {
 
   return (
     <>
+      {/* Load Razorpay checkout.js */}
+      <Script
+        src="https://checkout.razorpay.com/v1/checkout.js"
+        strategy="afterInteractive"
+        onLoad={() => setRazorpayReady(true)}
+        onError={() => {
+          console.error("Failed to load Razorpay checkout script.");
+        }}
+      />
+
       <Navbar />
       <main className="pt-32 pb-24 bg-[#0a0a0a] min-h-screen">
         <div className="container mx-auto px-6">
@@ -286,7 +395,7 @@ export default function CheckoutPage() {
                     className="w-full mt-6"
                     disabled={isSubmitting}
                   >
-                    {isSubmitting ? "Processing..." : `Place Order · ${formatPrice(total)}`}
+                    {isSubmitting ? "Processing..." : `Pay · ${formatPrice(total)}`}
                   </Button>
 
                   <p className="text-[10px] text-brand-silver/40 text-center mt-4 leading-relaxed">

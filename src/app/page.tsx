@@ -182,8 +182,8 @@ export default function Home() {
                 <div className="flex justify-center mb-3">
                   <Gem className="w-6 h-6 text-brand-gold" />
                 </div>
-                <p className="text-white font-medium text-lg">AAA Grade</p>
-                <p className="text-brand-silver/60 text-sm mt-1">Certified Stones</p>
+                <p className="text-white font-medium text-lg">Ethically Sourced</p>
+                <p className="text-brand-silver/60 text-sm mt-1">Natural Stones</p>
               </div>
               <div>
                 <div className="flex justify-center mb-3">

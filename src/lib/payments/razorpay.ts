@@ -1,18 +1,22 @@
-// ─── Razorpay Provider (Stub) ────────────────
-// Implements the PaymentProvider interface for Razorpay.
-// This is a preparation stub — actual SDK integration will be added
-// when Razorpay credentials are available.
-//
-// Integration steps when ready:
-// 1. npm install razorpay
-// 2. Set NEXT_PUBLIC_RAZORPAY_KEY_ID, RAZORPAY_KEY_SECRET, RAZORPAY_WEBHOOK_SECRET in .env.local
-// 3. Uncomment the SDK calls below
-// 4. Create API route at /api/payments/razorpay/create-order
-// 5. Create API route at /api/payments/razorpay/verify
-// 6. Create API route at /api/payments/razorpay/webhook
+// ─── Razorpay Provider ───────────────────────
+// Implements the PaymentProvider interface using the official Razorpay Node SDK.
+// Requires: npm install razorpay
+// Env vars: NEXT_PUBLIC_RAZORPAY_KEY_ID, RAZORPAY_KEY_SECRET, RAZORPAY_WEBHOOK_SECRET
 
+import crypto from "crypto";
 import type { PaymentProvider, PaymentOrder, PaymentResult, PaymentVerification, PaymentWebhookEvent } from "./types";
 import { PAYMENT_ENV } from "./config";
+
+// Lazy-load the Razorpay SDK to avoid build errors when not configured.
+// Only used in server-side API routes — never in client bundles.
+function getRazorpayInstance() {
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const Razorpay = require("razorpay");
+  return new Razorpay({
+    key_id: PAYMENT_ENV.razorpay.keyId,
+    key_secret: PAYMENT_ENV.razorpay.keySecret,
+  });
+}
 
 export class RazorpayProvider implements PaymentProvider {
   name = "razorpay";
@@ -21,62 +25,93 @@ export class RazorpayProvider implements PaymentProvider {
     return Boolean(PAYMENT_ENV.razorpay.keyId && PAYMENT_ENV.razorpay.keySecret);
   }
 
-  async createOrder(order: PaymentOrder): Promise<PaymentResult & { providerData?: Record<string, unknown> }> {
+  async createOrder(
+    order: PaymentOrder
+  ): Promise<PaymentResult & { providerData?: Record<string, unknown> }> {
     if (!this.isConfigured) {
-      // Development fallback — simulate success
-      if (process.env.NODE_ENV !== "production") {
-        return {
-          success: true,
-          providerOrderId: `dev_order_${Date.now()}`,
-          providerData: {
-            key: "dev_key",
-            orderId: `dev_order_${Date.now()}`,
-            amount: order.amount,
-            currency: order.currency,
-          },
-        };
-      }
-      return { success: false, error: "Razorpay is not configured. Set RAZORPAY_KEY_ID and RAZORPAY_KEY_SECRET." };
+      return {
+        success: false,
+        error: "Razorpay is not configured. Set NEXT_PUBLIC_RAZORPAY_KEY_ID and RAZORPAY_KEY_SECRET in .env.local",
+      };
     }
 
-    // TODO: Implement when Razorpay SDK is installed
-    // const Razorpay = require('razorpay');
-    // const instance = new Razorpay({ key_id: PAYMENT_ENV.razorpay.keyId, key_secret: PAYMENT_ENV.razorpay.keySecret });
-    // const razorpayOrder = await instance.orders.create({
-    //   amount: order.amount,
-    //   currency: order.currency,
-    //   receipt: order.orderId,
-    //   notes: order.notes,
-    // });
-    // return { success: true, providerOrderId: razorpayOrder.id, providerData: { key: PAYMENT_ENV.razorpay.keyId, orderId: razorpayOrder.id, amount: order.amount, currency: order.currency } };
+    try {
+      const instance = getRazorpayInstance();
+      const razorpayOrder = await instance.orders.create({
+        amount: order.amount, // amount in paise
+        currency: order.currency,
+        receipt: order.orderId,
+        notes: order.notes ?? {},
+      });
 
-    return { success: false, error: "Razorpay integration pending." };
+      return {
+        success: true,
+        providerOrderId: razorpayOrder.id,
+        providerData: {
+          key: PAYMENT_ENV.razorpay.keyId,
+          orderId: razorpayOrder.id,
+          amount: razorpayOrder.amount,
+          currency: razorpayOrder.currency,
+        },
+      };
+    } catch (err) {
+      const message = err instanceof Error ? err.message : "Razorpay order creation failed.";
+      console.error("[RazorpayProvider] createOrder error:", message);
+      return { success: false, error: message };
+    }
   }
 
   async verifyPayment(verification: PaymentVerification): Promise<PaymentResult> {
     if (!this.isConfigured) {
-      if (process.env.NODE_ENV !== "production") {
-        return { success: true, paymentId: verification.paymentId };
-      }
       return { success: false, error: "Razorpay is not configured." };
     }
 
-    // TODO: Implement HMAC verification
-    // const crypto = require('crypto');
-    // const body = verification.providerOrderId + '|' + verification.paymentId;
-    // const expectedSignature = crypto.createHmac('sha256', PAYMENT_ENV.razorpay.keySecret).update(body).digest('hex');
-    // if (expectedSignature === verification.signature) {
-    //   return { success: true, paymentId: verification.paymentId };
-    // }
-    // return { success: false, error: "Payment verification failed." };
+    try {
+      const body = `${verification.providerOrderId}|${verification.paymentId}`;
+      const expectedSignature = crypto
+        .createHmac("sha256", PAYMENT_ENV.razorpay.keySecret)
+        .update(body)
+        .digest("hex");
 
-    return { success: false, error: "Payment verification not implemented." };
+      if (expectedSignature === verification.signature) {
+        return { success: true, paymentId: verification.paymentId };
+      }
+
+      return { success: false, error: "Payment signature verification failed." };
+    } catch (err) {
+      const message = err instanceof Error ? err.message : "Verification error.";
+      console.error("[RazorpayProvider] verifyPayment error:", message);
+      return { success: false, error: message };
+    }
   }
 
-  async handleWebhook(event: PaymentWebhookEvent): Promise<{ status: string; orderId?: string }> {
-    // TODO: Implement webhook signature verification and event handling
-    // Common events: payment.authorized, payment.captured, payment.failed, refund.created
+  async handleWebhook(
+    event: PaymentWebhookEvent
+  ): Promise<{ status: string; orderId?: string }> {
+    const handled = ["payment.captured", "payment.failed", "order.paid"];
 
-    return { status: `unhandled:${event.event}` };
+    if (!handled.includes(event.event)) {
+      return { status: `unhandled:${event.event}` };
+    }
+
+    try {
+      // Extract order/payment IDs from the standard Razorpay webhook payload structure
+      const payload = event.payload as {
+        payment?: { entity?: { order_id?: string; id?: string } };
+        order?: { entity?: { id?: string; receipt?: string } };
+      };
+
+      const orderId =
+        payload?.payment?.entity?.order_id ||
+        payload?.order?.entity?.receipt ||
+        undefined;
+
+      console.info(`[RazorpayProvider] Webhook: ${event.event}`, { orderId });
+
+      return { status: event.event, orderId };
+    } catch (err) {
+      console.error("[RazorpayProvider] handleWebhook error:", err);
+      return { status: "error" };
+    }
   }
 }

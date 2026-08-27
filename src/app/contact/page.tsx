@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Button } from "@/components/ui/Button";
-import { MapPin, Mail, Clock, CheckCircle } from "lucide-react";
+import { Mail, Clock, CheckCircle } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -162,20 +162,11 @@ export default function ContactPage() {
                     <Clock className="w-6 h-6 text-brand-gold mt-1" />
                     <div>
                       <p className="text-white font-medium mb-1">Hours</p>
-                      <p className="text-brand-silver text-sm">Monday - Friday: 9am - 6pm EST</p>
-                      <p className="text-brand-silver text-sm">Saturday: 10am - 4pm EST</p>
+                      <p className="text-brand-silver text-sm">Monday – Friday: 10am – 6pm IST</p>
+                      <p className="text-brand-silver text-sm">Saturday: 10am – 4pm IST</p>
                     </div>
                   </div>
 
-                  <div className="flex items-start space-x-4">
-                    <MapPin className="w-6 h-6 text-brand-gold mt-1" />
-                    <div>
-                      <p className="text-white font-medium mb-1">Studio</p>
-                      <p className="text-brand-silver text-sm">42 Crosby Street, Suite 4B</p>
-                      <p className="text-brand-silver text-sm">New York, NY 10012</p>
-                      <p className="text-brand-silver/60 text-xs mt-1">By appointment only.</p>
-                    </div>
-                  </div>
                 </div>
               </div>
 

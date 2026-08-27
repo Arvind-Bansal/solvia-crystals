@@ -24,13 +24,11 @@ interface ContactFormData {
 
 async function submitToFormspree(formId: string, data: Record<string, unknown>): Promise<FormResponse> {
   if (!formId) {
-    console.warn("[FormService] No Formspree form ID configured. Set the env var.");
-    // In development, simulate success
-    if (process.env.NODE_ENV !== "production") {
-      await new Promise(r => setTimeout(r, 800));
-      return { success: true };
-    }
-    return { success: false, error: "Form service not configured." };
+    console.warn("[FormService] No Formspree form ID configured. Set NEXT_PUBLIC_FORMSPREE_CONTACT_ID or NEXT_PUBLIC_FORMSPREE_NEWSLETTER_ID in .env.local");
+    return {
+      success: false,
+      error: "Our message service is not configured yet. Please email us directly at concierge@solviacrystals.com",
+    };
   }
 
   try {
@@ -54,10 +52,15 @@ async function submitToFormspree(formId: string, data: Record<string, unknown>):
 export async function submitContactForm(data: ContactFormData): Promise<FormResponse> {
   const formId = process.env.NEXT_PUBLIC_FORMSPREE_CONTACT_ID || "";
   return submitToFormspree(formId, {
+    // Combined name for Formspree display
     name: `${data.firstName} ${data.lastName}`,
+    // Individual fields so all 5 appear as discrete entries in the Formspree dashboard
+    firstName: data.firstName,
+    lastName: data.lastName,
     email: data.email,
     subject: data.subject,
     message: data.message,
+    // Formspree directive — sets the email notification subject line
     _subject: `Solvia Crystals — ${data.subject}`,
   });
 }
