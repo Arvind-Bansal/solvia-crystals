@@ -1,34 +1,40 @@
-// ─── POST /api/payments/razorpay/webhook ───────
-// Handles Razorpay webhook events.
+// ─── POST /api/payments/razorpay/webhook ────────────────────────────────────
+// Handles Razorpay webhook events with full database integration.
 //
 // Security:
-//   - Verifies the X-Razorpay-Signature header using RAZORPAY_WEBHOOK_SECRET
-//   - Responds 200 immediately to acknowledge receipt (Razorpay requires this)
-//   - Processing happens after acknowledgement
+//   • Verifies X-Razorpay-Signature using RAZORPAY_WEBHOOK_SECRET (HMAC-SHA256)
+//   • Rejects any request without a valid signature
+//   • Responds 200 immediately after signature check (Razorpay requires this)
+//   • DB processing happens asynchronously after acknowledgement
 //
 // Idempotency:
-//   - Checks event type before acting
-//   - Safe to receive the same event multiple times
+//   • markOrderPaid() uses .eq("payment_status","pending") — safe to call twice
+//   • sendOrderConfirmationIfNotSent() checks email_sent_at — safe to call twice
+//   • payment.captured and order.paid can both fire for the same payment;
+//     the second call to markOrderPaid will match 0 rows (already "paid")
 //
-// To configure:
-//   1. Go to Razorpay Dashboard > Webhooks
-//   2. Add your webhook URL: https://yourdomain.com/api/payments/razorpay/webhook
-//   3. Select events: payment.captured, payment.failed, order.paid
-//   4. Copy the webhook secret to RAZORPAY_WEBHOOK_SECRET in your .env.local
+// Race condition safety (webhook vs verify):
+//   • Both verify/route.ts and this route call markOrderPaid + email helper.
+//   • The DB constraint (.eq("payment_status","pending")) + email_sent_at
+//     ensure only one write succeeds and only one email is sent.
 //
-// NOTE: Next.js App Router requires the raw request body for HMAC verification.
-// This route reads the body as text before parsing JSON.
+// Webhook setup (manual — required before going live):
+//   1. Razorpay Dashboard → Settings → Webhooks → Add Webhook
+//   2. URL: https://yourdomain.com/api/payments/razorpay/webhook
+//   3. Events: payment.captured, payment.failed, order.paid
+//   4. Copy the generated secret → RAZORPAY_WEBHOOK_SECRET in .env.local
 
 import { NextRequest, NextResponse } from "next/server";
 import crypto from "crypto";
 import { PAYMENT_ENV } from "@/lib/payments/config";
-import { RazorpayProvider } from "@/lib/payments/razorpay";
+import { getOrderByRazorpayOrderId, markOrderFailed } from "@/lib/db/orders";
+import { sendOrderConfirmationIfNotSent } from "@/lib/order-mailer";
 
 export async function POST(req: NextRequest) {
-  // ── 1. Read raw body (required for HMAC verification) ──
+  // ── 1. Read raw body — required for HMAC verification ─────────────────
   const rawBody = await req.text();
 
-  // ── 2. Verify webhook signature ───────────
+  // ── 2. Verify webhook signature ───────────────────────────────────────
   const signature = req.headers.get("x-razorpay-signature");
 
   if (!signature) {
@@ -37,7 +43,11 @@ export async function POST(req: NextRequest) {
   }
 
   if (!PAYMENT_ENV.razorpay.webhookSecret) {
-    console.error("[webhook] RAZORPAY_WEBHOOK_SECRET is not set. Rejecting webhook.");
+    // Secret not yet configured — log and reject safely.
+    // See comment at top of file for setup instructions.
+    console.error(
+      "[webhook] RAZORPAY_WEBHOOK_SECRET is not set. Add it to .env.local and restart."
+    );
     return NextResponse.json({ error: "Webhook not configured." }, { status: 503 });
   }
 
@@ -51,7 +61,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Invalid signature." }, { status: 400 });
   }
 
-  // ── 3. Parse event ────────────────────────
+  // ── 3. Parse event ────────────────────────────────────────────────────
   let event: { event: string; payload: Record<string, unknown> };
   try {
     event = JSON.parse(rawBody);
@@ -59,8 +69,9 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Invalid JSON payload." }, { status: 400 });
   }
 
-  // ── 4. Acknowledge immediately (Razorpay requires 200 within a few seconds) ──
-  // Process the event asynchronously after responding.
+  // ── 4. Acknowledge immediately ────────────────────────────────────────
+  //    Razorpay retries if it doesn't receive 200 within a few seconds.
+  //    We respond now and process asynchronously.
   processWebhookEvent(event).catch((err) => {
     console.error("[webhook] Background processing error:", err);
   });
@@ -68,26 +79,78 @@ export async function POST(req: NextRequest) {
   return NextResponse.json({ received: true });
 }
 
+// ─── Async event processing ────────────────────────────────────────────────
+
 async function processWebhookEvent(event: {
   event: string;
   payload: Record<string, unknown>;
 }) {
-  const provider = new RazorpayProvider();
-  const result = await provider.handleWebhook(event);
+  const payload = event.payload as {
+    payment?: { entity?: { id?: string; order_id?: string } };
+    order?: { entity?: { id?: string; receipt?: string } };
+  };
+
+  // Extract IDs from the Razorpay payload structure
+  const razorpayOrderId =
+    payload?.payment?.entity?.order_id ||
+    payload?.order?.entity?.id;
+
+  const razorpayPaymentId = payload?.payment?.entity?.id;
 
   switch (event.event) {
     case "payment.captured":
     case "order.paid": {
-      // TODO (production): Update order status to "paid" in your database
-      // Use result.orderId (the Solvia internal order ID from the receipt field)
-      console.info("[webhook] Payment confirmed:", result);
+      if (!razorpayOrderId) {
+        console.warn("[webhook] No razorpay_order_id in payload:", event.event);
+        break;
+      }
+
+      // Look up the order by Razorpay's order ID
+      const dbOrder = await getOrderByRazorpayOrderId(razorpayOrderId);
+
+      if (!dbOrder) {
+        console.warn(
+          "[webhook] Order not found for razorpay_order_id:",
+          razorpayOrderId
+        );
+        break;
+      }
+
+      // Only act if still pending (idempotency guard)
+      if (dbOrder.payment_status !== "pending") {
+        console.info(
+          "[webhook] Order already processed (idempotent):",
+          dbOrder.id
+        );
+        break;
+      }
+
+      // Mark as paid — uses .eq("payment_status","pending") guard internally
+      if (razorpayPaymentId) {
+        const { markOrderPaid } = await import("@/lib/db/orders");
+        await markOrderPaid(dbOrder.id, razorpayPaymentId);
+        console.info("[webhook] Order marked paid:", {
+          id: dbOrder.id,
+          razorpayPaymentId,
+        });
+      }
+
+      // Send confirmation email (idempotent — checks email_sent_at)
+      await sendOrderConfirmationIfNotSent(dbOrder.id);
       break;
     }
 
     case "payment.failed": {
-      // TODO (production): Update order status to "failed" in your database
-      // Optionally send a follow-up email to the customer
-      console.warn("[webhook] Payment failed:", result);
+      if (!razorpayOrderId) {
+        console.warn("[webhook] No razorpay_order_id in payment.failed payload");
+        break;
+      }
+
+      const dbOrder = await getOrderByRazorpayOrderId(razorpayOrderId);
+      if (dbOrder) {
+        await markOrderFailed(dbOrder.id);
+        console.warn("[webhook] Order marked failed:", dbOrder.id);
+      }
       break;
     }
 

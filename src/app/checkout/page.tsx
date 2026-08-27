@@ -86,6 +86,12 @@ export default function CheckoutPage() {
             firstName: data.firstName,
             lastName: data.lastName,
             phone: data.phone,
+            // Full shipping address — persisted in the database order record
+            address: data.address,
+            city: data.city,
+            state: data.state,
+            zip: data.zip,
+            country: data.country,
           },
         }),
       });
