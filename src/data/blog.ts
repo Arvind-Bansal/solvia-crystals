@@ -14,11 +14,11 @@ export const blogPosts: BlogPost[] = [
       <ul>
         <li><strong>Daily wear:</strong> Wipe gently with a soft, dry cloth after each wear to remove oils and residue.</li>
         <li><strong>Deeper cleaning:</strong> Use lukewarm water with a drop of mild soap. Avoid submerging elastic-strung pieces — instead, dampen a cloth and gently clean each bead.</li>
-        <li><strong>What to avoid:</strong> Ultrasonic cleaners, harsh chemicals, and prolonged water exposure. Some stones — particularly Selenite, Pyrite, and Malachite — are water-sensitive.</li>
+        <li><strong>What to avoid:</strong> Ultrasonic cleaners, harsh chemicals, and prolonged water exposure. Some stones — particularly Pyrite — are water-sensitive.</li>
       </ul>
       
       <h2>Storage</h2>
-      <p>Store each piece in its provided linen pouch or velvet box. Keep bracelets separated to prevent harder stones from scratching softer ones. Avoid direct sunlight for extended periods — stones like Amethyst, Rose Quartz, and Citrine can fade with prolonged UV exposure.</p>
+      <p>Store each piece in its provided pouch or box. Keep bracelets separated to prevent harder stones from scratching softer ones. Avoid direct sunlight for extended periods — stones like Amethyst, Rose Quartz, and Citrine can fade with prolonged UV exposure.</p>
       
       <h2>When to Restring</h2>
       <p>If you wear your bracelet daily, we recommend professional restringing every 12–18 months. Elastic naturally stretches over time, and a fresh cord ensures your piece sits properly on the wrist.</p>
@@ -36,12 +36,12 @@ export const blogPosts: BlogPost[] = [
     excerpt: "From minimal single-stone pieces to curated stacks — a guide to wearing crystal jewellery with the same intentionality you'd bring to the rest of your wardrobe.",
     content: `
       <h2>Start with a Foundation Piece</h2>
-      <p>Every good stack begins with one anchor bracelet. Choose your most worn or most meaningful piece — something like Obsidian Eclipse or Rose Veil — and build outward from there.</p>
+      <p>Every good stack begins with one anchor bracelet. Choose your most worn or most meaningful piece — something like Stronghold or Affinity — and build outward from there.</p>
       
       <h2>Mixing Tones and Textures</h2>
       <ul>
-        <li><strong>Contrast matte with polished:</strong> A matte Obsidian next to a polished Citrine creates visual depth without clutter.</li>
-        <li><strong>Vary bead sizes:</strong> Layer 6mm beads alongside 8mm or 10mm for a natural, organic rhythm.</li>
+        <li><strong>Contrast matte with polished:</strong> A matte Black Tourmaline next to a polished Citrine creates visual depth without clutter.</li>
+        <li><strong>Vary bead sizes:</strong> Layer different bead sizes for a natural, organic rhythm.</li>
         <li><strong>Hardware as a connector:</strong> The tonal hardware across our collection is designed to create visual continuity when layering different stones.</li>
       </ul>
       
@@ -49,7 +49,7 @@ export const blogPosts: BlogPost[] = [
       <p>For most wrists, three bracelets is the sweet spot — enough to create a statement without feeling heavy. One Minimal, one Signature, and one Statement piece creates the most balanced visual composition.</p>
       
       <h2>Dressing Up vs. Down</h2>
-      <p>For everyday wear, lean into Minimal pieces in neutral tones. For evenings or occasions, swap in a Statement piece — something like Pyrite Monarch or Obsidian Eclipse — and let it anchor the look.</p>
+      <p>For everyday wear, lean into Minimal pieces in neutral tones. For evenings or occasions, swap in a Statement piece — something like Prospect — and let it anchor the look.</p>
     `,
     image: "https://images.unsplash.com/photo-1559825481-12a05cc00344?q=80&w=800&auto=format&fit=crop",
     author: "Solvia Editorial",
@@ -68,14 +68,14 @@ export const blogPosts: BlogPost[] = [
       
       <h2>By Intention</h2>
       <ul>
-        <li><strong>Seeking clarity or focus?</strong> Start with Clear Quartz (Lunar Clarity) or Amethyst (Violet Hour). Both are versatile, timeless, and pair with everything.</li>
-        <li><strong>Want grounding or boundaries?</strong> Black Tourmaline (Midnight Shield) or Obsidian (Obsidian Eclipse) are our most popular protective stones.</li>
-        <li><strong>Drawn to warmth and confidence?</strong> Tiger's Eye (Terra Nova) or Sunstone (Solstice) bring a natural, earthy warmth to daily wear.</li>
-        <li><strong>Looking for emotional balance?</strong> Rose Quartz (Rose Veil) or Aquamarine (Stillwater) are our most calming, emotionally resonant stones.</li>
+        <li><strong>Seeking clarity or focus?</strong> Start with Clear Quartz (Sightline) or Amethyst (Violet Hour). Both are versatile, timeless, and pair with everything.</li>
+        <li><strong>Want grounding or boundaries?</strong> Black Tourmaline (Stronghold) is our most popular protective stone — understated and durable.</li>
+        <li><strong>Drawn to warmth and confidence?</strong> Tiger Eye (Conviction) brings a natural, earthy warmth to daily wear.</li>
+        <li><strong>Looking for emotional balance?</strong> Rose Quartz (Affinity) is our most calming, emotionally resonant stone.</li>
       </ul>
       
       <h2>By Style</h2>
-      <p>If you prefer jewellery that blends into your wardrobe quietly, explore our Minimal tier — smaller beads, understated hardware. If you want something that makes a statement, our Statement pieces use larger stones and bolder compositions.</p>
+      <p>If you prefer jewellery that blends into your wardrobe quietly, explore our Minimal pieces — smaller beads, understated hardware. If you want something that makes a statement, our Statement pieces use larger stones and bolder compositions.</p>
       
       <h2>Start Simple</h2>
       <p>One piece, worn consistently, will teach you more about what you're drawn to than buying five at once. Let it become part of your routine before expanding your collection.</p>

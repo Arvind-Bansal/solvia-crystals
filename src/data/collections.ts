@@ -3,60 +3,91 @@ import { products } from './products';
 
 export const collections: Collection[] = [
   {
+    title: "Launch 01",
+    slug: "launch-01",
+    description: "The inaugural Solvia collection. Eight stones, chosen for their character, wearability, and the way they carry meaning without making claims.",
+    heroCopy: "Where it begins.",
+    editorialText: "Launch 01 is our opening statement — a curated set of eight crystal bracelets, each built around a single stone with unmistakable presence. From the warm chatoyancy of Tiger Eye to the quiet clarity of Clear Quartz, every piece is designed to be worn daily, styled freely, and valued for what it is: considered craftsmanship with natural stone.",
+    featuredImage: "/products/conviction/primary.webp",
+    productSlugs: [
+      "conviction",
+      "affinity",
+      "prospect",
+      "stronghold",
+      "late-harvest",
+      "fortune",
+      "violet-hour",
+      "sightline",
+    ],
+  },
+];
+
+// ─── Legacy Collection Stubs ─────────────────
+// These preserve route compatibility for bookmarked URLs.
+// They are not exposed in navigation or filters.
+// Their productSlugs are empty — pages can gracefully show "collection unavailable" or redirect.
+
+export const legacyCollections: Collection[] = [
+  {
     title: "Everyday Rituals",
     slug: "everyday-rituals",
-    description: "Pieces designed to be part of your daily rhythm. Comfortable, versatile, and quietly meaningful — the bracelets you reach for without thinking.",
-    heroCopy: "The pieces you reach for every morning.",
-    editorialText: "Some jewellery is saved for occasions. These pieces are for the everyday — chosen for their wearability, durability, and the way they settle into your routine. Each stone is selected for its resilience and comfort on the wrist.",
-    featuredImage: "https://images.unsplash.com/photo-1603561591411-07134e71a2a9?q=80&w=1200&auto=format&fit=crop",
-    productSlugs: ["rose-veil", "midnight-shield", "jade-meridian"],
+    description: "This collection has been retired. Explore our Launch 01 collection.",
+    heroCopy: "Collection retired.",
+    editorialText: "",
+    featuredImage: "",
+    productSlugs: [],
   },
   {
     title: "Quiet Energy",
     slug: "quiet-energy",
-    description: "Understated stones with a calming presence. For moments that call for composure, stillness, and a gentle shift in perspective.",
-    heroCopy: "Stillness you can carry with you.",
-    editorialText: "Not every piece needs to announce itself. This collection draws from stones traditionally associated with calm and clarity — smoky quartz, aquamarine, sunstone — each chosen for its subtle energy and tonal beauty.",
-    featuredImage: "https://images.unsplash.com/photo-1599643477877-530eb83abc8e?q=80&w=1200&auto=format&fit=crop",
-    productSlugs: ["smoke-and-stone", "solstice", "stillwater"],
+    description: "This collection has been retired. Explore our Launch 01 collection.",
+    heroCopy: "Collection retired.",
+    editorialText: "",
+    featuredImage: "",
+    productSlugs: [],
   },
   {
     title: "Grounding Series",
     slug: "grounding-series",
-    description: "Bold, protective stones for those who value boundaries. Volcanic glass, metallic lustre, and deep black tones anchor this collection.",
-    heroCopy: "Rooted in something solid.",
-    editorialText: "The Grounding Series draws from the earth's most protective formations — obsidian forged in volcanic heat, pyrite crystallised under immense pressure. These are pieces that carry weight, both physical and symbolic.",
-    featuredImage: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?q=80&w=1200&auto=format&fit=crop",
-    productSlugs: ["obsidian-eclipse", "pyrite-monarch"],
+    description: "This collection has been retired. Explore our Launch 01 collection.",
+    heroCopy: "Collection retired.",
+    editorialText: "",
+    featuredImage: "",
+    productSlugs: [],
   },
   {
     title: "Signature Stones",
     slug: "signature-stones",
-    description: "Our most distinctive pieces. Each bracelet features a hero stone with unmistakable character — the kind of piece that becomes part of your identity.",
-    heroCopy: "The piece that becomes yours.",
-    editorialText: "A signature stone isn't chosen — it chooses you. This collection brings together our most expressive, character-rich pieces: deep amethyst, shifting tiger's eye, luminous citrine. Each one carries a presence you can feel.",
-    featuredImage: "https://images.unsplash.com/photo-1596944924616-7b38e7cfac36?q=80&w=1200&auto=format&fit=crop",
-    productSlugs: ["violet-hour", "golden-aura", "terra-nova"],
+    description: "This collection has been retired. Explore our Launch 01 collection.",
+    heroCopy: "Collection retired.",
+    editorialText: "",
+    featuredImage: "",
+    productSlugs: [],
   },
   {
     title: "Minimal Forms",
     slug: "minimal-forms",
-    description: "Pared-back design. Clean lines, smaller beads, and single-stone compositions. For those who prefer their jewellery quiet and essential.",
-    heroCopy: "Less, with intention.",
-    editorialText: "Minimal Forms strips crystal jewellery to its essence — one stone, one cord, one considered accent. These pieces sit close to the wrist, layer seamlessly, and let the natural beauty of the stone speak for itself.",
-    featuredImage: "https://images.unsplash.com/photo-1611591437281-460bfbe1220a?q=80&w=1200&auto=format&fit=crop",
-    productSlugs: ["lunar-clarity"],
+    description: "This collection has been retired. Explore our Launch 01 collection.",
+    heroCopy: "Collection retired.",
+    editorialText: "",
+    featuredImage: "",
+    productSlugs: [],
   },
 ];
+
+// Combine active + legacy for route resolution
+const allCollections = [...collections, ...legacyCollections];
 
 // ─── Query Helpers ───────────────────────────
 
 export function getAllCollections(): Collection[] {
+  // Only return active collections for navigation/listing
   return collections;
 }
 
 export function getCollectionBySlug(slug: string): Collection | undefined {
-  return collections.find(c => c.slug === slug);
+  // Searches both active and legacy for URL compatibility
+  return allCollections.find(c => c.slug === slug);
 }
 
 export function getProductsForCollection(collectionSlug: string) {

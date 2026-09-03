@@ -1,7 +1,9 @@
 // ─── Image Pipeline Utilities ────────────────
 // Centralized image path resolution, aspect ratios, and size presets.
-// When real product photography is added to public/products/[slug]/,
-// these helpers will automatically serve local images over Unsplash fallbacks.
+// Product images are expected at: public/products/{slug}/{variant}.webp
+// Until real photography is placed in these directories, components should
+// render a clearly temporary placeholder — NOT a generic stock photo
+// that could be mistaken for actual product photography.
 
 export const ASPECT_RATIOS = {
   card: "4/5",
@@ -20,7 +22,10 @@ export const IMAGE_SIZES = {
   split: "(max-width: 768px) 100vw, 50vw",
 } as const;
 
-// Fallback placeholder for broken/missing images
+// Neutral placeholder for missing product images.
+// This is an intentionally generic image — NOT a product photograph.
+// Components displaying product images should make it visually obvious
+// when a product is using this fallback rather than real photography.
 export const FALLBACK_IMAGE = "https://images.unsplash.com/photo-1599643477877-530eb83abc8e?q=80&w=800&auto=format&fit=crop";
 
 // Base64 blur placeholder (tiny 1x1 dark pixel)
@@ -28,8 +33,15 @@ export const BLUR_PLACEHOLDER = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA
 
 /**
  * Resolves the best available image path for a product.
- * Checks local path first, falls back to provided URL.
- * In production with a CMS, this would query the CMS asset pipeline.
+ * Returns the provided URL if given, otherwise returns the generic fallback.
+ *
+ * IMPORTANT: The fallback is a temporary development placeholder, not a
+ * product photograph. Real product photography must be placed at:
+ *   public/products/{slug}/primary.webp
+ *   public/products/{slug}/hover.webp
+ *   public/products/{slug}/gallery-01.webp
+ *   public/products/{slug}/gallery-02.webp
+ *   public/products/{slug}/gallery-03.webp
  */
 export function getProductImagePath(
   slug: string,
@@ -38,6 +50,6 @@ export function getProductImagePath(
   fallbackUrl?: string
 ): string {
   // Future: check if local file exists at /products/{slug}/{variant}.webp
-  // For now, return fallback URL (Unsplash) or the generic fallback
+  // For now, return fallback URL or the generic fallback
   return fallbackUrl || FALLBACK_IMAGE;
 }
