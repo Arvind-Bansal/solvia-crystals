@@ -3,12 +3,12 @@
 // Email clients don't support external CSS — all styles must be inline.
 
 const BRAND = {
-  bg: "#0a0a0a",
-  cardBg: "#121212",
-  gold: "#C8A960",
-  white: "#F2F2F2",
-  silver: "#ABABAB",
-  border: "rgba(255,255,255,0.1)",
+  bg: "#F8F5EF",
+  cardBg: "#FFFFFF",
+  gold: "#D6B47A",
+  white: "#262626",
+  silver: "#555555",
+  border: "rgba(38,38,38,0.1)",
   font: "'Helvetica Neue', Helvetica, Arial, sans-serif",
 };
 

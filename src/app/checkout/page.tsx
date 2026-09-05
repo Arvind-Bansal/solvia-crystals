@@ -12,7 +12,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ShoppingBag, ChevronRight, ShieldCheck, Truck, RefreshCcw } from "lucide-react";
-import Image from "next/image";
+import { ProductImage } from "@/components/ui/ProductImage";
 import Link from "next/link";
 import { toast } from "sonner";
 import { analytics } from "@/lib/analytics";
@@ -72,7 +72,6 @@ export default function CheckoutPage() {
 
     try {
       // ── Step 1: Create Razorpay order server-side ──
-      // The server re-validates all items and recalculates totals.
       const createRes = await fetch("/api/payments/razorpay/create-order", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -86,7 +85,6 @@ export default function CheckoutPage() {
             firstName: data.firstName,
             lastName: data.lastName,
             phone: data.phone,
-            // Full shipping address — persisted in the database order record
             address: data.address,
             city: data.city,
             state: data.state,
@@ -135,7 +133,6 @@ export default function CheckoutPage() {
         },
         handler: async (response) => {
           // ── Step 3: Verify payment server-side ──
-          // NEVER clear cart here — only after verified.
           try {
             const verifyRes = await fetch("/api/payments/razorpay/verify", {
               method: "POST",
@@ -197,8 +194,8 @@ export default function CheckoutPage() {
   };
 
   const inputClass =
-    "w-full bg-transparent border border-white/20 rounded-sm px-4 py-3 text-white text-sm focus:outline-none focus:border-brand-gold transition-colors placeholder:text-brand-silver/30";
-  const errorClass = "text-red-400 text-xs mt-1";
+    "w-full bg-white border border-[#262626]/20 rounded-sm px-4 py-3 text-[#262626] text-sm focus:outline-none focus:border-brand-gold transition-colors placeholder:text-[#262626]/40";
+  const errorClass = "text-red-500 text-xs mt-1";
 
   if (!mounted) return null;
 
@@ -206,7 +203,7 @@ export default function CheckoutPage() {
     return (
       <>
         <Navbar />
-        <main className="pt-32 pb-24 bg-[#0a0a0a] min-h-screen">
+        <main className="pt-32 pb-24 bg-[#F8F5EF] min-h-screen">
           <div className="container mx-auto px-6">
             <EmptyState
               icon={ShoppingBag}
@@ -223,7 +220,6 @@ export default function CheckoutPage() {
 
   return (
     <>
-      {/* Load Razorpay checkout.js */}
       <Script
         src="https://checkout.razorpay.com/v1/checkout.js"
         strategy="afterInteractive"
@@ -234,16 +230,16 @@ export default function CheckoutPage() {
       />
 
       <Navbar />
-      <main className="pt-32 pb-24 bg-[#0a0a0a] min-h-screen">
+      <main className="pt-32 pb-24 bg-[#F8F5EF] min-h-screen text-[#262626]">
         <div className="container mx-auto px-6">
           {/* Breadcrumbs */}
-          <div className="text-xs text-brand-silver/60 uppercase tracking-widest mb-8 flex items-center space-x-2">
-            <Link href="/shop" className="hover:text-white transition-colors">Shop</Link>
+          <div className="text-xs text-[#262626]/60 uppercase tracking-widest mb-8 flex items-center space-x-2">
+            <Link href="/shop" className="hover:text-[#262626] transition-colors">Shop</Link>
             <ChevronRight className="w-3 h-3" />
-            <span className="text-brand-gold">Checkout</span>
+            <span className="text-brand-gold font-medium">Checkout</span>
           </div>
 
-          <h1 className="text-3xl md:text-4xl font-serif text-white mb-12">Checkout</h1>
+          <h1 className="text-3xl md:text-4xl font-serif text-[#262626] mb-12">Checkout</h1>
 
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="flex flex-col lg:flex-row gap-12 lg:gap-16">
@@ -251,7 +247,7 @@ export default function CheckoutPage() {
               <div className="flex-1 space-y-10">
                 {/* Contact */}
                 <section>
-                  <h2 className="text-lg font-serif text-white mb-6 flex items-center">
+                  <h2 className="text-lg font-serif text-[#262626] mb-6 flex items-center">
                     <span className="w-7 h-7 rounded-full bg-brand-gold/20 text-brand-gold text-xs font-bold flex items-center justify-center mr-3">1</span>
                     Contact
                   </h2>
@@ -265,7 +261,7 @@ export default function CheckoutPage() {
 
                 {/* Shipping */}
                 <section>
-                  <h2 className="text-lg font-serif text-white mb-6 flex items-center">
+                  <h2 className="text-lg font-serif text-[#262626] mb-6 flex items-center">
                     <span className="w-7 h-7 rounded-full bg-brand-gold/20 text-brand-gold text-xs font-bold flex items-center justify-center mr-3">2</span>
                     Shipping Address
                   </h2>
@@ -312,7 +308,7 @@ export default function CheckoutPage() {
 
                 {/* Coupon */}
                 <section>
-                  <h2 className="text-lg font-serif text-white mb-6 flex items-center">
+                  <h2 className="text-lg font-serif text-[#262626] mb-6 flex items-center">
                     <span className="w-7 h-7 rounded-full bg-brand-gold/20 text-brand-gold text-xs font-bold flex items-center justify-center mr-3">3</span>
                     Discount Code
                   </h2>
@@ -328,18 +324,18 @@ export default function CheckoutPage() {
                       Apply
                     </Button>
                   </div>
-                  <p className="text-xs text-brand-silver/40 mt-2">Discount codes will be available at launch.</p>
+                  <p className="text-xs text-[#262626]/50 mt-2">Discount codes will be available at launch.</p>
                 </section>
 
                 {/* Trust Signals */}
-                <div className="flex flex-wrap gap-6 pt-4 border-t border-white/5">
-                  <div className="flex items-center text-xs text-brand-silver/60">
+                <div className="flex flex-wrap gap-6 pt-4 border-t border-[#262626]/10">
+                  <div className="flex items-center text-xs text-[#262626]/70">
                     <ShieldCheck className="w-4 h-4 mr-2 text-brand-gold" /> Secure checkout
                   </div>
-                  <div className="flex items-center text-xs text-brand-silver/60">
+                  <div className="flex items-center text-xs text-[#262626]/70">
                     <Truck className="w-4 h-4 mr-2 text-brand-gold" /> Free shipping over {formatPrice(FREE_SHIPPING_THRESHOLD)}
                   </div>
-                  <div className="flex items-center text-xs text-brand-silver/60">
+                  <div className="flex items-center text-xs text-[#262626]/70">
                     <RefreshCcw className="w-4 h-4 mr-2 text-brand-gold" /> 30-day returns
                   </div>
                 </div>
@@ -347,49 +343,49 @@ export default function CheckoutPage() {
 
               {/* Right — Order Summary */}
               <div className="w-full lg:w-[380px] flex-shrink-0">
-                <div className="bg-[#121212] border border-white/10 rounded-sm p-6 lg:sticky lg:top-28">
-                  <h2 className="text-lg font-serif text-white mb-6">Order Summary</h2>
+                <div className="bg-[#F2EDE4] border border-[#262626]/10 rounded-sm p-6 lg:sticky lg:top-28 shadow-xs">
+                  <h2 className="text-lg font-serif text-[#262626] mb-6">Order Summary</h2>
 
                   <div className="space-y-4 mb-6 max-h-[40vh] overflow-y-auto">
                     {items.map((item) => (
                       <div key={item.product.id} className="flex gap-4">
-                        <div className="relative w-16 h-16 rounded-sm overflow-hidden border border-white/5 flex-shrink-0 bg-[#1a1a1a]">
-                          <Image
+                        <div className="relative w-16 h-16 rounded-sm overflow-hidden border border-[#262626]/10 flex-shrink-0 bg-white">
+                          <ProductImage
                             src={item.product.images.primary}
                             alt={item.product.name}
                             fill
                             sizes="64px"
                             className="object-cover"
                           />
-                          <span className="absolute -top-1 -right-1 bg-brand-gold text-black text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center">
+                          <span className="absolute -top-1 -right-1 bg-brand-gold text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center">
                             {item.quantity}
                           </span>
                         </div>
                         <div className="flex-1 min-w-0">
-                          <p className="text-white text-sm font-medium truncate">{item.product.name}</p>
-                          <p className="text-xs text-brand-silver/50">{item.product.intention}</p>
+                          <p className="text-[#262626] text-sm font-serif font-medium truncate uppercase tracking-wide">{item.product.name}</p>
+                          <p className="text-xs text-[#262626]/70 truncate">{item.product.subtitle}</p>
                         </div>
-                        <span className="text-white text-sm flex-shrink-0">
+                        <span className="text-[#262626] text-sm font-medium flex-shrink-0">
                           {formatPrice(item.product.price * item.quantity)}
                         </span>
                       </div>
                     ))}
                   </div>
 
-                  <div className="space-y-3 pt-4 border-t border-white/10 text-sm">
-                    <div className="flex justify-between text-brand-silver">
+                  <div className="space-y-3 pt-4 border-t border-[#262626]/10 text-sm">
+                    <div className="flex justify-between text-[#262626]/80">
                       <span>Subtotal</span>
                       <span>{formatPrice(subtotal)}</span>
                     </div>
-                    <div className="flex justify-between text-brand-silver">
+                    <div className="flex justify-between text-[#262626]/80">
                       <span>Shipping</span>
                       <span>{shipping === 0 ? "Free" : formatPrice(shipping)}</span>
                     </div>
-                    <div className="flex justify-between text-brand-silver">
+                    <div className="flex justify-between text-[#262626]/80">
                       <span>Tax (GST)</span>
                       <span>{formatPrice(tax)}</span>
                     </div>
-                    <div className="flex justify-between text-white font-medium text-base pt-3 border-t border-white/10">
+                    <div className="flex justify-between text-[#262626] font-medium text-base pt-3 border-t border-[#262626]/10">
                       <span>Total</span>
                       <span>{formatPrice(total)}</span>
                     </div>
@@ -404,10 +400,10 @@ export default function CheckoutPage() {
                     {isSubmitting ? "Processing..." : `Pay · ${formatPrice(total)}`}
                   </Button>
 
-                  <p className="text-[10px] text-brand-silver/40 text-center mt-4 leading-relaxed">
+                  <p className="text-[10px] text-[#262626]/50 text-center mt-4 leading-relaxed">
                     By placing this order you agree to our{" "}
-                    <Link href="/terms" className="underline hover:text-white">Terms of Service</Link>{" "}and{" "}
-                    <Link href="/privacy" className="underline hover:text-white">Privacy Policy</Link>.
+                    <Link href="/terms" className="underline hover:text-[#262626]">Terms of Service</Link>{" "}and{" "}
+                    <Link href="/privacy" className="underline hover:text-[#262626]">Privacy Policy</Link>.
                   </p>
                 </div>
               </div>

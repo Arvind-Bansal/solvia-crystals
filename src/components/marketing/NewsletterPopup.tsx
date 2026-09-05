@@ -64,7 +64,7 @@ export function NewsletterPopup() {
 
   return (
     <Modal isOpen={isOpen} onClose={handleClose}>
-      <div className="flex flex-col md:flex-row bg-[#0a0a0a] rounded-sm overflow-hidden max-w-3xl w-full">
+      <div className="flex flex-col md:flex-row bg-[#F8F5EF] rounded-sm overflow-hidden max-w-3xl w-full border border-[#262626]/10 shadow-lg">
         <div className="hidden md:block relative w-1/2 aspect-square">
           <Image 
             src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?q=80&w=800&auto=format&fit=crop"
@@ -78,8 +78,8 @@ export function NewsletterPopup() {
           <div className="flex items-center justify-center mb-4 text-brand-gold">
             <Sparkles className="w-6 h-6" />
           </div>
-          <h2 className="text-3xl font-serif text-white text-center mb-4">The Inner Circle</h2>
-          <p className="text-brand-silver/80 text-center mb-8 text-sm leading-relaxed">
+          <h2 className="text-3xl font-serif text-[#262626] text-center mb-4 font-medium">The Inner Circle</h2>
+          <p className="text-[#262626]/70 text-center mb-8 text-sm leading-relaxed">
             Subscribe for 15% off your first piece, plus early access to new releases and styling guides.
           </p>
           <form onSubmit={handleSubmit} className="space-y-4">
@@ -90,7 +90,7 @@ export function NewsletterPopup() {
               onChange={(e) => setEmail(e.target.value)}
               required
               aria-label="Email address"
-              className="bg-transparent border-white/20 text-white placeholder:text-brand-silver/50"
+              className="bg-white border-[#262626]/20 text-[#262626] placeholder:text-[#262626]/40"
             />
             <Button 
               type="submit" 
@@ -102,7 +102,7 @@ export function NewsletterPopup() {
           </form>
           <button 
             onClick={handleClose}
-            className="mt-6 text-xs text-brand-silver/60 hover:text-white underline text-center w-full transition-colors"
+            className="mt-6 text-xs text-[#262626]/50 hover:text-[#262626] underline text-center w-full transition-colors"
           >
             Maybe later
           </button>

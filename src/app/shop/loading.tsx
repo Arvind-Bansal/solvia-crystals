@@ -6,7 +6,7 @@ export default function ShopLoading() {
   return (
     <>
       <Navbar />
-      <main className="flex-1 pt-32 pb-24 bg-[#0a0a0a] min-h-screen">
+      <main className="flex-1 pt-32 pb-24 bg-[#F8F5EF] min-h-screen">
         <div className="container mx-auto px-6">
           <div className="mb-12">
             <Skeleton className="h-12 w-64 mb-4" />

@@ -98,6 +98,7 @@ function ShopContent() {
       const matchesStyle = activeStyle === "All" || product.style === activeStyle;
       const matchesChakra = activeChakra === "All" || product.chakra === activeChakra;
       const matchesSearch = product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                            product.subtitle.toLowerCase().includes(searchQuery.toLowerCase()) ||
                             product.meaning.toLowerCase().includes(searchQuery.toLowerCase());
       return matchesIntention && matchesStyle && matchesChakra && matchesSearch;
     }),
@@ -111,8 +112,8 @@ function ShopContent() {
         animate={{ opacity: 1, y: 0 }}
         className="mb-12"
       >
-        <h1 className="text-4xl md:text-5xl font-serif text-white mb-4">The Collection</h1>
-        <p className="text-brand-silver/80 max-w-2xl">
+        <h1 className="text-4xl md:text-5xl font-serif text-[#262626] mb-4 font-medium">The Collection</h1>
+        <p className="text-[#262626]/70 max-w-2xl">
           Every piece is assembled by hand with ethically sourced stones and durable hardware. Browse by intention, style, or simply follow your instinct.
         </p>
       </motion.div>
@@ -126,8 +127,8 @@ function ShopContent() {
               onClick={() => handleIntention(intention)}
               className={`whitespace-nowrap px-4 py-2 rounded-sm text-sm font-medium transition-all ${
                 activeIntention === intention
-                  ? "bg-brand-gold text-[#0a0a0a]"
-                  : "border border-white/10 text-brand-silver hover:border-brand-gold/50"
+                  ? "bg-[#262626] text-[#F8F5EF]"
+                  : "border border-[#262626]/10 text-[#262626]/80 hover:border-brand-gold/50 bg-white"
               }`}
             >
               {intention}
@@ -138,13 +139,13 @@ function ShopContent() {
         <div className="flex items-center gap-2 w-full md:w-auto">
           {/* Search */}
           <div className="relative flex-1 md:w-72">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-brand-silver/40" />
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-[#262626]/40" />
             <input
               type="text"
               placeholder="Search pieces..."
               value={searchQuery}
               onChange={(e) => handleSearch(e.target.value)}
-              className="w-full bg-white/5 border border-white/5 rounded-full pl-12 pr-6 py-2.5 text-sm text-white placeholder:text-brand-silver/40 focus:outline-none focus:border-brand-gold/50 focus:bg-white/10 transition-all duration-300"
+              className="w-full bg-white border border-[#262626]/10 rounded-full pl-12 pr-6 py-2.5 text-sm text-[#262626] placeholder:text-[#262626]/40 focus:outline-none focus:border-brand-gold/50 transition-all duration-300 shadow-xs"
             />
           </div>
 
@@ -153,13 +154,13 @@ function ShopContent() {
             <select
               value={sortBy}
               onChange={(e) => handleSort(e.target.value as SortValue)}
-              className="appearance-none bg-white/5 border border-white/5 rounded-full pl-4 pr-10 py-2.5 text-sm text-white focus:outline-none focus:border-brand-gold/50 cursor-pointer"
+              className="appearance-none bg-white border border-[#262626]/10 rounded-full pl-4 pr-10 py-2.5 text-sm text-[#262626] focus:outline-none focus:border-brand-gold/50 cursor-pointer shadow-xs"
             >
               {SORT_OPTIONS.map(opt => (
-                <option key={opt.value} value={opt.value} className="bg-brand-black">{opt.label}</option>
+                <option key={opt.value} value={opt.value} className="bg-white text-[#262626]">{opt.label}</option>
               ))}
             </select>
-            <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-brand-silver/50 pointer-events-none" />
+            <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#262626]/50 pointer-events-none" />
           </div>
 
           {/* Mobile Filter Toggle */}
@@ -175,9 +176,9 @@ function ShopContent() {
       </div>
 
       {/* Advanced Filters (Desktop) */}
-      <div className="hidden md:flex items-center gap-6 mb-12 py-4 border-t border-white/5">
+      <div className="hidden md:flex items-center gap-6 mb-12 py-4 border-t border-[#262626]/10">
         <div className="flex items-center gap-2">
-          <span className="text-sm text-brand-silver/60">Style:</span>
+          <span className="text-sm text-[#262626]/60">Style:</span>
           <div className="flex items-center space-x-2">
             {FILTER_STYLES.options.map((style) => (
               <button
@@ -185,8 +186,8 @@ function ShopContent() {
                 onClick={() => handleStyle(style)}
                 className={`whitespace-nowrap px-3 py-1.5 rounded-sm text-xs font-medium transition-all ${
                   activeStyle === style
-                    ? "bg-white/10 text-white border border-white/20"
-                    : "text-brand-silver/60 hover:text-white"
+                    ? "bg-[#262626] text-[#F8F5EF]"
+                    : "text-[#262626]/70 hover:text-[#262626]"
                 }`}
               >
                 {style}
@@ -195,16 +196,16 @@ function ShopContent() {
           </div>
         </div>
         <div className="flex items-center gap-2">
-          <span className="text-sm text-brand-silver/60">Chakra:</span>
+          <span className="text-sm text-[#262626]/60">Chakra:</span>
           <div className="relative">
             <select
               value={activeChakra}
               onChange={(e) => handleChakra(e.target.value)}
-              className="appearance-none bg-transparent border border-white/10 rounded-sm pl-4 pr-10 py-1.5 text-sm text-white focus:outline-none focus:border-brand-gold cursor-pointer"
+              className="appearance-none bg-white border border-[#262626]/10 rounded-sm pl-4 pr-10 py-1.5 text-sm text-[#262626] focus:outline-none focus:border-brand-gold cursor-pointer"
             >
-              {FILTER_CHAKRAS.options.map(c => <option key={c} value={c} className="bg-brand-black">{c}</option>)}
+              {FILTER_CHAKRAS.options.map(c => <option key={c} value={c} className="bg-white">{c}</option>)}
             </select>
-            <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-brand-silver/50 pointer-events-none" />
+            <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#262626]/50 pointer-events-none" />
           </div>
         </div>
       </div>
@@ -218,33 +219,33 @@ function ShopContent() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setIsFilterOpen(false)}
-              className="md:hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-40"
+              className="md:hidden fixed inset-0 bg-[#262626]/40 backdrop-blur-sm z-40"
             />
             <motion.div
               initial={{ y: "100%" }}
               animate={{ y: 0 }}
               exit={{ y: "100%" }}
               transition={{ type: "spring", damping: 28, stiffness: 260 }}
-              className="md:hidden fixed bottom-0 left-0 right-0 z-50 rounded-t-2xl border-t border-white/10 bg-[#121212] p-6 pb-[env(safe-area-inset-bottom,24px)] max-h-[70vh] overflow-y-auto"
+              className="md:hidden fixed bottom-0 left-0 right-0 z-50 rounded-t-2xl border-t border-[#262626]/10 bg-[#F8F5EF] p-6 pb-[env(safe-area-inset-bottom,24px)] max-h-[70vh] overflow-y-auto"
             >
               <div className="flex justify-between items-center mb-6">
-                <h3 className="font-serif text-white text-lg">Filters</h3>
+                <h3 className="font-serif text-[#262626] text-lg">Filters</h3>
                 <button
                   onClick={() => setIsFilterOpen(false)}
-                  className="w-11 h-11 flex items-center justify-center rounded-full bg-white/5 hover:bg-white/10 transition-colors"
+                  className="w-11 h-11 flex items-center justify-center rounded-full bg-[#F2EDE4] hover:bg-[#262626]/10 transition-colors"
                 >
-                  <X className="w-5 h-5 text-brand-silver" />
+                  <X className="w-5 h-5 text-[#262626]" />
                 </button>
               </div>
 
               <div className="mb-6">
-                <label className="text-xs text-brand-silver/60 uppercase tracking-wider mb-3 block">Intention</label>
+                <label className="text-xs text-[#262626]/60 uppercase tracking-wider mb-3 block">Intention</label>
                 <div className="flex flex-wrap gap-2">
                   {FILTER_INTENTIONS.options.map(intention => (
                     <button
                       key={intention}
                       onClick={() => handleIntention(intention)}
-                      className={`min-h-[44px] px-4 py-2.5 text-sm rounded-sm transition-colors ${activeIntention === intention ? 'bg-brand-gold text-black font-medium' : 'bg-white/5 text-white'}`}
+                      className={`min-h-[44px] px-4 py-2.5 text-sm rounded-sm transition-colors ${activeIntention === intention ? 'bg-[#262626] text-[#F8F5EF] font-medium' : 'bg-white text-[#262626] border border-[#262626]/10'}`}
                     >
                       {intention}
                     </button>
@@ -253,13 +254,13 @@ function ShopContent() {
               </div>
 
               <div className="mb-6">
-                <label className="text-xs text-brand-silver/60 uppercase tracking-wider mb-3 block">Style</label>
+                <label className="text-xs text-[#262626]/60 uppercase tracking-wider mb-3 block">Style</label>
                 <div className="flex flex-wrap gap-2">
                   {FILTER_STYLES.options.map(style => (
                     <button
                       key={style}
                       onClick={() => handleStyle(style)}
-                      className={`min-h-[44px] px-4 py-2.5 text-sm rounded-sm transition-colors ${activeStyle === style ? 'bg-brand-gold text-black font-medium' : 'bg-white/5 text-white'}`}
+                      className={`min-h-[44px] px-4 py-2.5 text-sm rounded-sm transition-colors ${activeStyle === style ? 'bg-[#262626] text-[#F8F5EF] font-medium' : 'bg-white text-[#262626] border border-[#262626]/10'}`}
                     >
                       {style}
                     </button>
@@ -268,13 +269,13 @@ function ShopContent() {
               </div>
 
               <div className="mb-6">
-                <label className="text-xs text-brand-silver/60 uppercase tracking-wider mb-3 block">Chakra</label>
+                <label className="text-xs text-[#262626]/60 uppercase tracking-wider mb-3 block">Chakra</label>
                 <div className="flex flex-wrap gap-2">
                   {FILTER_CHAKRAS.options.map(chakra => (
                     <button
                       key={chakra}
                       onClick={() => handleChakra(chakra)}
-                      className={`min-h-[44px] px-4 py-2.5 text-sm rounded-sm transition-colors ${activeChakra === chakra ? 'bg-brand-gold text-black font-medium' : 'bg-white/5 text-white'}`}
+                      className={`min-h-[44px] px-4 py-2.5 text-sm rounded-sm transition-colors ${activeChakra === chakra ? 'bg-[#262626] text-[#F8F5EF] font-medium' : 'bg-white text-[#262626] border border-[#262626]/10'}`}
                     >
                       {chakra}
                     </button>
@@ -284,13 +285,13 @@ function ShopContent() {
 
               {/* Mobile Sort */}
               <div className="mb-6">
-                <label className="text-xs text-brand-silver/60 uppercase tracking-wider mb-3 block">Sort By</label>
+                <label className="text-xs text-[#262626]/60 uppercase tracking-wider mb-3 block">Sort By</label>
                 <div className="flex flex-wrap gap-2">
                   {SORT_OPTIONS.map(opt => (
                     <button
                       key={opt.value}
                       onClick={() => handleSort(opt.value)}
-                      className={`min-h-[44px] px-4 py-2.5 text-sm rounded-sm transition-colors ${sortBy === opt.value ? 'bg-brand-gold text-black font-medium' : 'bg-white/5 text-white'}`}
+                      className={`min-h-[44px] px-4 py-2.5 text-sm rounded-sm transition-colors ${sortBy === opt.value ? 'bg-[#262626] text-[#F8F5EF] font-medium' : 'bg-white text-[#262626] border border-[#262626]/10'}`}
                     >
                       {opt.label}
                     </button>
@@ -339,7 +340,7 @@ function ShopContent() {
             label: "Clear All Filters",
             onClick: clearAllFilters,
           }}
-          className="border border-white/5 rounded-sm bg-[#121212]"
+          className="border border-[#262626]/10 rounded-sm bg-white"
         />
       )}
     </div>
@@ -350,7 +351,7 @@ export default function ShopPage() {
   return (
     <>
       <Navbar />
-      <main className="flex-1 pt-32 pb-24 bg-[#0a0a0a] min-h-screen">
+      <main className="flex-1 pt-32 pb-24 bg-[#F8F5EF] min-h-screen text-[#262626]">
         <Suspense fallback={null}>
           <ShopContent />
         </Suspense>

@@ -32,8 +32,8 @@ export function RecentlyViewed({ excludeId, limit = 4 }: RecentlyViewedProps) {
   if (recentItems.length === 0) return null;
 
   return (
-    <div className="pt-16 border-t border-white/10 mt-16">
-      <h2 className="text-2xl font-serif text-white mb-8 text-center">
+    <div className="pt-16 border-t border-[#262626]/10 mt-16">
+      <h2 className="text-2xl font-serif text-[#262626] mb-8 text-center">
         Recently Viewed
       </h2>
       {/* Horizontal scroll on mobile, grid on desktop */}
@@ -44,7 +44,7 @@ export function RecentlyViewed({ excludeId, limit = 4 }: RecentlyViewedProps) {
             href={`/product/${product.slug}`}
             className="group flex-shrink-0 w-[180px] md:w-auto"
           >
-            <div className="relative aspect-square rounded-sm overflow-hidden bg-[#121212] border border-white/5 group-hover:border-white/15 transition-colors mb-3">
+            <div className="relative aspect-square rounded-sm overflow-hidden bg-[#F2EDE4] border border-[#262626]/10 group-hover:border-brand-gold/50 transition-colors mb-3">
               <Image
                 src={product.images.primary}
                 alt={product.name}
@@ -53,9 +53,10 @@ export function RecentlyViewed({ excludeId, limit = 4 }: RecentlyViewedProps) {
                 className="object-cover group-hover:scale-[1.03] transition-transform duration-500"
               />
             </div>
-            <p className="text-xs text-brand-gold uppercase tracking-wider mb-1 font-medium">{product.intention}</p>
-            <h3 className="text-sm font-serif text-white group-hover:text-brand-gold transition-colors">{product.name}</h3>
-            <span className="text-sm text-brand-silver/60">{formatPrice(product.price)}</span>
+            <p className="text-[10px] text-brand-gold uppercase tracking-wider mb-0.5 font-medium">{product.intention}</p>
+            <h3 className="text-sm font-serif font-medium text-[#262626] group-hover:text-brand-gold transition-colors uppercase tracking-wide">{product.name}</h3>
+            <p className="text-xs text-[#262626]/70 mb-1">{product.subtitle}</p>
+            <span className="text-sm font-medium text-[#262626]">{formatPrice(product.price)}</span>
           </Link>
         ))}
       </div>

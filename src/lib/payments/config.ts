@@ -17,7 +17,7 @@ export const PAYMENT_CONFIG = {
   merchantLogo: "/logo.png",
 
   /** Theme color for payment UI */
-  themeColor: "#C8A960",
+  themeColor: "#D6B47A",
 } as const;
 
 /**

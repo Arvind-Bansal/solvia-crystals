@@ -18,23 +18,23 @@ function SuccessContent() {
         <CheckCircle className="w-10 h-10 text-brand-gold" />
       </div>
 
-      <h1 className="text-3xl md:text-4xl font-serif text-white mb-4">
+      <h1 className="text-3xl md:text-4xl font-serif text-[#262626] mb-4">
         Thank You for Your Order
       </h1>
 
-      <p className="text-brand-silver/80 mb-2 leading-relaxed">
+      <p className="text-[#262626]/80 mb-2 leading-relaxed">
         Your order has been placed successfully. We&apos;ll prepare your pieces with care.
       </p>
 
-      <div className="inline-flex items-center bg-[#121212] border border-white/10 rounded-sm px-6 py-3 mt-6 mb-8">
+      <div className="inline-flex items-center bg-[#F2EDE4] border border-[#262626]/10 rounded-sm px-6 py-3 mt-6 mb-8 shadow-xs">
         <Package className="w-5 h-5 text-brand-gold mr-3" />
         <div className="text-left">
-          <p className="text-xs text-brand-silver/60 uppercase tracking-wider">Order Number</p>
-          <p className="text-white font-medium tracking-wider">{orderId}</p>
+          <p className="text-xs text-[#262626]/60 uppercase tracking-wider">Order Number</p>
+          <p className="text-[#262626] font-medium tracking-wider">{orderId}</p>
         </div>
       </div>
 
-      <p className="text-sm text-brand-silver/60 mb-10 max-w-md mx-auto">
+      <p className="text-sm text-[#262626]/60 mb-10 max-w-md mx-auto">
         You&apos;ll receive a confirmation email shortly with your order details and tracking information once your pieces ship.
       </p>
 
@@ -53,7 +53,7 @@ export default function CheckoutSuccessPage() {
   return (
     <>
       <Navbar />
-      <main className="pt-32 pb-24 bg-[#0a0a0a] min-h-screen flex items-center">
+      <main className="pt-32 pb-24 bg-[#F8F5EF] min-h-screen flex items-center text-[#262626]">
         <div className="container mx-auto px-6">
           <Suspense fallback={null}>
             <SuccessContent />

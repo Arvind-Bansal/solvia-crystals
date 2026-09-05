@@ -10,18 +10,18 @@ export default function AboutPage() {
   return (
     <>
       <Navbar />
-      <main className="flex-1 pt-24 pb-0 bg-[#0a0a0a]">
+      <main className="flex-1 pt-24 pb-0 bg-[#F8F5EF] text-[#262626]">
         
         {/* Hero Section */}
-        <section className="relative py-32 overflow-hidden border-b border-white/5">
+        <section className="relative py-32 overflow-hidden border-b border-[#262626]/10 bg-[#F2EDE4]">
           <div className="container mx-auto px-6 relative z-10 text-center max-w-3xl">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <h1 className="text-4xl md:text-6xl font-serif text-white mb-6">Our Story</h1>
-              <p className="text-xl text-brand-silver/90 leading-relaxed font-light">
+              <h1 className="text-4xl md:text-6xl font-serif text-[#262626] mb-6 font-medium">Our Story</h1>
+              <p className="text-xl text-[#262626]/80 leading-relaxed font-light">
                 Solvia Crystals was founded on a simple conviction: that jewellery should carry meaning beyond aesthetics. Every piece we make reflects that belief.
               </p>
             </motion.div>
@@ -39,7 +39,7 @@ export default function AboutPage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
               >
-                <div className="relative aspect-[3/4] w-full max-w-md mx-auto rounded-sm overflow-hidden">
+                <div className="relative aspect-[3/4] w-full max-w-md mx-auto rounded-sm overflow-hidden border border-[#262626]/10 shadow-xs bg-[#F2EDE4]">
                   <Image
                     src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?q=80&w=800&auto=format&fit=crop"
                     alt="Solvia Crystals studio"
@@ -57,11 +57,11 @@ export default function AboutPage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
               >
-                <h2 className="text-3xl md:text-4xl font-serif text-white mb-6">A Note from the Founder</h2>
-                <p className="text-brand-silver mb-6 leading-relaxed">
+                <h2 className="text-3xl md:text-4xl font-serif text-[#262626] mb-6 font-medium">A Note from the Founder</h2>
+                <p className="text-[#262626]/80 mb-6 leading-relaxed">
                   &ldquo;I started Solvia because I couldn&apos;t find crystal jewellery that felt genuinely elevated. The market was full of mass-produced pieces that treated these extraordinary stones as afterthoughts.&rdquo;
                 </p>
-                <p className="text-brand-silver mb-8 leading-relaxed">
+                <p className="text-[#262626]/80 mb-8 leading-relaxed">
                   &ldquo;Every Solvia bracelet reflects my commitment to materials, craft, and the quiet power these stones have carried for centuries. We don&apos;t just make jewellery — we create pieces designed to be worn with intention, every day.&rdquo;
                 </p>
                 <div className="font-serif text-2xl text-brand-gold italic">
@@ -73,9 +73,9 @@ export default function AboutPage() {
         </section>
 
         {/* Values Section */}
-        <section className="py-24 bg-[#050505] border-t border-white/5">
+        <section className="py-24 bg-[#F2EDE4] border-t border-[#262626]/10">
           <div className="container mx-auto px-6">
-            <h2 className="text-3xl md:text-4xl font-serif text-white text-center mb-16">The Solvia Standard</h2>
+            <h2 className="text-3xl md:text-4xl font-serif text-[#262626] text-center mb-16 font-medium">The Solvia Standard</h2>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
               {[
@@ -104,8 +104,8 @@ export default function AboutPage() {
                   transition={{ duration: 0.5, delay: idx * 0.2 }}
                 >
                   <div className="flex justify-center">{value.icon}</div>
-                  <h3 className="text-xl font-serif text-white mb-3">{value.title}</h3>
-                  <p className="text-brand-silver/80 leading-relaxed">{value.desc}</p>
+                  <h3 className="text-xl font-serif text-[#262626] mb-3 font-medium">{value.title}</h3>
+                  <p className="text-[#262626]/80 leading-relaxed">{value.desc}</p>
                 </motion.div>
               ))}
             </div>

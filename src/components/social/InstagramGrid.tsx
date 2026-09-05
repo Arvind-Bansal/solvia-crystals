@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import Image from "next/image";
 import { Camera } from "lucide-react";
@@ -16,18 +16,18 @@ interface InstagramGridProps {
 export function InstagramGrid({ posts, handle = "@solviacrystals" }: InstagramGridProps) {
   if (posts.length === 0) {
     return (
-      <section className="py-24 border-t border-white/5">
+      <section className="py-24 border-t border-[#262626]/10">
         <div className="container mx-auto px-6 text-center">
           <Camera className="w-8 h-8 text-brand-gold/60 mx-auto mb-4" />
-          <h2 className="text-2xl font-serif text-white mb-3">Follow the Journey</h2>
-          <p className="text-brand-silver/60 text-sm mb-6">
+          <h2 className="text-2xl font-serif text-[#262626] mb-3 font-medium">Follow the Journey</h2>
+          <p className="text-[#262626]/60 text-sm mb-6">
             See how our community wears Solvia.
           </p>
           <a
             href={`https://instagram.com/${handle.replace("@", "")}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-sm text-brand-gold hover:text-white transition-colors uppercase tracking-widest font-medium"
+            className="text-sm text-brand-gold hover:text-[#262626] transition-colors uppercase tracking-widest font-medium"
           >
             {handle} &rarr;
           </a>
@@ -37,16 +37,16 @@ export function InstagramGrid({ posts, handle = "@solviacrystals" }: InstagramGr
   }
 
   return (
-    <section className="py-24 border-t border-white/5">
+    <section className="py-24 border-t border-[#262626]/10">
       <div className="container mx-auto px-6">
         <div className="text-center mb-12">
           <Camera className="w-6 h-6 text-brand-gold/60 mx-auto mb-3" />
-          <h2 className="text-2xl font-serif text-white mb-2">On the Wrist</h2>
+          <h2 className="text-2xl font-serif text-[#262626] mb-2 font-medium">On the Wrist</h2>
           <a
             href={`https://instagram.com/${handle.replace("@", "")}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-sm text-brand-gold hover:text-white transition-colors"
+            className="text-sm text-brand-gold hover:text-[#262626] transition-colors"
           >
             {handle}
           </a>

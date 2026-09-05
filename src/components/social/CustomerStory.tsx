@@ -12,10 +12,10 @@ interface CustomerStoryProps {
  */
 export function CustomerStory({ story }: CustomerStoryProps) {
   return (
-    <div className="p-6 bg-[#121212] border border-white/5 rounded-sm">
+    <div className="p-6 bg-white border border-[#262626]/10 rounded-sm shadow-xs">
       <div className="flex items-start gap-4 mb-4">
         {story.image ? (
-          <div className="relative w-10 h-10 rounded-full overflow-hidden flex-shrink-0 border border-white/10">
+          <div className="relative w-10 h-10 rounded-full overflow-hidden flex-shrink-0 border border-[#262626]/10">
             <Image src={story.image} alt={story.name} fill className="object-cover" />
           </div>
         ) : (
@@ -24,18 +24,18 @@ export function CustomerStory({ story }: CustomerStoryProps) {
           </div>
         )}
         <div>
-          <p className="text-white font-medium text-sm">{story.name}</p>
+          <p className="text-[#262626] font-medium text-sm">{story.name}</p>
           {story.productSlug && (
             <Link
               href={`/product/${story.productSlug}`}
-              className="text-xs text-brand-gold hover:text-white transition-colors"
+              className="text-xs text-brand-gold hover:text-[#262626] transition-colors"
             >
               View piece &rarr;
             </Link>
           )}
         </div>
       </div>
-      <p className="text-brand-silver/80 text-sm leading-relaxed italic">
+      <p className="text-[#262626]/80 text-sm leading-relaxed italic">
         &ldquo;{story.quote}&rdquo;
       </p>
     </div>

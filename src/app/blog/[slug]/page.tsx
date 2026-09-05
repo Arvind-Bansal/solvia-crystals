@@ -38,30 +38,30 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   return (
     <>
       <Navbar />
-      <main className="pt-32 pb-24 bg-[#0a0a0a] min-h-screen">
+      <main className="pt-32 pb-24 bg-[#F8F5EF] min-h-screen text-[#262626]">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         <article className="container mx-auto px-6 max-w-4xl">
-          <div className="text-xs text-brand-silver/60 uppercase tracking-widest mb-8 flex items-center space-x-2">
-            <Link href="/" className="hover:text-white transition-colors">Home</Link>
+          <div className="text-xs text-[#262626]/60 uppercase tracking-widest mb-8 flex items-center space-x-2">
+            <Link href="/" className="hover:text-[#262626] transition-colors">Home</Link>
             <span>/</span>
-            <Link href="/blog" className="hover:text-white transition-colors">Journal</Link>
+            <Link href="/blog" className="hover:text-[#262626] transition-colors">Journal</Link>
             <span>/</span>
             <span className="text-brand-gold">{post.category}</span>
           </div>
 
           <header className="mb-12">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif text-white mb-6 leading-tight">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif text-[#262626] mb-6 leading-tight font-medium">
               {post.title}
             </h1>
-            <div className="flex items-center space-x-4 text-sm text-brand-silver/60 border-b border-white/10 pb-6">
+            <div className="flex items-center space-x-4 text-sm text-[#262626]/60 border-b border-[#262626]/10 pb-6">
               <div className="flex items-center">
                 <span className="w-8 h-8 rounded-full bg-brand-gold/20 flex items-center justify-center text-brand-gold font-bold mr-3">
                   {post.author.charAt(0)}
                 </span>
-                <span className="font-medium text-white">{post.author}</span>
+                <span className="font-medium text-[#262626]">{post.author}</span>
               </div>
               <span>•</span>
               <time dateTime={post.date}>{new Date(post.date).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}</time>
@@ -70,7 +70,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             </div>
           </header>
 
-          <div className="relative aspect-video w-full mb-12 rounded-sm overflow-hidden border border-white/5">
+          <div className="relative aspect-video w-full mb-12 rounded-sm overflow-hidden border border-[#262626]/10 bg-[#F2EDE4]">
             <Image 
               src={post.image} 
               alt={post.title} 
@@ -81,7 +81,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           </div>
 
           <div 
-            className="prose prose-invert prose-brand max-w-none"
+            className="prose prose-brand max-w-none prose-headings:text-[#262626] prose-headings:font-serif prose-p:text-[#262626]/80 prose-a:text-brand-gold prose-strong:text-[#262626]"
             dangerouslySetInnerHTML={{ __html: post.content }}
           />
 

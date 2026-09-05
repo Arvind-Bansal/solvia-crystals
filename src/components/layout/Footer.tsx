@@ -40,16 +40,16 @@ export function Footer() {
   };
 
   return (
-    <footer className="bg-[#050505] border-t border-white/5 pt-16 pb-8">
+    <footer className="bg-[#F2EDE4] border-t border-[#262626]/10 pt-16 pb-8 text-[#262626]">
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
           {/* Brand Col */}
           <div className="col-span-1 md:col-span-1">
-            <span className="font-serif text-2xl font-bold tracking-wider text-white block mb-4">
-              SOLVIA <span className="text-brand-gold font-light">CRYSTALS</span>
+            <span className="font-serif text-2xl font-semibold tracking-wider text-[#262626] block mb-4">
+              SOLVIA <span className="text-brand-gold font-normal">CRYSTALS</span>
             </span>
-            <p className="text-sm text-brand-silver/80 mb-6 leading-relaxed">
-              Ethically sourced crystals. Considered design.
+            <p className="text-sm text-[#262626]/70 mb-6 leading-relaxed">
+              Ethically sourced crystals. Considered design. Everyday rituals.
             </p>
             {socialLinks.length > 0 && (
               <div className="flex space-x-4">
@@ -59,7 +59,7 @@ export function Footer() {
                     href={link.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-brand-silver hover:text-brand-gold transition-colors"
+                    className="text-[#262626]/70 hover:text-brand-gold transition-colors"
                     aria-label={link.label}
                   >
                     <link.icon className="w-5 h-5" />
@@ -71,15 +71,15 @@ export function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-white font-medium mb-4 uppercase tracking-wider text-sm">Shop</h4>
+            <h4 className="text-[#262626] font-medium mb-4 uppercase tracking-wider text-xs">Shop</h4>
             <ul className="space-y-3">
               {[
                 { label: "All Pieces", href: "/shop" },
-                { label: "Collections", href: "/collections" },
+                { label: "Everyday Rituals", href: "/collections/everyday-rituals" },
                 { label: "Wishlist", href: "/wishlist" },
               ].map((item) => (
                 <li key={item.label}>
-                  <Link href={item.href} className="text-brand-silver/80 hover:text-white text-sm transition-colors">
+                  <Link href={item.href} className="text-[#262626]/70 hover:text-[#262626] text-sm transition-colors">
                     {item.label}
                   </Link>
                 </li>
@@ -89,7 +89,7 @@ export function Footer() {
 
           {/* Support */}
           <div>
-            <h4 className="text-white font-medium mb-4 uppercase tracking-wider text-sm">Support</h4>
+            <h4 className="text-[#262626] font-medium mb-4 uppercase tracking-wider text-xs">Support</h4>
             <ul className="space-y-3">
               {[
                 { label: "Contact Us", href: "/contact" },
@@ -100,7 +100,7 @@ export function Footer() {
                 { label: "Terms of Service", href: "/terms" },
               ].map((item) => (
                 <li key={item.label}>
-                  <Link href={item.href} className="text-brand-silver/80 hover:text-white text-sm transition-colors">
+                  <Link href={item.href} className="text-[#262626]/70 hover:text-[#262626] text-sm transition-colors">
                     {item.label}
                   </Link>
                 </li>
@@ -110,12 +110,12 @@ export function Footer() {
 
           {/* Newsletter */}
           <div>
-            <h4 className="text-white font-medium mb-4 uppercase tracking-wider text-sm">Stay Connected</h4>
-            <p className="text-sm text-brand-silver/80 mb-4">
+            <h4 className="text-[#262626] font-medium mb-4 uppercase tracking-wider text-xs">Stay Connected</h4>
+            <p className="text-sm text-[#262626]/70 mb-4">
               New releases, styling guides, and early access. No spam.
             </p>
             {newsletterStatus === "success" ? (
-              <p className="text-sm text-brand-gold">Thanks for subscribing! ✨</p>
+              <p className="text-sm text-brand-gold font-medium">Thanks for subscribing! ✨</p>
             ) : (
               <form className="space-y-2" onSubmit={handleNewsletterSubmit}>
                 <input
@@ -123,7 +123,7 @@ export function Footer() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Your email address"
-                  className="w-full bg-transparent border border-white/20 rounded-sm px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-gold transition-colors"
+                  className="w-full bg-white border border-[#262626]/20 rounded-sm px-4 py-3 text-sm text-[#262626] placeholder:text-[#262626]/40 focus:outline-none focus:border-brand-gold transition-colors"
                   required
                 />
                 <Button className="w-full" variant="outline" disabled={newsletterStatus === "loading"}>
@@ -134,13 +134,13 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-xs text-brand-silver/60 mb-4 md:mb-0">
+        <div className="pt-8 border-t border-[#262626]/10 flex flex-col md:flex-row justify-between items-center">
+          <p className="text-xs text-[#262626]/60 mb-4 md:mb-0">
             &copy; 2026 Solvia Crystals. All rights reserved.
           </p>
-          <div className="flex space-x-6 text-xs text-brand-silver/60">
-            <Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
-            <Link href="/terms" className="hover:text-white transition-colors">Terms of Service</Link>
+          <div className="flex space-x-6 text-xs text-[#262626]/60">
+            <Link href="/privacy" className="hover:text-[#262626] transition-colors">Privacy Policy</Link>
+            <Link href="/terms" className="hover:text-[#262626] transition-colors">Terms of Service</Link>
           </div>
         </div>
       </div>

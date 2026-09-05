@@ -14,11 +14,11 @@ export default function NotFound() {
   return (
     <>
       <Navbar />
-      <main className="pt-40 pb-24 bg-[#0a0a0a] min-h-screen flex items-center justify-center">
+      <main className="pt-40 pb-24 bg-[#F8F5EF] min-h-screen flex items-center justify-center text-[#262626]">
         <div className="container mx-auto px-6 text-center max-w-lg">
           <p className="text-brand-gold text-sm uppercase tracking-[0.3em] mb-4 font-medium">404</p>
-          <h1 className="text-4xl md:text-5xl font-serif text-white mb-6">Page Not Found</h1>
-          <p className="text-brand-silver/80 mb-10 leading-relaxed">
+          <h1 className="text-4xl md:text-5xl font-serif text-[#262626] mb-6 font-medium">Page Not Found</h1>
+          <p className="text-[#262626]/70 mb-10 leading-relaxed">
             The page you&apos;re looking for doesn&apos;t exist or has been moved. Let us help you find your way.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">

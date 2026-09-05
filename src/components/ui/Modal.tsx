@@ -33,20 +33,20 @@ export function Modal({ isOpen, onClose, children, title, className = "" }: Moda
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="fixed inset-0 bg-black/80 backdrop-blur-sm"
+            className="fixed inset-0 bg-[#262626]/40 backdrop-blur-sm"
           />
           <motion.div
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            className={`relative w-full max-w-lg bg-[#0a0a0a] border border-white/10 rounded-sm shadow-2xl overflow-hidden z-10 ${className}`}
+            className={`relative w-full max-w-lg bg-[#F8F5EF] border border-[#262626]/10 rounded-sm shadow-2xl overflow-hidden z-10 ${className}`}
           >
             {title && (
-              <div className="flex items-center justify-between p-6 border-b border-white/10">
-                <h2 className="text-xl font-serif text-white">{title}</h2>
+              <div className="flex items-center justify-between p-6 border-b border-[#262626]/10">
+                <h2 className="text-xl font-serif text-[#262626]">{title}</h2>
                 <button 
                   onClick={onClose}
-                  className="text-brand-silver hover:text-white transition-colors"
+                  className="text-[#262626]/60 hover:text-[#262626] transition-colors"
                 >
                   <X className="w-5 h-5" />
                 </button>
@@ -55,7 +55,7 @@ export function Modal({ isOpen, onClose, children, title, className = "" }: Moda
             {!title && (
               <button 
                 onClick={onClose}
-                className="absolute top-4 right-4 z-20 text-brand-silver hover:text-white transition-colors bg-black/50 p-1 rounded-sm"
+                className="absolute top-4 right-4 z-20 text-[#262626]/60 hover:text-[#262626] transition-colors bg-[#F2EDE4] p-1 rounded-sm"
               >
                 <X className="w-5 h-5" />
               </button>

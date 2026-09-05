@@ -46,13 +46,13 @@ export function ProductCard({ product }: ProductCardProps) {
 
   return (
     <motion.div
-      className="group flex flex-col bg-[#121212] rounded-sm overflow-hidden border border-white/5 hover:border-white/15 transition-colors duration-500 h-full"
+      className="group flex flex-col bg-white rounded-sm overflow-hidden border border-[#262626]/10 hover:border-brand-gold/50 transition-colors duration-300 h-full shadow-xs"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
     >
-      <Link href={`/product/${product.slug}`} className="relative block aspect-[4/5] overflow-hidden bg-[#1a1a1a]">
+      <Link href={`/product/${product.slug}`} className="relative block aspect-[4/5] overflow-hidden bg-[#F2EDE4]">
         <ProductImage
           src={product.images.primary}
           alt={product.name}
@@ -64,12 +64,12 @@ export function ProductCard({ product }: ProductCardProps) {
         {/* Badges */}
         <div className="absolute top-4 left-4 flex flex-col gap-2 z-20">
           {product.isBestseller && (
-            <span className="bg-brand-gold text-brand-black text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded-sm">
+            <span className="bg-brand-gold text-white text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded-sm">
               Bestseller
             </span>
           )}
           {!product.inStock && (
-            <span className="bg-white/10 backdrop-blur-md text-white text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded-sm">
+            <span className="bg-black/60 backdrop-blur-md text-white text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded-sm">
               Sold Out
             </span>
           )}
@@ -78,16 +78,16 @@ export function ProductCard({ product }: ProductCardProps) {
         {/* Wishlist Button */}
         <button
           onClick={handleWishlist}
-          className="absolute top-4 right-4 p-2 bg-black/40 backdrop-blur-sm rounded-full text-brand-silver hover:text-brand-gold hover:bg-black/60 transition-all z-20"
+          className="absolute top-4 right-4 p-2 bg-white/80 backdrop-blur-sm rounded-full text-[#262626] hover:text-brand-gold hover:bg-white transition-all z-20 shadow-xs"
           aria-label="Toggle wishlist"
         >
           <Heart className={`w-4 h-4 ${isWishlisted ? "fill-brand-gold text-brand-gold" : ""}`} />
         </button>
 
         {/* Quick Add Overlay */}
-        <div className="absolute bottom-0 left-0 w-full p-4 translate-y-0 md:translate-y-full md:group-hover:translate-y-0 transition-transform duration-300 ease-out z-20 bg-gradient-to-t from-black/80 to-transparent">
+        <div className="absolute bottom-0 left-0 w-full p-4 translate-y-0 md:translate-y-full md:group-hover:translate-y-0 transition-transform duration-300 ease-out z-20 bg-gradient-to-t from-white/90 to-transparent">
           <Button 
-            className="w-full h-10 text-xs shadow-lg" 
+            className="w-full h-10 text-xs shadow-md" 
             size="sm" 
             onClick={handleAddToCart}
             disabled={!product.inStock}
@@ -104,27 +104,32 @@ export function ProductCard({ product }: ProductCardProps) {
       </Link>
 
       {/* Content */}
-      <div className="p-4 flex flex-col flex-1">
-        <div className="flex justify-between items-start mb-2">
-          <div>
-            <p className="text-[10px] text-brand-gold uppercase tracking-wider mb-1 font-medium">{product.intention}</p>
+      <div className="p-5 flex flex-col flex-1">
+        <div className="flex justify-between items-start mb-1">
+          <div className="flex-1 pr-2">
+            <p className="text-[10px] text-brand-gold uppercase tracking-widest mb-1 font-medium">{product.intention}</p>
             <Link href={`/product/${product.slug}`}>
-              <h3 className="text-base font-serif text-white group-hover:text-brand-gold transition-colors line-clamp-1">
+              <h3 className="text-base font-serif font-medium text-[#262626] group-hover:text-brand-gold transition-colors tracking-wide uppercase">
                 {product.name}
               </h3>
             </Link>
+            <p className="text-xs text-[#262626]/70 mt-0.5 font-sans">
+              {product.subtitle}
+            </p>
           </div>
-          <span className="text-brand-silver font-medium">{formatPrice(product.price)}</span>
+          <span className="text-sm text-[#262626] font-medium whitespace-nowrap">{formatPrice(product.price)}</span>
         </div>
         
-        <div className="flex items-center space-x-1 mt-auto pt-2">
-          <div className="flex text-brand-gold">
-            {[...Array(5)].map((_, i) => (
-              <Star key={i} className={`w-3.5 h-3.5 ${i < Math.floor(product.rating) ? 'fill-current' : 'text-brand-silver/20'}`} />
-            ))}
+        {product.reviewsCount > 0 && (
+          <div className="flex items-center space-x-1 mt-auto pt-3">
+            <div className="flex text-brand-gold">
+              {[...Array(5)].map((_, i) => (
+                <Star key={i} className={`w-3.5 h-3.5 ${i < Math.floor(product.rating) ? 'fill-current' : 'text-[#262626]/20'}`} />
+              ))}
+            </div>
+            <span className="text-xs text-[#262626]/60 ml-2">({product.reviewsCount})</span>
           </div>
-          <span className="text-xs text-brand-silver/60 ml-2">({product.reviewsCount})</span>
-        </div>
+        )}
       </div>
     </motion.div>
   );

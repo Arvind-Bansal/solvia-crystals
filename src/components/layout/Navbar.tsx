@@ -34,7 +34,7 @@ export function Navbar() {
   const navLinks = [
     { name: "Home", href: "/" },
     { name: "Shop", href: "/shop" },
-    { name: "Collections", href: "/collections" },
+    { name: "Everyday Rituals", href: "/collections/everyday-rituals" },
     { name: "About", href: "/about" },
     { name: "Journal", href: "/blog" },
     { name: "Contact", href: "/contact" },
@@ -46,14 +46,14 @@ export function Navbar() {
         className={cn(
           "fixed top-0 w-full z-40 transition-all duration-300 border-b border-transparent",
           isScrolled
-            ? "bg-[#0a0a0a]/90 backdrop-blur-md border-white/10 py-4"
+            ? "bg-[#F8F5EF]/95 backdrop-blur-md border-[#262626]/10 py-4 shadow-xs"
             : "bg-transparent py-6"
         )}
       >
         <div className="container mx-auto px-6 flex items-center justify-between">
           {/* Mobile Menu Toggle */}
           <button
-            className="md:hidden text-brand-silver hover:text-white transition-colors"
+            className="md:hidden text-[#262626] hover:text-brand-gold transition-colors"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle Menu"
           >
@@ -62,18 +62,18 @@ export function Navbar() {
 
           {/* Logo */}
           <Link href="/" className="flex-1 md:flex-none flex items-center justify-center md:justify-start group">
-            <div className="relative flex items-center justify-center w-8 h-8 mr-3">
-              <svg viewBox="0 0 100 100" className="w-full h-full text-brand-gold group-hover:rotate-180 transition-transform duration-1000 ease-in-out" fill="none" stroke="currentColor" strokeWidth="2">
+            <div className="relative flex items-center justify-center w-7 h-7 mr-2.5">
+              <svg viewBox="0 0 100 100" className="w-full h-full text-brand-gold group-hover:rotate-180 transition-transform duration-1000 ease-in-out" fill="none" stroke="currentColor" strokeWidth="3">
                 <path d="M50 0 L100 50 L50 100 L0 50 Z" />
-                <path d="M50 20 L80 50 L50 80 L20 50 Z" strokeWidth="1" opacity="0.5" />
-                <circle cx="50" cy="50" r="5" fill="currentColor" />
+                <path d="M50 20 L80 50 L50 80 L20 50 Z" strokeWidth="1.5" opacity="0.6" />
+                <circle cx="50" cy="50" r="6" fill="currentColor" />
               </svg>
             </div>
             <div className="flex flex-col items-start justify-center leading-none">
-              <span className="font-serif text-xl md:text-2xl font-medium tracking-[0.2em] text-white">
+              <span className="font-serif text-xl md:text-2xl font-semibold tracking-[0.2em] text-[#262626]">
                 SOLVIA
               </span>
-              <span className="text-[9px] md:text-[10px] uppercase tracking-[0.3em] text-brand-gold mt-1">
+              <span className="text-[9px] md:text-[10px] uppercase tracking-[0.35em] text-brand-gold font-medium mt-0.5">
                 Crystals
               </span>
             </div>
@@ -85,7 +85,7 @@ export function Navbar() {
               <Link
                 key={link.name}
                 href={link.href}
-                className="text-sm font-medium text-brand-silver hover:text-brand-gold transition-colors"
+                className="text-sm font-medium text-[#262626]/80 hover:text-brand-gold transition-colors tracking-wide"
               >
                 {link.name}
               </Link>
@@ -93,30 +93,30 @@ export function Navbar() {
           </nav>
 
           {/* Icons */}
-          <div className="flex items-center space-x-4">
-            <button aria-label="Search" className="text-brand-silver hover:text-white transition-colors" onClick={() => setSearchOpen(true)}>
+          <div className="flex items-center space-x-5">
+            <button aria-label="Search" className="text-[#262626]/80 hover:text-[#262626] transition-colors" onClick={() => setSearchOpen(true)}>
               <Search className="w-5 h-5" />
             </button>
             <Link
               href="/wishlist"
               aria-label="Wishlist"
-              className="text-brand-silver hover:text-white relative transition-colors"
+              className="text-[#262626]/80 hover:text-[#262626] relative transition-colors"
             >
               <Heart className={`w-5 h-5 ${wishlistCount > 0 ? "fill-brand-gold text-brand-gold" : ""}`} />
               {wishlistCount > 0 && (
-                <span className="absolute -top-2 -right-2 bg-brand-gold text-[#0a0a0a] text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">
+                <span className="absolute -top-2 -right-2 bg-brand-gold text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">
                   {wishlistCount}
                 </span>
               )}
             </Link>
             <button 
               aria-label="Cart" 
-              className="text-brand-silver hover:text-white relative"
+              className="text-[#262626]/80 hover:text-[#262626] relative"
               onClick={() => setCartOpen(true)}
             >
               <ShoppingBag className="w-5 h-5" />
               {cartCount > 0 && (
-                <span className="absolute -top-2 -right-2 bg-brand-gold text-[#0a0a0a] text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center" aria-label={`${cartCount} items in cart`}>
+                <span className="absolute -top-2 -right-2 bg-brand-gold text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center" aria-label={`${cartCount} items in cart`}>
                   {cartCount}
                 </span>
               )}
@@ -128,7 +128,7 @@ export function Navbar() {
         <motion.div
           initial={false}
           animate={{ height: mobileMenuOpen ? "auto" : 0, opacity: mobileMenuOpen ? 1 : 0 }}
-          className="md:hidden overflow-hidden bg-[#0a0a0a] border-b border-white/10"
+          className="md:hidden overflow-hidden bg-[#F8F5EF] border-b border-[#262626]/10"
         >
           <nav className="flex flex-col py-4 px-6 space-y-4">
             {navLinks.map((link) => (
@@ -136,7 +136,7 @@ export function Navbar() {
                 key={link.name}
                 href={link.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className="text-lg font-medium text-brand-silver hover:text-brand-gold transition-colors"
+                className="text-base font-medium text-[#262626] hover:text-brand-gold transition-colors"
               >
                 {link.name}
               </Link>
@@ -144,11 +144,11 @@ export function Navbar() {
             <Link
               href="/wishlist"
               onClick={() => setMobileMenuOpen(false)}
-              className="text-lg font-medium text-brand-silver hover:text-brand-gold transition-colors flex items-center"
+              className="text-base font-medium text-[#262626] hover:text-brand-gold transition-colors flex items-center justify-between"
             >
               Wishlist
               {wishlistCount > 0 && (
-                <span className="ml-2 bg-brand-gold text-[#0a0a0a] text-xs font-bold px-2 py-0.5 rounded-full">
+                <span className="ml-2 bg-brand-gold text-white text-xs font-bold px-2 py-0.5 rounded-full">
                   {wishlistCount}
                 </span>
               )}

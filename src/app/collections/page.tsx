@@ -18,11 +18,11 @@ export default function CollectionsPage() {
   return (
     <>
       <Navbar />
-      <main className="bg-[#0a0a0a] min-h-screen pt-32 pb-24">
+      <main className="bg-[#F8F5EF] min-h-screen pt-32 pb-24 text-[#262626]">
         <div className="container mx-auto px-6">
           <div className="max-w-3xl mb-16">
-            <h1 className="text-4xl md:text-5xl font-serif text-white mb-4">Collections</h1>
-            <p className="text-lg text-brand-silver/80 leading-relaxed">
+            <h1 className="text-4xl md:text-5xl font-serif text-[#262626] mb-4 font-medium">Collections</h1>
+            <p className="text-lg text-[#262626]/70 leading-relaxed">
               Each collection is curated around a single intention — a shared thread that connects every piece within it.
             </p>
           </div>
@@ -32,7 +32,7 @@ export default function CollectionsPage() {
               <Link
                 key={collection.slug}
                 href={`/collections/${collection.slug}`}
-                className="group relative aspect-[16/10] rounded-sm overflow-hidden border border-white/5 hover:border-white/15 transition-colors"
+                className="group relative aspect-[16/10] rounded-sm overflow-hidden border border-[#262626]/10 hover:border-brand-gold/50 transition-colors shadow-xs bg-[#F2EDE4]"
               >
                 <Image
                   src={collection.featuredImage}
@@ -41,15 +41,15 @@ export default function CollectionsPage() {
                   sizes="(max-width: 768px) 100vw, 50vw"
                   className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-white/90 via-white/30 to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
-                  <h2 className="text-2xl md:text-3xl font-serif text-white mb-2 group-hover:text-brand-gold transition-colors">
+                  <h2 className="text-2xl md:text-3xl font-serif text-[#262626] mb-2 group-hover:text-brand-gold transition-colors font-medium">
                     {collection.title}
                   </h2>
-                  <p className="text-sm text-brand-silver/80 mb-4 line-clamp-2">
+                  <p className="text-sm text-[#262626]/70 mb-4 line-clamp-2">
                     {collection.description}
                   </p>
-                  <span className="inline-flex items-center text-sm font-medium text-brand-gold group-hover:text-white transition-colors">
+                  <span className="inline-flex items-center text-sm font-medium text-brand-gold group-hover:text-[#262626] transition-colors">
                     Explore Collection <ArrowRight className="w-4 h-4 ml-2" />
                   </span>
                 </div>

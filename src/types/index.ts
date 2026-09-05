@@ -9,6 +9,7 @@ export interface ProductImages {
 export interface Product {
   id: string;
   name: string;
+  subtitle: string;
   slug: string;
   price: number;
   compareAtPrice?: number;

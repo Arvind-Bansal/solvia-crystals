@@ -17,7 +17,7 @@ const inter = Inter({
 });
 
 export const viewport: Viewport = {
-  themeColor: "#0a0a0a",
+  themeColor: "#F8F5EF",
   width: "device-width",
   initialScale: 1,
   maximumScale: 1, // Prevents iOS input zooming which can hurt UX
@@ -36,13 +36,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" data-scroll-behavior="smooth" className={`${outfit.variable} ${inter.variable}`}>
-      <body className="antialiased bg-[#0a0a0a] text-white min-h-screen flex flex-col selection:bg-brand-gold selection:text-[#0a0a0a]">
+      <body className="antialiased bg-[#F8F5EF] text-[#262626] min-h-screen flex flex-col selection:bg-brand-gold selection:text-[#262626]">
         {children}
         <Toaster position="bottom-right" toastOptions={{
           style: {
-            background: '#121212',
-            color: '#F2F2F2',
-            border: '1px solid rgba(255,255,255,0.1)',
+            background: '#F8F5EF',
+            color: '#262626',
+            border: '1px solid rgba(38,38,38,0.1)',
           }
         }} />
         <NewsletterPopup />

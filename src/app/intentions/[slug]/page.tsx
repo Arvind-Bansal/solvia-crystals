@@ -39,10 +39,10 @@ export default async function IntentionPage({ params }: { params: Promise<{ slug
   return (
     <>
       <Navbar />
-      <main className="bg-[#0a0a0a] min-h-screen">
+      <main className="bg-[#F8F5EF] min-h-screen text-[#262626]">
         {/* Storytelling Header */}
-        <section className="relative pt-40 pb-32 border-b border-white/5">
-          <div className="absolute inset-0 z-0 opacity-30">
+        <section className="relative pt-40 pb-32 border-b border-[#262626]/10 bg-[#F2EDE4]">
+          <div className="absolute inset-0 z-0 opacity-20">
             <Image 
               src={data.heroImage}
               alt={data.title}
@@ -50,13 +50,13 @@ export default async function IntentionPage({ params }: { params: Promise<{ slug
               className="object-cover"
               priority
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a] via-[#0a0a0a]/80 to-[#0a0a0a]" />
+            <div className="absolute inset-0 bg-gradient-to-b from-[#F8F5EF] via-[#F8F5EF]/80 to-[#F8F5EF]" />
           </div>
           
           <div className="container relative z-10 mx-auto px-6 max-w-4xl text-center">
             <span className="text-brand-gold text-xs font-bold uppercase tracking-widest mb-4 block">Shop by Intention</span>
-            <h1 className="text-5xl md:text-7xl font-serif text-white mb-8">{data.title}</h1>
-            <p className="text-lg md:text-xl text-brand-silver/90 leading-relaxed font-light">
+            <h1 className="text-5xl md:text-7xl font-serif text-[#262626] mb-8 font-medium">{data.title}</h1>
+            <p className="text-lg md:text-xl text-[#262626]/80 leading-relaxed font-light">
               {data.description}
             </p>
           </div>
@@ -66,8 +66,8 @@ export default async function IntentionPage({ params }: { params: Promise<{ slug
         <section className="py-24">
           <div className="container mx-auto px-6">
             <div className="flex justify-between items-end mb-12">
-              <h2 className="text-3xl font-serif text-white">Curated Pieces</h2>
-              <span className="text-brand-silver/60 text-sm">{intentionProducts.length} {intentionProducts.length === 1 ? 'piece' : 'pieces'}</span>
+              <h2 className="text-3xl font-serif text-[#262626] font-medium">Curated Pieces</h2>
+              <span className="text-[#262626]/60 text-sm">{intentionProducts.length} {intentionProducts.length === 1 ? 'piece' : 'pieces'}</span>
             </div>
 
             {intentionProducts.length > 0 ? (
@@ -77,7 +77,7 @@ export default async function IntentionPage({ params }: { params: Promise<{ slug
                 ))}
               </div>
             ) : (
-              <p className="text-center text-brand-silver/60 py-12 border border-white/5 bg-[#121212] rounded-sm">
+              <p className="text-center text-[#262626]/60 py-12 border border-[#262626]/10 bg-white rounded-sm">
                 New pieces for this collection are currently in production.
               </p>
             )}
@@ -85,9 +85,9 @@ export default async function IntentionPage({ params }: { params: Promise<{ slug
         </section>
 
         {/* FAQs */}
-        <section className="py-24 bg-[#050505] border-t border-white/5">
+        <section className="py-24 bg-[#F2EDE4] border-t border-[#262626]/10">
           <div className="container mx-auto px-6 max-w-3xl">
-            <h2 className="text-3xl font-serif text-white mb-12 text-center">Frequently Asked Questions</h2>
+            <h2 className="text-3xl font-serif text-[#262626] mb-12 text-center font-medium">Frequently Asked Questions</h2>
             <Accordion items={data.faqs} structuredData />
           </div>
         </section>

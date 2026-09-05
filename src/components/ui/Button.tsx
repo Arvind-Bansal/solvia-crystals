@@ -17,12 +17,12 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         whileHover={{ scale: 1.01 }}
         whileTap={{ scale: 0.99 }}
         className={cn(
-          "inline-flex items-center justify-center rounded-sm font-medium tracking-[0.15em] uppercase transition-all duration-500 ease-out focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-brand-gold disabled:pointer-events-none disabled:opacity-50",
+          "inline-flex items-center justify-center rounded-sm font-medium tracking-[0.15em] uppercase transition-all duration-300 ease-out focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-brand-gold disabled:pointer-events-none disabled:opacity-50",
           {
-            "bg-brand-gold text-[#0a0a0a] hover:bg-[#d4b96a] hover:shadow-[0_0_15px_rgba(197,160,89,0.2)]": variant === "primary",
-            "bg-white/5 text-brand-silver hover:bg-white/10 hover:text-white border border-white/5": variant === "secondary",
-            "border-[0.5px] border-brand-gold text-brand-gold hover:bg-brand-gold hover:text-[#0a0a0a]": variant === "outline",
-            "hover:bg-white/5 text-brand-silver hover:text-brand-gold": variant === "ghost",
+            "bg-[#262626] text-[#F8F5EF] hover:bg-[#262626]/90 hover:shadow-md border border-[#262626]": variant === "primary",
+            "bg-[#F2EDE4] text-[#262626] hover:bg-[#E8E2D7] border border-[#262626]/10": variant === "secondary",
+            "border border-[#262626] text-[#262626] hover:bg-[#262626] hover:text-[#F8F5EF]": variant === "outline",
+            "hover:bg-[#262626]/5 text-[#262626] hover:text-[#D6B47A]": variant === "ghost",
             "h-8 px-4 text-[10px]": size === "sm",
             "h-12 px-8 py-2 text-xs": size === "md",
             "h-14 px-12 py-3 text-sm": size === "lg",

@@ -13,7 +13,7 @@ export function EditorialSplit({ block, cta }: EditorialSplitProps) {
   const imageFirst = block.position === "left";
 
   const imageBlock = block.image ? (
-    <div className={`w-full md:w-1/2 relative ${block.type === "packaging" ? "aspect-square" : "aspect-[3/4]"} rounded-sm overflow-hidden`}>
+    <div className={`w-full md:w-1/2 relative ${block.type === "packaging" ? "aspect-square" : "aspect-[3/4]"} rounded-sm overflow-hidden border border-[#262626]/10 shadow-xs bg-[#F2EDE4]`}>
       <Image
         src={block.image}
         alt={block.imageAlt || block.title || ""}
@@ -32,7 +32,7 @@ export function EditorialSplit({ block, cta }: EditorialSplitProps) {
         </span>
       )}
       {block.title && (
-        <h2 className="text-3xl md:text-4xl font-serif text-white mb-6 leading-tight">
+        <h2 className="text-3xl md:text-4xl font-serif text-[#262626] mb-6 leading-tight font-medium">
           {block.title.split(",").map((part, i) => (
             <span key={i}>
               {i > 0 && <><br /></>}
@@ -42,7 +42,7 @@ export function EditorialSplit({ block, cta }: EditorialSplitProps) {
         </h2>
       )}
       {paragraphs.map((p, i) => (
-        <p key={i} className={`text-brand-silver/80 leading-relaxed ${i < paragraphs.length - 1 ? "mb-4" : cta ? "mb-8" : ""}`}>
+        <p key={i} className={`text-[#262626]/80 leading-relaxed ${i < paragraphs.length - 1 ? "mb-4" : cta ? "mb-8" : ""}`}>
           {p}
         </p>
       ))}
@@ -55,7 +55,7 @@ export function EditorialSplit({ block, cta }: EditorialSplitProps) {
   );
 
   return (
-    <section className="py-24 border-t border-white/5">
+    <section className="py-24 border-t border-[#262626]/10">
       <div className="container mx-auto px-6">
         <div className="flex flex-col md:flex-row gap-16 items-center max-w-5xl mx-auto">
           {imageFirst ? (

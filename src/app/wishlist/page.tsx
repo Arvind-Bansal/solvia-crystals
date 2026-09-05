@@ -48,12 +48,12 @@ export default function WishlistPage() {
   return (
     <>
       <Navbar />
-      <main className="pt-32 pb-24 bg-[#0a0a0a] min-h-screen">
+      <main className="pt-32 pb-24 bg-[#F8F5EF] min-h-screen text-[#262626]">
         <div className="container mx-auto px-6">
           <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-12">
             <div>
-              <h1 className="text-4xl md:text-5xl font-serif text-white mb-2">Wishlist</h1>
-              <p className="text-brand-silver/80">
+              <h1 className="text-4xl md:text-5xl font-serif text-[#262626] mb-2 font-medium">Wishlist</h1>
+              <p className="text-[#262626]/70">
                 {mounted && items.length > 0
                   ? `${items.length} ${items.length === 1 ? "piece" : "pieces"} saved`
                   : "Pieces you\u2019ve been drawn to."}
@@ -74,7 +74,7 @@ export default function WishlistPage() {
               title="Your wishlist is empty"
               description="Tap the heart on any piece to save it here for later."
               cta={{ label: "Browse Collection", href: "/shop" }}
-              className="border border-white/5 rounded-sm bg-[#121212]"
+              className="border border-[#262626]/10 rounded-sm bg-white"
             />
           ) : (
             <div className="space-y-4">
@@ -86,10 +86,10 @@ export default function WishlistPage() {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, x: -20, transition: { duration: 0.2 } }}
-                    className="flex gap-4 md:gap-6 p-4 md:p-5 bg-[#121212] border border-white/5 rounded-sm hover:border-white/10 transition-colors"
+                    className="flex gap-4 md:gap-6 p-4 md:p-5 bg-white border border-[#262626]/10 rounded-sm hover:border-brand-gold/50 transition-colors shadow-xs"
                   >
                     {/* Product Image */}
-                    <Link href={`/product/${product.slug}`} className="relative w-24 h-24 md:w-32 md:h-32 rounded-sm overflow-hidden border border-white/5 flex-shrink-0 bg-[#1a1a1a]">
+                    <Link href={`/product/${product.slug}`} className="relative w-24 h-24 md:w-32 md:h-32 rounded-sm overflow-hidden border border-[#262626]/10 flex-shrink-0 bg-[#F2EDE4]">
                       <ProductImage
                         src={product.images.primary}
                         alt={product.name}
@@ -103,19 +103,20 @@ export default function WishlistPage() {
                     <div className="flex-1 min-w-0 flex flex-col">
                       <div className="flex items-start justify-between gap-2 mb-1">
                         <Link href={`/product/${product.slug}`} className="hover:text-brand-gold transition-colors">
-                          <h3 className="text-white font-serif text-base md:text-lg leading-tight">{product.name}</h3>
+                          <h3 className="text-[#262626] font-serif font-medium text-base md:text-lg leading-tight uppercase tracking-wide">{product.name}</h3>
+                          <p className="text-xs text-[#262626]/70 mt-0.5">{product.subtitle}</p>
                         </Link>
                         <button
                           onClick={() => handleRemove(product)}
                           aria-label={`Remove ${product.name} from wishlist`}
-                          className="text-brand-silver/40 hover:text-red-400 transition-colors flex-shrink-0 p-1"
+                          className="text-[#262626]/40 hover:text-red-500 transition-colors flex-shrink-0 p-1"
                         >
                           <Trash2 className="w-4 h-4" />
                         </button>
                       </div>
 
-                      <p className="text-sm text-brand-silver/60 mb-1 hidden md:block">{product.intention} · {product.collection}</p>
-                      <p className="text-brand-gold font-medium mb-auto">{formatPrice(product.price)}</p>
+                      <p className="text-xs text-[#262626]/60 mb-1 hidden md:block">{product.intention} · Everyday Rituals</p>
+                      <p className="text-[#262626] font-medium mb-auto text-sm">{formatPrice(product.price)}</p>
 
                       {/* Action Buttons */}
                       <div className="flex items-center gap-2 mt-3">

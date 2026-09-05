@@ -21,5 +21,5 @@ export const FILTER_CHAKRAS: FilterDefinition = {
 export const FILTER_COLLECTIONS: FilterDefinition = {
   key: "collection",
   label: "Collection",
-  options: ["All", "Launch 01"],
+  options: ["All", "Everyday Rituals"],
 };

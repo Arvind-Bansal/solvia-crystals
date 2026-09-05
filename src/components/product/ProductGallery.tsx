@@ -16,7 +16,7 @@ export function ProductGallery({ images, productName }: ProductGalleryProps) {
   return (
     <div className="space-y-4">
       {/* Main Image */}
-      <div className="relative aspect-[4/5] bg-[#121212] rounded-sm overflow-hidden border border-white/5">
+      <div className="relative aspect-[4/5] bg-[#F2EDE4] rounded-sm overflow-hidden border border-[#262626]/10 shadow-xs">
         <ProductImage
           src={allImages[activeIndex]}
           alt={productName}
@@ -45,10 +45,10 @@ export function ProductGallery({ images, productName }: ProductGalleryProps) {
               role="tab"
               aria-selected={activeIndex === idx}
               aria-label={`View image ${idx + 1} of ${allImages.length}`}
-              className={`relative flex-shrink-0 w-20 h-20 md:w-auto md:h-auto md:aspect-square bg-[#121212] rounded-sm overflow-hidden border-2 cursor-pointer transition-colors ${
+              className={`relative flex-shrink-0 w-20 h-20 md:w-auto md:h-auto md:aspect-square bg-[#F2EDE4] rounded-sm overflow-hidden border-2 cursor-pointer transition-colors ${
                 activeIndex === idx
                   ? "border-brand-gold"
-                  : "border-white/5 hover:border-white/20"
+                  : "border-[#262626]/10 hover:border-[#262626]/30"
               }`}
             >
               <ProductImage

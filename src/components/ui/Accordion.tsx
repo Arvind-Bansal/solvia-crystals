@@ -49,14 +49,14 @@ export function Accordion({ items, structuredData = false }: AccordionProps) {
         {items.map((item, idx) => (
           <div
             key={idx}
-            className="border border-white/5 rounded-sm bg-[#121212] overflow-hidden"
+            className="border border-[#262626]/10 rounded-sm bg-white overflow-hidden shadow-xs"
           >
             <button
               onClick={() => toggle(idx)}
-              className="w-full flex items-center justify-between p-5 md:p-6 text-left hover:bg-white/[0.02] transition-colors"
+              className="w-full flex items-center justify-between p-5 md:p-6 text-left hover:bg-[#F2EDE4]/50 transition-colors"
               aria-expanded={openIndex === idx}
             >
-              <span className="text-white font-serif text-base md:text-lg pr-4">{item.question}</span>
+              <span className="text-[#262626] font-serif text-base md:text-lg pr-4">{item.question}</span>
               <ChevronDown
                 className={`w-5 h-5 text-brand-gold flex-shrink-0 transition-transform duration-300 ${
                   openIndex === idx ? "rotate-180" : ""
@@ -72,7 +72,7 @@ export function Accordion({ items, structuredData = false }: AccordionProps) {
                   transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
                 >
                   <div className="px-5 md:px-6 pb-5 md:pb-6">
-                    <p className="text-brand-silver/80 text-sm leading-relaxed">{item.answer}</p>
+                    <p className="text-[#262626]/80 text-sm leading-relaxed">{item.answer}</p>
                   </div>
                 </motion.div>
               )}

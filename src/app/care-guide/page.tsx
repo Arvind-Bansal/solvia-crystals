@@ -56,10 +56,10 @@ export default function CareGuidePage() {
   return (
     <>
       <Navbar />
-      <main className="pt-40 pb-24 bg-[#0a0a0a] min-h-screen">
+      <main className="pt-40 pb-24 bg-[#F8F5EF] min-h-screen text-[#262626]">
         <div className="container mx-auto px-6 max-w-3xl">
-          <h1 className="text-4xl md:text-5xl font-serif text-white mb-4">Crystal Care Guide</h1>
-          <p className="text-brand-silver/80 mb-16 text-lg">
+          <h1 className="text-4xl md:text-5xl font-serif text-[#262626] mb-4 font-medium">Crystal Care Guide</h1>
+          <p className="text-[#262626]/70 mb-16 text-lg">
             Your Solvia bracelet is designed for everyday wear. With a little care, it will maintain its beauty and presence for years to come.
           </p>
 
@@ -68,11 +68,11 @@ export default function CareGuidePage() {
               <section key={section.title}>
                 <div className="flex items-center mb-6">
                   <section.icon className="w-6 h-6 text-brand-gold mr-3" />
-                  <h2 className="text-2xl font-serif text-white">{section.title}</h2>
+                  <h2 className="text-2xl font-serif text-[#262626] font-medium">{section.title}</h2>
                 </div>
                 <ul className="space-y-4">
                   {section.tips.map((tip, idx) => (
-                    <li key={idx} className="flex gap-4 text-brand-silver/80 text-sm leading-relaxed">
+                    <li key={idx} className="flex gap-4 text-[#262626]/80 text-sm leading-relaxed">
                       <span className="text-brand-gold/60 mt-1">•</span>
                       <span>{tip}</span>
                     </li>

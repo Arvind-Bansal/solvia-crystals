@@ -1,18 +1,25 @@
 @import "tailwindcss";
 
 @theme {
-  /* Colors — Brand */
-  --color-brand-black: #0a0a0a;
-  --color-brand-dark: #121212;
-  --color-brand-purple: #2d1b4e;
-  --color-brand-purple-light: #4b2c82;
-  --color-brand-gold: #c5a059;
-  --color-brand-silver: #e0e0e0;
+  /* Colors — Solvia Crystals Brand System */
+  --color-warm-ivory: #F8F5EF;
+  --color-champagne-gold: #D6B47A;
+  --color-charcoal: #262626;
+
+  /* Brand Tokens */
+  --color-brand-black: #262626;
+  --color-brand-dark: #262626;
+  --color-brand-charcoal: #262626;
+  --color-brand-ivory: #F8F5EF;
+  --color-brand-gold: #D6B47A;
+  --color-brand-silver: #555555;
+  --color-brand-purple: #262626;
 
   /* Surfaces */
-  --color-surface-primary: #0a0a0a;
-  --color-surface-elevated: #121212;
-  --color-surface-subtle: #050505;
+  --color-surface-primary: #F8F5EF;
+  --color-surface-elevated: #FFFFFF;
+  --color-surface-subtle: #F2EDE4;
+  --color-surface-dark: #262626;
 
   /* Typography */
   --font-serif: var(--font-outfit);
@@ -23,8 +30,8 @@
 }
 
 :root {
-  --background: #0a0a0a;
-  --foreground: #e0e0e0;
+  --background: #F8F5EF;
+  --foreground: #262626;
 }
 
 html {
@@ -41,8 +48,8 @@ body {
 
 /* Custom selection */
 ::selection {
-  background-color: var(--color-brand-gold);
-  color: #0a0a0a;
+  background-color: #D6B47A;
+  color: #262626;
 }
 
 /* Custom scrollbar */
@@ -53,23 +60,23 @@ body {
   background: var(--background);
 }
 ::-webkit-scrollbar-thumb {
-  background: #333;
+  background: #D6B47A;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-brand-gold);
+  background: #262626;
 }
 
-/* Gradients */
+/* Luxury Card & Banner Styling */
 .bg-gradient-luxury {
-  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #2d1b4e 100%);
+  background: linear-gradient(135deg, #F8F5EF 0%, #F2EDE4 50%, #E8E2D7 100%);
 }
 
 .text-gradient {
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  background-image: linear-gradient(90deg, #c5a059, #e0e0e0);
+  background-image: linear-gradient(90deg, #D6B47A, #262626);
 }
 
 /* Horizontal scroll without visible scrollbar */

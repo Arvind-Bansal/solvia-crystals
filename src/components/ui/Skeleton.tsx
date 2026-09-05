@@ -6,7 +6,7 @@ function Skeleton({
 }: React.HTMLAttributes<HTMLDivElement>) {
   return (
     <div
-      className={cn("animate-pulse rounded-sm bg-white/5", className)}
+      className={cn("animate-pulse rounded-sm bg-[#262626]/5", className)}
       {...props}
     />
   );
@@ -14,7 +14,7 @@ function Skeleton({
 
 function ProductCardSkeleton() {
   return (
-    <div className="flex flex-col bg-[#121212] rounded-sm overflow-hidden border border-white/5 h-full">
+    <div className="flex flex-col bg-white rounded-sm overflow-hidden border border-[#262626]/10 h-full shadow-xs">
       <Skeleton className="aspect-[4/5] rounded-none" />
       <div className="p-4 space-y-3">
         <Skeleton className="h-3 w-16" />

@@ -16,16 +16,16 @@ export default function GlobalError({
 
   return (
     <html>
-      <body className="bg-[#0a0a0a] text-white flex flex-col items-center justify-center min-h-screen p-6 text-center">
-        <h1 className="text-4xl font-serif mb-4">Critical Alignment Error</h1>
-        <p className="text-brand-silver/80 mb-8 max-w-md">
-          A critical system error occurred. Please refresh the page or try again later.
+      <body className="bg-[#F8F5EF] text-[#262626] flex flex-col items-center justify-center min-h-screen p-6 text-center">
+        <h1 className="text-4xl font-serif mb-4 font-medium">Something Went Wrong</h1>
+        <p className="text-[#262626]/70 mb-8 max-w-md">
+          A critical error occurred. Please refresh the page or try again later.
         </p>
         <button 
           onClick={() => reset()}
-          className="px-6 py-3 border border-brand-gold text-brand-gold rounded-sm uppercase tracking-widest text-sm hover:bg-brand-gold hover:text-black transition-colors"
+          className="px-6 py-3 border border-[#262626] text-[#262626] rounded-sm uppercase tracking-widest text-sm hover:bg-[#262626] hover:text-[#F8F5EF] transition-colors"
         >
-          Restore Connection
+          Try Again
         </button>
       </body>
     </html>

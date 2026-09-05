@@ -1,6 +1,5 @@
 "use client";
 
-
 import { Button } from "@/components/ui/Button";
 import { ShieldCheck, Heart } from "lucide-react";
 import { Product } from "@/types";
@@ -34,10 +33,10 @@ export function ProductActions({ product }: { product: Product }) {
   };
 
   return (
-    <div className="p-6 border border-white/10 bg-[#121212] rounded-sm mb-12 relative">
+    <div className="p-6 border border-[#262626]/10 bg-[#F2EDE4] rounded-sm mb-12 relative shadow-xs">
       <button
         onClick={handleWishlist}
-        className="absolute top-4 right-4 p-2 bg-black/40 backdrop-blur-sm rounded-full text-brand-silver hover:text-brand-gold hover:bg-black/60 transition-all z-10"
+        className="absolute top-4 right-4 p-2 bg-white/80 backdrop-blur-sm rounded-full text-[#262626] hover:text-brand-gold hover:bg-white transition-all z-10 shadow-xs"
         aria-label="Toggle wishlist"
       >
         <Heart className={`w-5 h-5 ${isWishlisted ? "fill-brand-gold text-brand-gold" : ""}`} />
@@ -52,7 +51,7 @@ export function ProductActions({ product }: { product: Product }) {
         {product.inStock ? "Add to Cart" : "Sold Out"}
       </Button>
       
-      <p className="text-xs text-center text-brand-silver/60">
+      <p className="text-xs text-center text-[#262626]/70">
         <ShieldCheck className="w-4 h-4 inline mr-1 text-brand-gold" /> 
         Ethically sourced stones. Designed for everyday wear.
       </p>

@@ -3,12 +3,11 @@ import { Product } from '@/types';
 // ─── Launch 1 Catalogue ─────────────────────
 // 8 finalized products. Real product photography pending.
 // Image paths reference local directories under public/products/{slug}/.
-// Until real images are placed, paths are empty strings — components should
-// handle missing images gracefully via the FALLBACK_IMAGE in lib/images.ts.
+// Until real images are placed, components handle missing images gracefully
+// via the FALLBACK_IMAGE in lib/images.ts.
 //
 // Fields marked "TODO" require real product specifications before launch.
 
-/** Helper: builds the standard local image path set for a product slug. */
 function localImages(slug: string): Product['images'] {
   return {
     primary: `/products/${slug}/primary.webp`,
@@ -26,6 +25,7 @@ export const products: Product[] = [
   {
     id: "prod_001",
     name: "Violet Hour",
+    subtitle: "Amethyst Bracelet",
     slug: "violet-hour",
     price: 799,
     rating: 0,
@@ -34,8 +34,8 @@ export const products: Product[] = [
     meaning: "Amethyst has been valued since antiquity for its deep violet hue and its long association with composure, intuition, and clear thinking.",
     intention: "Clarity",
     style: "Signature",
-    collection: "Launch 01",
-    collectionSlug: "launch-01",
+    collection: "Everyday Rituals",
+    collectionSlug: "everyday-rituals",
     chakra: "TODO",
     zodiac: [],
     materials: ["TODO — Bead size, cord type, and hardware to be confirmed"],
@@ -49,6 +49,7 @@ export const products: Product[] = [
   {
     id: "prod_002",
     name: "Affinity",
+    subtitle: "Rose Quartz Bracelet",
     slug: "affinity",
     price: 699,
     rating: 0,
@@ -57,8 +58,8 @@ export const products: Product[] = [
     meaning: "Rose Quartz is widely regarded as a stone of emotional openness. Its soft pink hue has long symbolised tenderness, self-compassion, and quiet warmth.",
     intention: "Love",
     style: "Signature",
-    collection: "Launch 01",
-    collectionSlug: "launch-01",
+    collection: "Everyday Rituals",
+    collectionSlug: "everyday-rituals",
     chakra: "TODO",
     zodiac: [],
     materials: ["TODO — Bead size, cord type, and hardware to be confirmed"],
@@ -72,6 +73,7 @@ export const products: Product[] = [
   {
     id: "prod_012",
     name: "Prospect",
+    subtitle: "Pyrite Bracelet",
     slug: "prospect",
     price: 799,
     rating: 0,
@@ -80,8 +82,8 @@ export const products: Product[] = [
     meaning: "Often called 'Fool's Gold', Pyrite has been carried by merchants and leaders as a symbol of ambition, action, and determination.",
     intention: "Wealth",
     style: "Statement",
-    collection: "Launch 01",
-    collectionSlug: "launch-01",
+    collection: "Everyday Rituals",
+    collectionSlug: "everyday-rituals",
     chakra: "TODO",
     zodiac: [],
     materials: ["TODO — Bead size, cord type, and hardware to be confirmed"],
@@ -95,6 +97,7 @@ export const products: Product[] = [
   {
     id: "prod_005",
     name: "Stronghold",
+    subtitle: "Black Tourmaline Bracelet",
     slug: "stronghold",
     price: 799,
     rating: 0,
@@ -103,8 +106,8 @@ export const products: Product[] = [
     meaning: "Black Tourmaline is one of the most valued protective stones in traditional practice. It is associated with grounding, composure, and a sense of personal sovereignty.",
     intention: "Protection",
     style: "Minimal",
-    collection: "Launch 01",
-    collectionSlug: "launch-01",
+    collection: "Everyday Rituals",
+    collectionSlug: "everyday-rituals",
     chakra: "TODO",
     zodiac: [],
     materials: ["TODO — Bead size, cord type, and hardware to be confirmed"],
@@ -118,6 +121,7 @@ export const products: Product[] = [
   {
     id: "prod_004",
     name: "Late Harvest",
+    subtitle: "Citrine Bracelet",
     slug: "late-harvest",
     price: 899,
     rating: 0,
@@ -126,8 +130,8 @@ export const products: Product[] = [
     meaning: "Known historically as the Merchant's Stone, Citrine has been carried by traders and entrepreneurs for centuries as a symbol of prosperity, optimism, and creative drive.",
     intention: "Wealth",
     style: "Signature",
-    collection: "Launch 01",
-    collectionSlug: "launch-01",
+    collection: "Everyday Rituals",
+    collectionSlug: "everyday-rituals",
     chakra: "TODO",
     zodiac: [],
     materials: ["TODO — Bead size, cord type, and hardware to be confirmed"],
@@ -141,6 +145,7 @@ export const products: Product[] = [
   {
     id: "prod_013",
     name: "Fortune",
+    subtitle: "Green Aventurine Bracelet",
     slug: "fortune",
     price: 699,
     rating: 0,
@@ -149,8 +154,8 @@ export const products: Product[] = [
     meaning: "Green Aventurine has been valued across cultures as a stone of opportunity and optimism. Its gentle green hue is traditionally associated with growth, perseverance, and quiet prosperity.",
     intention: "Wealth",
     style: "Minimal",
-    collection: "Launch 01",
-    collectionSlug: "launch-01",
+    collection: "Everyday Rituals",
+    collectionSlug: "everyday-rituals",
     chakra: "TODO",
     zodiac: [],
     materials: ["TODO — Bead size, cord type, and hardware to be confirmed"],
@@ -164,6 +169,7 @@ export const products: Product[] = [
   {
     id: "prod_008",
     name: "Conviction",
+    subtitle: "Tiger Eye Bracelet",
     slug: "conviction",
     price: 699,
     rating: 0,
@@ -172,8 +178,8 @@ export const products: Product[] = [
     meaning: "Tiger Eye has been worn as a stone of courage and self-assurance since the Roman era. Its shifting bands of colour symbolise adaptability, focus, and quiet personal power.",
     intention: "Confidence",
     style: "Signature",
-    collection: "Launch 01",
-    collectionSlug: "launch-01",
+    collection: "Everyday Rituals",
+    collectionSlug: "everyday-rituals",
     chakra: "TODO",
     zodiac: [],
     materials: ["TODO — Bead size, cord type, and hardware to be confirmed"],
@@ -187,6 +193,7 @@ export const products: Product[] = [
   {
     id: "prod_006",
     name: "Sightline",
+    subtitle: "Clear Quartz Bracelet",
     slug: "sightline",
     price: 699,
     rating: 0,
@@ -195,8 +202,8 @@ export const products: Product[] = [
     meaning: "Clear Quartz has been valued across cultures as a stone of amplification and focus. It is associated with sharpening intention and bringing mental clarity.",
     intention: "Clarity",
     style: "Minimal",
-    collection: "Launch 01",
-    collectionSlug: "launch-01",
+    collection: "Everyday Rituals",
+    collectionSlug: "everyday-rituals",
     chakra: "TODO",
     zodiac: [],
     materials: ["TODO — Bead size, cord type, and hardware to be confirmed"],
@@ -210,7 +217,6 @@ export const products: Product[] = [
 ];
 
 // ─── Query Helpers ───────────────────────────
-// These become the CMS fetch layer. Swap internals when migrating to Sanity/Contentful.
 
 export function getAllProducts(): Product[] {
   return products;
