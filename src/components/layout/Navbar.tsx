@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -60,22 +61,31 @@ export function Navbar() {
             {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
 
-          {/* Logo */}
-          <Link href="/" className="flex-1 md:flex-none flex items-center justify-center md:justify-start group">
-            <div className="relative flex items-center justify-center w-7 h-7 mr-2.5">
-              <svg viewBox="0 0 100 100" className="w-full h-full text-brand-gold group-hover:rotate-180 transition-transform duration-1000 ease-in-out" fill="none" stroke="currentColor" strokeWidth="3">
-                <path d="M50 0 L100 50 L50 100 L0 50 Z" />
-                <path d="M50 20 L80 50 L50 80 L20 50 Z" strokeWidth="1.5" opacity="0.6" />
-                <circle cx="50" cy="50" r="6" fill="currentColor" />
-              </svg>
-            </div>
-            <div className="flex flex-col items-start justify-center leading-none">
-              <span className="font-serif text-xl md:text-2xl font-semibold tracking-[0.2em] text-[#262626]">
-                SOLVIA
-              </span>
-              <span className="text-[9px] md:text-[10px] uppercase tracking-[0.35em] text-brand-gold font-medium mt-0.5">
-                Crystals
-              </span>
+          {/* Dynamic Logo */}
+          <Link href="/" className="flex-1 md:flex-none flex items-center justify-center md:justify-start group relative h-9">
+            <div className="relative flex items-center justify-center md:justify-start h-9 w-[140px] md:w-[160px]">
+              <Image
+                src="/solvia-logo.png"
+                alt="Solvia Crystals"
+                width={160}
+                height={40}
+                className={cn(
+                  "h-8 md:h-9 w-auto object-contain transition-all duration-300 ease-in-out absolute",
+                  isScrolled ? "opacity-0 scale-90 pointer-events-none invisible" : "opacity-100 scale-100 visible"
+                )}
+                priority
+              />
+              <Image
+                src="/solvia-emblem.png"
+                alt="Solvia Crystals Emblem"
+                width={40}
+                height={40}
+                className={cn(
+                  "h-7 md:h-8 w-auto object-contain transition-all duration-300 ease-in-out absolute",
+                  isScrolled ? "opacity-100 scale-100 visible" : "opacity-0 scale-90 pointer-events-none invisible"
+                )}
+                priority
+              />
             </div>
           </Link>
 

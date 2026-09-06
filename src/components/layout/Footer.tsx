@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 import Link from "next/link";
 import { FaInstagram, FaFacebook } from "react-icons/fa";
@@ -45,9 +46,15 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
           {/* Brand Col */}
           <div className="col-span-1 md:col-span-1">
-            <span className="font-serif text-2xl font-semibold tracking-wider text-[#262626] block mb-4">
-              SOLVIA <span className="text-brand-gold font-normal">CRYSTALS</span>
-            </span>
+            <Link href="/" className="inline-block mb-4">
+              <Image
+                src="/solvia-logo.png"
+                alt="Solvia Crystals"
+                width={180}
+                height={45}
+                className="h-10 w-auto object-contain"
+              />
+            </Link>
             <p className="text-sm text-[#262626]/70 mb-6 leading-relaxed">
               Ethically sourced crystals. Considered design. Everyday rituals.
             </p>
